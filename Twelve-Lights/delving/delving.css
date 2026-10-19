@@ -1,0 +1,343 @@
+/* The Delving · styles. Scoped to .dv; inherits the Twelve Lights palette
+   (--bg --panel --line --gold --muted --text --green --error --serif). */
+.dv { position: relative; display: grid; gap: 14px; max-width: 980px; }
+.dv button { font: inherit; cursor: pointer; }
+.dv button:focus-visible, .dv input:focus-visible, .dv textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* HUD */
+.dv-hud { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.dv-satchel { display: flex; gap: 4px; }
+.dv-socket { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid var(--line); border-radius: 50%; background: #0a1418; }
+.dv-socket.found { border-color: #6b7f6f; }
+.dv-hud-buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+.dv-journey { padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(110deg, #152c2c, #0b191f); }
+.dv-journey-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 10px; color: var(--muted); font-size: 12px; letter-spacing: .03em; }
+.dv-marks { display: grid; grid-template-columns: repeat(40, minmax(0, 1fr)); gap: 5px; align-items: center; }
+.dv-marks i { height: 10px; border: 1px solid #4a6260; border-radius: 2px; transform: skewX(-12deg); }
+.dv-marks i:nth-child(4n) { height: 15px; }
+.dv-marks i.open { background: var(--gold); border-color: var(--gold); }
+.dv-marks i.current { outline: 1px solid var(--green); outline-offset: 2px; }
+.dv-field-notes { padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: #0d1d22; }
+.dv-field-notes p { margin: 8px 0 0; font-size: 14px; color: var(--muted); line-height: 1.65; }
+.dv-field-notes p:first-of-type { color: var(--text); font-family: var(--serif); font-size: 18px; }
+.dv-guide { display: flex; gap: 14px; padding: 14px 18px; margin-bottom: 16px; border-left: 2px solid var(--gold); background: linear-gradient(100deg, rgba(210, 189, 130, .09), transparent); }
+.dv-guide > span { color: var(--gold); font-size: 28px; }
+.dv-guide p { margin: 5px 0 0; color: var(--text); font: italic 16px/1.65 var(--serif); }
+
+/* Stage: the Myst-like scene */
+.dv-stage { position: relative; aspect-ratio: 16 / 9; max-height: 56vh; width: 100%; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: #04080a; container-type: size; }
+/* The world is a 16:9 layer covering the stage (like background-size: cover), so a percentage inside
+   it lands on the same spot of the painting whatever shape the stage is. It walks in and out; the
+   camera inside it drifts slowly around the painting's focal point, carrying door, lamps and engraving. */
+.dv-world { position: absolute; inset: 0; transform-origin: var(--wx, 50%) var(--wy, 55%); transition: transform .9s ease, opacity .9s ease; }
+@supports (width: 1cqw) {
+  .dv-world { inset: auto; left: calc((100cqw - max(100cqw, 177.778cqh)) / 2); top: calc((100cqh - max(100cqh, 56.25cqw)) / 2); width: max(100cqw, 177.778cqh); height: max(100cqh, 56.25cqw); }
+}
+.dv-cam { position: absolute; inset: 0; transform-origin: var(--fx, 50%) var(--fy, 50%); animation: dv-drift 32s ease-in-out infinite alternate; }
+.dv-scene { position: absolute; inset: 0; background: var(--scene) center / cover no-repeat; filter: brightness(var(--dim, 1)); transition: filter 2.4s ease; }
+.dv-light { position: absolute; inset: 0; z-index: 2; pointer-events: none; background:
+    radial-gradient(circle at var(--lx, 50%) var(--ly, 40%), rgba(var(--tint, 255,220,160), var(--glow, .25)) 0, rgba(var(--tint, 255,220,160), calc(var(--glow, .25) * .35)) 18%, transparent 46%);
+  mix-blend-mode: screen; animation: dv-flicker var(--flick, 3.4s) steps(1, end) infinite; }
+.dv-stage::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0, 0, 0, .5) 100%); }
+@keyframes dv-flicker { 0%, 100% { opacity: 1; } 37% { opacity: .9; } 41% { opacity: 1; } 68% { opacity: .94; } 71% { opacity: .86; } 74% { opacity: 1; } }
+@keyframes dv-drift { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.09) translate(-1.5%, -1%); } }
+.dv-stage.leave .dv-world { transform: scale(1.28); opacity: 0; transition-timing-function: ease-in; }
+.dv-stage.arrive .dv-world { transform: scale(1.08); opacity: 0; transition: none; }
+/* Walking through an opened door into the chamber behind it (frames with a reveal). */
+.dv-world.dv-reveal { opacity: 0; transform: scale(1.08); transition: opacity 1.6s ease, transform 1.8s ease; }
+.dv-world.dv-reveal.shown { opacity: 1; transform: none; }
+.dv-world.dv-through { transform: scale(1.16); transition: transform 1.8s ease-in; }
+.dv-caption { position: absolute; inset: auto 0 0; z-index: 3; padding: 40px 22px 16px; background: linear-gradient(transparent, rgba(4, 10, 12, .88)); }
+.dv-caption h2 { margin: 2px 0 0; color: var(--text); font: 400 clamp(22px, 3vw, 32px) var(--serif); }
+.dv-eyebrow { color: var(--gold); font-size: 11px; letter-spacing: .14em; }
+
+/* The door that opens over the scene */
+.dv-door { position: absolute; left: 50%; bottom: 0; z-index: 1; width: 34%; height: 82%; transform: translateX(-50%); perspective: 900px; pointer-events: none; }
+.dv-leaf { position: absolute; top: 0; bottom: 0; width: 50%; background: linear-gradient(160deg, #d9d3c4, #8f8a7c); box-shadow: inset 0 0 0 3px rgba(60, 54, 40, .35); transition: transform 1.7s cubic-bezier(.55, .05, .25, 1), filter 1.7s ease, opacity 1.7s ease; }
+.dv-leaf.left { left: 0; border-radius: 999px 0 0 0 / 160px 0 0 0; transform-origin: left center; }
+.dv-leaf.right { right: 0; border-radius: 0 999px 0 0 / 0 160px 0 0; transform-origin: right center; }
+.dv-seam { position: absolute; left: 50%; top: 6%; bottom: 0; width: 2px; background: #f4dc95; box-shadow: 0 0 18px 4px rgba(244, 220, 149, .55); transform: translateX(-50%); transition: opacity .6s ease; }
+.dv-door.open .dv-leaf.left { transform: rotateY(82deg); filter: brightness(.45); opacity: .55; }
+.dv-door.open .dv-leaf.right { transform: rotateY(-82deg); filter: brightness(.45); opacity: .55; }
+.dv-door.open .dv-seam { opacity: 0; }
+
+/* ── Sol's paintings (stage.has-art). Light is painted in; the overlays only add a little life. ── */
+.dv-stage.has-art::after { background: none; }
+.dv-scrim { display: none; }
+.dv-stage.has-art .dv-caption { background: linear-gradient(transparent, rgba(4, 10, 12, .5)); }
+
+/* Stone leaves in each painting's measured doorway. Each texture has a 4px export gutter, cropped by
+   oversizing it 102% × 100.8%. They swing inward on their outer hinges and darken as they turn. */
+.dv-door.art { left: calc(var(--dx) * 1%); top: calc(var(--dy) * 1%); bottom: auto; width: calc(var(--dw) * 1%); height: calc(var(--dh) * 1%); transform: none; perspective: 1400px; }
+.dv-door.art .dv-leaf { border-radius: 0; box-shadow: inset 0 0 0 1px rgba(30, 24, 14, .35); background: center / 100% 100% no-repeat, center / 102% 100.8% no-repeat; filter: sepia(.18) saturate(.8) brightness(calc(var(--dex, .72) * var(--dim, 1))); backface-visibility: hidden; }
+/* A little shade at the head and foot, and toward the seam, so the leaves sit in the painted light. */
+.dv-door.art .dv-leaf.left { background-image: linear-gradient(rgba(0, 0, 0, .3), transparent 22%, transparent 74%, rgba(0, 0, 0, .28)), url(art/doors/door-leaf-left.webp); }
+.dv-door.art .dv-leaf.right { background-image: linear-gradient(rgba(0, 0, 0, .3), transparent 22%, transparent 74%, rgba(0, 0, 0, .28)), url(art/doors/door-leaf-right.webp); }
+.dv-door.art .dv-seam { top: 0; width: 1px; box-shadow: 0 0 8px 2px rgba(244, 220, 149, .4); opacity: .8; }
+.dv-door.art.open .dv-leaf { filter: sepia(.18) saturate(.8) brightness(calc(var(--dex, .72) * var(--dim, 1) * .5)); opacity: 1; }
+.dv-door.art.open .dv-seam { opacity: 0; }
+/* The court's far portal sits behind the bronze basin, so it brightens instead of swinging. */
+.dv-portal { position: absolute; z-index: 1; left: calc(var(--dx) * 1%); top: calc(var(--dy) * 1%); width: calc(var(--dw) * 1%); height: calc(var(--dh) * 1%); background: radial-gradient(ellipse at 50% 60%, rgba(255, 222, 160, .55), rgba(255, 210, 140, .18) 45%, transparent 72%); mix-blend-mode: screen; opacity: 0; transition: opacity 1.7s ease; pointer-events: none; }
+.dv-portal.open { opacity: 1; }
+
+/* Lamp glows over the painted flames: three frames cross-fading at uneven speeds. */
+.dv-pool { position: absolute; left: var(--x); top: var(--y); width: var(--r); aspect-ratio: 1; transform: translate(-50%, -50%); opacity: calc(var(--a) * var(--boost, 1)); mix-blend-mode: screen; pointer-events: none; transition: opacity 1.4s ease calc(var(--i) * .22s); }
+.dv-pool i { position: absolute; inset: 0; background: center / contain no-repeat; animation: dv-pool var(--t) ease-in-out infinite alternate; }
+.dv-pool i:nth-child(2) { animation-duration: calc(var(--t) * 1.37); animation-delay: calc(var(--t) * -.6); }
+.dv-pool i:nth-child(3) { animation-duration: calc(var(--t) * .79); animation-delay: calc(var(--t) * -.3); }
+@keyframes dv-pool { from { opacity: .2; } to { opacity: .85; } }
+.dv-pool.c-warm i:nth-child(1) { background-image: url(art/light/lantern-warm-0.webp); }
+.dv-pool.c-warm i:nth-child(2) { background-image: url(art/light/lantern-warm-1.webp); }
+.dv-pool.c-warm i:nth-child(3) { background-image: url(art/light/lantern-warm-2.webp); }
+.dv-pool.c-candle i:nth-child(1) { background-image: url(art/light/lantern-candle-0.webp); }
+.dv-pool.c-candle i:nth-child(2) { background-image: url(art/light/lantern-candle-1.webp); }
+.dv-pool.c-candle i:nth-child(3) { background-image: url(art/light/lantern-candle-2.webp); }
+.dv-pool.c-moon-crystal i:nth-child(1) { background-image: url(art/light/lantern-moon-crystal-0.webp); }
+.dv-pool.c-moon-crystal i:nth-child(2) { background-image: url(art/light/lantern-moon-crystal-1.webp); }
+.dv-pool.c-moon-crystal i:nth-child(3) { background-image: url(art/light/lantern-moon-crystal-2.webp); }
+/* Door 1: the lamps burn low until each is set in its place, then wake in order. */
+.dv-wake { --boost: 2.6; }
+.dv-unlit .dv-scene { filter: brightness(calc(var(--dim, 1) * .82)); }
+.dv-unlit .dv-pool:not(.lit) { opacity: 0; }
+
+.dv-dust, .dv-mist { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; background: center / 100% 100% no-repeat; }
+.dv-dust { background-image: url(art/light/dust.webp); opacity: .55; animation: dv-dust 46s ease-in-out infinite alternate; }
+.dv-mist { background-image: url(art/light/mist.webp); opacity: .25; animation: dv-mist 60s ease-in-out infinite alternate; }
+@keyframes dv-dust { from { transform: translate(0, 0); } to { transform: translate(-1.2%, -2.4%); } }
+@keyframes dv-mist { from { transform: translateX(-2.5%); } to { transform: translateX(2.5%); } }
+
+.dv-act-banner { position: absolute; inset: 30% 10% auto; z-index: 3; display: grid; justify-items: center; gap: 4px; padding: 18px 0; color: var(--text); font: 400 clamp(20px, 3vw, 30px) var(--serif); text-align: center; text-shadow: 0 1px 3px #000, 0 2px 18px #000; background: radial-gradient(closest-side, rgba(3, 8, 10, .62), rgba(3, 8, 10, .3) 60%, transparent); animation: dv-banner 3.2s ease forwards; pointer-events: none; }
+.dv-act-banner span { color: var(--gold); font-size: .8em; letter-spacing: .2em; }
+.dv-act-banner small { color: var(--muted); font-size: 14px; font-style: italic; }
+@keyframes dv-banner { 0% { opacity: 0; transform: translateY(8px); } 15%, 70% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.dv-award { position: absolute; left: 50%; top: 38%; z-index: 4; display: grid; justify-items: center; gap: 6px; color: var(--text); font: 400 18px var(--serif); transform: translate(-50%, -50%); animation: dv-award 3.4s ease forwards; pointer-events: none; }
+@keyframes dv-award { 0% { opacity: 0; transform: translate(-50%, -30%) scale(.5); } 20% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); } 35%, 75% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { opacity: 0; } }
+.dv-gem { filter: drop-shadow(0 0 6px rgba(255, 255, 255, .35)); }
+img.dv-gem { display: block; object-fit: contain; filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .5)); }
+.dv-award-gem { position: relative; display: grid; place-items: center; }
+.dv-award img.dv-gem { filter: drop-shadow(0 0 14px rgba(255, 240, 200, .45)); }
+.dv-sparkle { position: absolute; right: -12px; top: -10px; width: 46px; height: 46px; background: url(art/light/gem-sparkle.webp) center / contain no-repeat; mix-blend-mode: screen; animation: dv-sparkle 1.6s ease .6s both; }
+@keyframes dv-sparkle { 0% { opacity: 0; transform: scale(.3) rotate(-30deg); } 40% { opacity: 1; transform: scale(1.1) rotate(0); } 100% { opacity: 0; transform: scale(.6) rotate(25deg); } }
+
+/* Panel */
+.dv-panel { display: grid; gap: 16px; }
+.dv-verse { color: var(--gold); font: italic 400 17px/1.6 var(--serif); text-align: center; }
+.dv-verse p { margin: 0; }
+.dv-verse.small { font-size: 15px; text-align: left; padding-left: 14px; border-left: 2px solid rgba(210, 189, 130, .4); }
+.dv-note { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; }
+.dv-note.small { font-size: 12px; }
+.dv-meta { display: flex; gap: 14px; align-items: center; color: var(--muted); font-size: 12px; }
+.dv-stars { color: var(--gold); letter-spacing: 2px; }
+.dv-cert { padding: 2px 9px; border: 1px solid var(--line); border-radius: 99px; }
+.dv-setting { margin: 8px 0; color: var(--text); font: 400 16px/1.6 var(--serif); }
+.dv-part { margin-top: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.dv-part.solved { border-color: rgba(148, 206, 185, .5); }
+.dv-part.locked { opacity: .5; }
+.dv-prompt { margin: 0 0 10px; color: var(--text); line-height: 1.5; }
+.dv-step { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 50%; background: var(--gold); color: #13221f; font-size: 12px; font-weight: 700; }
+.dv-locked { margin: 0; color: var(--muted); font-size: 13px; font-style: italic; }
+
+.dv-options { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.dv-option { padding: 9px 14px; border: 1px solid var(--line); border-radius: 12px; background: #0c1b20; color: var(--text); text-align: left; }
+.dv-option:hover:not(:disabled) { border-color: var(--gold); }
+.dv-option[aria-pressed="true"] { border-color: var(--gold); background: rgba(210, 189, 130, .14); }
+.dv-option.right { border-color: var(--green); color: var(--green); }
+.dv-option.wrong { border-color: var(--error); color: var(--error); opacity: .7; }
+
+.dv-template { margin: 0 0 10px; color: var(--text); line-height: 2.2; }
+.dv-blank { width: auto; min-width: 3.5em; margin: 0 4px; padding: 4px 8px; border: 0; border-bottom: 2px solid var(--gold); background: rgba(210, 189, 130, .08); color: var(--text); font: inherit; text-align: center; }
+.dv-blank.wrong { border-bottom-color: var(--error); }
+.dv-blank-wrap { position: relative; display: inline-block; }
+.dv-blank-glyphs { display: none; }
+.dv.elvish .dv-blank { color: transparent; caret-color: var(--gold); }
+.dv.elvish .dv-blank-glyphs { position: absolute; inset: 0 4px 2px; display: flex; align-items: center; justify-content: center; color: var(--text); pointer-events: none; }
+.dv .number-wrap { display: inline-flex; vertical-align: middle; }
+.dv .tengwar-number { height: 1.15em; fill: currentColor; }
+.dv-shuffle { justify-self: start; display: inline-flex; align-items: center; gap: 7px; margin-top: 4px; color: var(--muted); font-size: 12px; opacity: .75; cursor: pointer; }
+.dv-shuffle:hover { opacity: 1; }
+.dv-shuffle input { accent-color: var(--gold); }
+.dv-reflect { width: 100%; margin-bottom: 10px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; background: #0c1b20; color: var(--text); font: inherit; resize: vertical; }
+
+.dv-chip { display: inline-flex; align-items: center; padding: 7px 13px; border: 1px solid #5f7a6e; border-radius: 99px; background: #13292b; color: var(--text); touch-action: none; user-select: none; }
+.dv-chip.num { min-width: 44px; justify-content: center; font: 600 16px var(--serif); }
+.dv-chip.armed { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(210, 189, 130, .35); }
+.dv-ghost { position: fixed; z-index: 1000; pointer-events: none; transform: translate(-50%, -50%) scale(1.05); opacity: .9; }
+.dv-tray { display: flex; flex-wrap: wrap; gap: 8px; min-height: 40px; margin: 10px 0; padding: 8px; border: 1px dashed var(--line); border-radius: 12px; }
+
+.dv-match { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: 8px; }
+.dv-slot { display: grid; gap: 6px; min-height: 70px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: #0b171b; cursor: pointer; text-align: left; }
+.dv-instruction { margin: 0 0 12px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.dv-slot:hover:not(:disabled), .dv-fslot:hover:not(:disabled), .dv-drop-ready { border-color: var(--gold); background-color: #263b34; box-shadow: inset 0 0 0 1px var(--gold); }
+.dv-slot:disabled, .dv-fslot:disabled { cursor: default; opacity: 1; }
+.dv-slot.wrong { border-color: var(--error); }
+.dv-slot-label { color: var(--muted); font-size: 13px; }
+.dv-slot-value { color: var(--gold); font: 600 15px var(--serif); min-height: 1.2em; }
+
+.dv-formula { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 6px; color: var(--text); font: 400 20px var(--serif); }
+.dv-fslot { display: inline-grid; place-items: center; min-width: 52px; height: 40px; padding: 0 8px; border: 1px dashed var(--gold); border-radius: 10px; background: rgba(210, 189, 130, .07); color: var(--gold); cursor: pointer; }
+.dv-fresult { color: var(--green); }
+.dv-fsuffix { color: var(--muted); font-size: 15px; }
+
+.dv-order { display: grid; gap: 6px; margin: 0 0 10px; padding: 0; list-style: none; counter-reset: lamp; }
+.dv-order li { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 12px; background: #0b171b; }
+.dv-order .dv-chip { min-width: 0; border: 0; border-radius: 6px; padding: 6px; background: transparent; }
+.dv-order [data-reorder] { cursor: grab; touch-action: none; user-select: none; }
+.dv-order [data-reorder] .dv-chip { flex: 1; cursor: inherit; }
+.dv-grip { flex: none; color: var(--muted); font-size: 20px; line-height: 1; }
+.dv-order li.dv-dragging { opacity: .45; cursor: grabbing; }
+.dv-order li.dv-drop-ready { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); background: #263b34; }
+.dv-order-ghost { display: flex; align-items: center; gap: 10px; padding: 8px; border: 1px solid var(--gold); border-radius: 12px; background: #13292b; color: var(--text); list-style: none; }
+.dv-order-ghost .dv-move { display: none; }
+.dv-order-ghost .dv-chip { border: 0; background: transparent; }
+.dv-lamp { width: 14px; height: 14px; flex: none; border-radius: 50%; background: #2a3b3d; box-shadow: inset 0 0 0 1px #4d6560; transition: background .5s, box-shadow .5s; }
+.dv-order li.lit .dv-lamp, .dv-part.solved .dv-lamp { background: #f3dd9a; box-shadow: 0 0 10px 2px rgba(243, 221, 154, .6); }
+.dv-move { display: flex; flex: none; gap: 4px; margin-left: auto; }
+.dv-mini { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 8px; background: none; color: var(--muted); }
+
+.dv-feedback { min-height: 22px; margin-top: 10px; color: var(--muted); font-size: 14px; }
+.dv-feedback.good { color: var(--green); }
+.dv-feedback.bad { color: var(--error); }
+
+.dv-hints { display: grid; gap: 10px; margin-top: 12px; }
+.dv-hint { margin: 0; padding: 10px 14px; border-left: 2px solid var(--gold); background: rgba(210, 189, 130, .06); color: var(--text); font-size: 14px; line-height: 1.55; }
+.dv-caret { padding: 4px 10px; border: 1px solid var(--line); border-radius: 8px; background: none; color: var(--gold); }
+.dv-equation { display: block; margin-top: 8px; color: var(--text); font: 15px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.dv-figure img { display: block; width: 100%; max-width: 520px; border-radius: 10px; background: #ebe5d6; }
+.dv-figure figcaption { margin-top: 8px; }
+
+.dv-after { padding: 16px 18px; border: 1px solid rgba(148, 206, 185, .4); border-radius: 14px; background: #0c1d1f; }
+.dv-after h3 { margin: 0 0 8px; color: var(--gold); font: 400 18px var(--serif); }
+.dv-answer { color: var(--text); font-weight: 600; line-height: 1.55; }
+.dv-lore { color: var(--muted); line-height: 1.6; }
+.dv-refs a { color: var(--green); font-size: 13px; }
+
+.dv-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.dv-primary { padding: 10px 18px; border: 0; border-radius: 99px; background: var(--gold); color: #13221f; font-weight: 700; }
+.dv-primary.small { padding: 7px 14px; font-size: 14px; }
+.dv-secondary { padding: 9px 16px; border: 1px solid var(--gold); border-radius: 99px; background: none; color: var(--gold); }
+.dv-quiet { padding: 6px 10px; border: 1px solid var(--line); border-radius: 99px; background: none; color: var(--muted); font-size: 13px; }
+
+/* Ledger overlay */
+.dv-ledger { position: absolute; inset: 0; z-index: 20; overflow: auto; padding: 18px 20px; border: 1px solid var(--line); border-radius: 18px; background: rgba(8, 18, 22, .97); }
+.dv-ledger-head { display: flex; justify-content: space-between; align-items: center; }
+.dv-ledger h3 { margin: 0; color: var(--gold); font: 400 22px var(--serif); }
+.dv-breastpiece { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 360px; margin: 14px 0 6px; }
+.dv-breastpiece span { display: grid; justify-items: center; gap: 2px; padding: 8px 4px; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: 11px; }
+.dv-breastpiece span.found { border-color: #6b7f6f; color: var(--text); }
+.dv-ledger-acts { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 12px; }
+.dv-ledger h4 { margin: 0 0 6px; color: var(--text); font: 400 15px var(--serif); }
+.dv-ledger ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
+.dv-door-link { display: flex; align-items: center; gap: 8px; width: 100%; padding: 4px 6px; border: 0; border-radius: 8px; background: none; color: var(--muted); font-size: 13px; text-align: left; }
+.dv-door-link > span:not(.dv-door-status):not(.number-wrap) { flex: 1; }
+.dv-door-status { color: var(--green); }
+.dv-door-link[aria-current] { background: rgba(210, 189, 130, .1); outline: 1px solid var(--gold); }
+.dv-door-link.open { color: var(--text); }
+.dv-door-link:disabled { opacity: .35; cursor: default; }
+
+@media (max-width: 700px) {
+  .dv { min-width: 0; }
+  .dv-part { padding: 12px; }
+  .dv-marks { gap: 3px; }
+  .dv-marks i { height: 8px; }
+  .dv-marks i:nth-child(4n) { height: 12px; }
+  .dv-marks i.current { outline-offset: 1px; }
+  .dv-order li { gap: 5px; padding: 6px; }
+  .dv-order .dv-chip { font-size: 14px; overflow-wrap: anywhere; }
+  .dv-order .dv-lamp { width: 9px; height: 9px; }
+  .dv-mini { width: 40px; height: 44px; }
+  .dv-chip, .dv-option, .dv-quiet, .dv-primary, .dv-secondary { min-height: 44px; }
+  .dv-fslot { min-width: 44px; height: 44px; }
+  .dv-ledger { padding: 16px 12px; }
+  .dv-ledger-acts { grid-template-columns: minmax(0, 1fr); }
+  .dv-door-link { min-height: 44px; }
+  .dv-stage { max-height: none; }
+  .dv-door:not(.art) { width: 50%; }
+  .dv-satchel { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dv-cam, .dv-act-banner, .dv-award, .dv-light, .dv-pool i, .dv-dust, .dv-mist, .dv-sparkle { animation: none; }
+  .dv-act-banner { display: none; }
+  .dv-pool i:not(:first-child) { opacity: 0; }
+  .dv-world, .dv-scene, .dv-leaf, .dv-seam, .dv-pool, .dv-portal { transition: none; }
+  .dv-award { opacity: 0; }
+}
+
+/* ───────── Full view: scene fills the screen; question engraved on the door; answers in a band ───────── */
+.dv-hud-buttons { display: flex; gap: 8px; }
+.dv-engraving { display: none; }
+.dv.dv-full { position: fixed; inset: 0; z-index: 1000; display: block; max-width: none; margin: 0; background: #020507; }
+.dv.dv-full .dv-stage { position: absolute; inset: 0; max-height: none; aspect-ratio: auto; border: 0; border-radius: 0; }
+.dv.dv-full .dv-hud { position: absolute; top: 14px; right: 16px; z-index: 6; }
+.dv.dv-full .dv-caption { inset: 0 0 auto; padding: 18px 26px 46px; background: linear-gradient(rgba(3, 8, 10, .85), transparent); }
+.dv.dv-full .dv-door:not(.art) { width: min(46vw, 760px); height: 92%; }
+.dv.dv-full .dv-scrim { display: none; }
+.dv.dv-full .dv-act-banner { inset: 18% 10% auto; }
+.dv.dv-full .dv-shuffle { display: none; }   /* a setting for the normal view; in full view it would sit over long answer lists */
+.dv.dv-full .dv-journey { display: none; }
+.dv.dv-full .dv-guide { display: none; }
+
+/* The darkened answer band across the bottom of the picture. */
+.dv.dv-full .dv-panel { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; max-height: 44%; overflow: auto; gap: 10px; padding: 22px max(4vw, 18px) 34px; background: linear-gradient(to top, rgba(3, 8, 10, .94) 55%, rgba(3, 8, 10, .72)); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border-top: 1px solid rgba(210, 189, 130, .25); }
+.dv.dv-full .dv-riddle .dv-setting, .dv.dv-full .dv-riddle > .dv-verse.small,
+.dv.dv-full .dv-part .dv-prompt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }   /* engraved instead; still read by screen readers */
+.dv.dv-full .dv-part { margin-top: 6px; padding: 10px 0 0; border: 0; background: none; }
+.dv.dv-full .dv-part.solved, .dv.dv-full .dv-part.locked { display: none; }
+.dv.dv-full .dv-meta { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.dv.dv-full .dv-riddle:has(+ .dv-after:not([hidden])) :is(.dv-part, .dv-hints) { display: none; }   /* once open, the band shows the lore */
+
+/* The engraving itself: centered across both leaves, above the answer band. */
+.dv.dv-full .dv-engraving {
+  position: absolute; left: 50%; top: 15%; bottom: 46%; z-index: 2; width: min(42vw, 700px); transform: translateX(-50%);
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 14px; padding: 0 3%;
+  text-align: center; pointer-events: none; transition: opacity 1s ease .2s;
+  font-family: 'Cinzel', 'Trajan Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+  font-variant: small-caps; letter-spacing: .05em;
+}
+.dv.dv-full .dv-door.open ~ .dv-engraving, .dv.dv-full .dv-portal.open ~ .dv-engraving { opacity: 0; }
+/* On a painting the engraving centres on its doorway and spreads across the stone around it. */
+.dv.dv-full .has-art .dv-engraving { left: calc((var(--dx, 35) + var(--dw, 30) / 2) * 1%); width: min(calc(100cqw - 40px), max(calc(var(--dw, 30) * 1%), 40%)); top: 14%; bottom: 46%; }
+.dv-engraving p { margin: 0; }
+.dv-engrave-verse, .dv-engrave-setting { font-size: clamp(14px, 1.25vw, 20px); line-height: 1.45; font-style: italic; }
+.dv-engrave-question { font-size: clamp(17px, 1.75vw, 30px); line-height: 1.35; font-weight: 600; }
+.dv-engrave-question span { opacity: .75; }
+.dv-engraving .tengwar-number { height: 1em; }
+
+/* Four looks, each with a contrast edge so it stays legible on pale stone. */
+.dv-engraving.carved { color: rgba(48, 39, 25, .9); text-shadow: 0 1px 0 rgba(255, 251, 238, .6), 0 -1px 0 rgba(0, 0, 0, .35); }
+.dv-engraving.gold { color: #8a5e14; text-shadow: 0 1px 0 rgba(255, 236, 170, .75), 0 -1px 0 rgba(60, 35, 0, .55), 0 0 10px rgba(255, 210, 120, .35); }
+.dv-engraving.silver { color: #3d4a55; text-shadow: 0 1px 0 rgba(255, 255, 255, .8), 0 -1px 0 rgba(10, 20, 30, .5), 0 0 8px rgba(200, 225, 255, .35); }
+.dv-engraving.glow { color: #fff4cc; text-shadow: 0 0 2px rgba(60, 40, 10, .9), 0 0 10px rgba(255, 214, 140, .85), 0 0 22px rgba(255, 190, 90, .45); }
+.dv-engraving.moon { color: #e6eef6; text-shadow: 0 1px 1px rgba(0, 0, 0, .95), 0 0 7px rgba(10, 20, 35, .85), 0 0 20px rgba(150, 190, 235, .35); }
+.dv-engraving.gilt { color: #f1d792; text-shadow: 0 1px 1px rgba(0, 0, 0, .95), 0 0 6px rgba(0, 0, 0, .8), 0 0 18px rgba(0, 0, 0, .55); }
+
+@media (max-width: 700px) {
+  .dv.dv-full .dv-caption { padding-top: 64px; }   /* below the buttons, which take the full width */
+  .dv.dv-full .dv-door:not(.art) { width: 78vw; }
+  .dv.dv-full .dv-engraving { width: 74vw; top: 13%; bottom: 47%; }
+  .dv.dv-full .dv-panel { max-height: 48%; }
+}
+
+/* Wide views leave the painting's sides clear. Shade only the text, with room around each card.
+   CSS viewport widths also let browser zoom return naturally to the compact layout. */
+@media (min-width: 1000px) {
+  .dv .dv-caption {
+    inset: auto auto 16px 50%; transform: translateX(-50%); width: max-content;
+    max-width: calc(100% - 48px); padding: 12px 22px; border-radius: 16px;
+    text-align: center; background: rgba(4, 10, 12, .68);
+    border: 1px solid rgba(210, 189, 130, .2);
+    -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  }
+  .dv .has-art .dv-caption { background: rgba(4, 10, 12, .68); }
+  .dv.dv-full .dv-hud { left: 18px; right: 18px; }
+  .dv.dv-full .dv-hud .dv-quiet { background: rgba(4, 10, 12, .7); }
+  .dv.dv-full .dv-caption { inset: 68px auto auto 50%; max-width: min(760px, calc(100% - 64px)); padding: 12px 22px; }
+  .dv.dv-full .dv-panel {
+    left: 50%; right: auto; bottom: 18px; transform: translateX(-50%);
+    width: min(760px, calc(100% - 64px)); padding: 18px 24px;
+    border: 1px solid rgba(210, 189, 130, .25); border-radius: 20px;
+    background: rgba(3, 8, 10, .74);
+    scrollbar-width: thin; scrollbar-color: #6b7f6f transparent;
+  }
+  .dv.dv-full .dv-after { padding: 0; border: 0; background: transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .dv.dv-full .dv-engraving { transition: none; } }

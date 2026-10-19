@@ -1,0 +1,1555 @@
+{
+  "format": 2,
+  "release": "Beta19a: Dock start, clearer journeys, physical mechanisms and reliable scene loading",
+  "entry": "index.html",
+  "assets": [
+    {
+      "source": "assets/aldermarch.webp",
+      "url": "assets/aldermarch.ae7b758f8bb1.webp",
+      "bytes": 886912,
+      "sha256": "ae7b758f8bb185af4b5117373c651d79a94385b11022071e1ae18bf174d1ee62"
+    },
+    {
+      "source": "assets/atlas.png",
+      "url": "assets/atlas.af13c1a1587c.png",
+      "bytes": 1549706,
+      "sha256": "af13c1a1587cf75f7de3234ce0d023022db5da6160926965a57d7e23c4ae761d"
+    },
+    {
+      "source": "assets/battle14/axe.webp",
+      "url": "assets/battle14/axe.204f1ccbb412.webp",
+      "bytes": 44534,
+      "sha256": "204f1ccbb412bb587fc00721c433bb4dd6d93c815621d8761269c0875d3d628d"
+    },
+    {
+      "source": "assets/battle14/blade.webp",
+      "url": "assets/battle14/blade.86c153a193e9.webp",
+      "bytes": 27316,
+      "sha256": "86c153a193e911157ff5a7826c7a7a93e79234ca1fc2284941fa6c27ee69a086"
+    },
+    {
+      "source": "assets/battle14/bow.webp",
+      "url": "assets/battle14/bow.d200f8c008f1.webp",
+      "bytes": 40274,
+      "sha256": "d200f8c008f164a0c0fc526674d6ac75b0991f01caa68ed9623c6bd957f3897d"
+    },
+    {
+      "source": "assets/battle14/burdock.webp",
+      "url": "assets/battle14/burdock.e838f41bbef5.webp",
+      "bytes": 110524,
+      "sha256": "e838f41bbef5671547768d41d880d8771957e1fb00f9b525157315228edfa32c"
+    },
+    {
+      "source": "assets/battle14/carver-branch.ttf",
+      "url": "assets/battle14/carver-branch.47493a689436.ttf",
+      "bytes": 4756,
+      "sha256": "47493a6894365b4a9bae0e544b0f9f8ad38ea53079999a83170870542495c846"
+    },
+    {
+      "source": "assets/battle14/carver-branch.woff2",
+      "url": "assets/battle14/carver-branch.e87ee4b3e9f1.woff2",
+      "bytes": 1564,
+      "sha256": "e87ee4b3e9f1fb261a1327fe762d30961818ccb37947859445d4f35860c9d2a9"
+    },
+    {
+      "source": "assets/battle14/carver-sign.webp",
+      "url": "assets/battle14/carver-sign.b0ebb3fd2088.webp",
+      "bytes": 112346,
+      "sha256": "b0ebb3fd20880f71f8a57198aa43298e15d05fdb5da5cbb781100dbab7535198"
+    },
+    {
+      "source": "assets/battle14/fern.webp",
+      "url": "assets/battle14/fern.5461815d34e3.webp",
+      "bytes": 114776,
+      "sha256": "5461815d34e3d53632e1a3475f2dd74ec91fa43c9e0aad5c1e4c3088894337ef"
+    },
+    {
+      "source": "assets/battle14/frostsickle.webp",
+      "url": "assets/battle14/frostsickle.77ac6f83c6db.webp",
+      "bytes": 37314,
+      "sha256": "77ac6f83c6db81e0b4fed9b281c486b42342eda91b5bc3e96f6f08bfe5bd75ec"
+    },
+    {
+      "source": "assets/battle14/gorse.webp",
+      "url": "assets/battle14/gorse.1c563c1f1967.webp",
+      "bytes": 144432,
+      "sha256": "1c563c1f19672b97682622e590575c2f0899ab5394872d1f06c72b75c42f0ff6"
+    },
+    {
+      "source": "assets/battle14/grass.webp",
+      "url": "assets/battle14/grass.32ca3770a6f7.webp",
+      "bytes": 141452,
+      "sha256": "32ca3770a6f705d7cee123fc03f18aa2893d0a8fdf3bc9f2307880fc96bac2a3"
+    },
+    {
+      "source": "assets/battle14/greatsword.webp",
+      "url": "assets/battle14/greatsword.de2ccab2e2e2.webp",
+      "bytes": 37340,
+      "sha256": "de2ccab2e2e2984b26cbabf40c2bc0e5e974eb9740eaa1e9502b280684600f84"
+    },
+    {
+      "source": "assets/battle14/heartwood.webp",
+      "url": "assets/battle14/heartwood.bf89adbe83db.webp",
+      "bytes": 44728,
+      "sha256": "bf89adbe83db339c395a78f8bd53668fab0067e6d31aff2cae8631d5edd27d42"
+    },
+    {
+      "source": "assets/battle14/heather.webp",
+      "url": "assets/battle14/heather.93f339bd1613.webp",
+      "bytes": 122240,
+      "sha256": "93f339bd1613212334a44316a2d2d8366dc25cd7fb75f7a91df231a1647829bf"
+    },
+    {
+      "source": "assets/battle14/ivy.webp",
+      "url": "assets/battle14/ivy.ffb131e50181.webp",
+      "bytes": 111110,
+      "sha256": "ffb131e50181d16e675bc83287b05d09f8c2d1e3605108af07daa613cd34eec9"
+    },
+    {
+      "source": "assets/battle14/oak-sign.webp",
+      "url": "assets/battle14/oak-sign.7ebdb7971ae2.webp",
+      "bytes": 108780,
+      "sha256": "7ebdb7971ae2a24a6218413a61e9d898cb29904a2305f5659faff60247c3e3fd"
+    },
+    {
+      "source": "assets/battle14/spade.webp",
+      "url": "assets/battle14/spade.a5b666292aee.webp",
+      "bytes": 32954,
+      "sha256": "a5b666292aee83181c06f69ec013eabf7c08957d954b369268694a90c51a28be"
+    },
+    {
+      "source": "assets/battle14/spear.webp",
+      "url": "assets/battle14/spear.021d141cab45.webp",
+      "bytes": 24546,
+      "sha256": "021d141cab45f3d46a070b9de7663eb12d4c1ff0e80792917639df580c8d1af9"
+    },
+    {
+      "source": "assets/bears.webp",
+      "url": "assets/bears.bacf734c56f6.webp",
+      "bytes": 1507164,
+      "sha256": "bacf734c56f6f0b3fc147e77799da1025b48035bfb5d1f2e6cae7ea0bbb5ec0a"
+    },
+    {
+      "source": "assets/beta19/counterweight.webp",
+      "url": "assets/beta19/counterweight.e87409bb1d52.webp",
+      "bytes": 312696,
+      "sha256": "e87409bb1d5289841597b15e9a3429c37ee7c4049be8eab7b2be8db0aef0378f"
+    },
+    {
+      "source": "assets/birchwater.webp",
+      "url": "assets/birchwater.36a44770fe10.webp",
+      "bytes": 985978,
+      "sha256": "36a44770fe10407e65a9b5dfb761008008280c57f89aae70258a19f29d1c919b"
+    },
+    {
+      "source": "assets/boy-idle-v4.webp",
+      "url": "assets/boy-idle-v4.259ead4880c2.webp",
+      "bytes": 1103302,
+      "sha256": "259ead4880c2541cfd3ac59717671d88e48624693d165c8a659b097194b230dc"
+    },
+    {
+      "source": "assets/boy-walk-road15.webp",
+      "url": "assets/boy-walk-road15.9941a076f550.webp",
+      "bytes": 1617414,
+      "sha256": "9941a076f5505544d76b14c68104cca1960dab3cf4b728307257f6ed990cfa74"
+    },
+    {
+      "source": "assets/creatures.png",
+      "url": "assets/creatures.148f7545a535.png",
+      "bytes": 1142911,
+      "sha256": "148f7545a5357d8c7cbcfbfb3bd9c3a7cd40cd98a8c58883b50e9b59b8b7390d"
+    },
+    {
+      "source": "assets/girl-axial-v4.webp",
+      "url": "assets/girl-axial-v4.770513f43296.webp",
+      "bytes": 1151476,
+      "sha256": "770513f43296c5cc9a3700eba5fbe164c523c1ca996000ffa053f8308e244423"
+    },
+    {
+      "source": "assets/girl-idle-v4.webp",
+      "url": "assets/girl-idle-v4.1898c432ef65.webp",
+      "bytes": 1228312,
+      "sha256": "1898c432ef65ff6583a2c6d8b7b5462d0279606ce279a0ab2a939407ad745119"
+    },
+    {
+      "source": "assets/girl-stride-v4.webp",
+      "url": "assets/girl-stride-v4.1e13cd2a0aa5.webp",
+      "bytes": 927540,
+      "sha256": "1e13cd2a0aa5a3f0e7f200a6697858f97eb217c67b43d2270aff0e3ef505e4a8"
+    },
+    {
+      "source": "assets/greenwood-at-first-light.mp3",
+      "url": "assets/greenwood-at-first-light.c710527ebebf.mp3",
+      "bytes": 2049521,
+      "sha256": "c710527ebebf79a20336b2a198f055d2d208fc7e44683740cd67a1ad28afef1f"
+    },
+    {
+      "source": "assets/greenwood.webp",
+      "url": "assets/greenwood.28d7fc15cf86.webp",
+      "bytes": 813788,
+      "sha256": "28d7fc15cf8635e01dcc5c791c241fd5cd0ac7e06fe9b88a4012379c3d9ab167"
+    },
+    {
+      "source": "assets/guides18/closed-chest.webp",
+      "url": "assets/guides18/closed-chest.032e9172aa9d.webp",
+      "bytes": 415600,
+      "sha256": "032e9172aa9de94c4c440b810f4bfaaf344a4664315936070101a69faf1fb95d"
+    },
+    {
+      "source": "assets/guides18/open-chest.webp",
+      "url": "assets/guides18/open-chest.992e6db7c983.webp",
+      "bytes": 394398,
+      "sha256": "992e6db7c98359e9c65b18e037342497ec1b245b9e922e12f7156368c5127662"
+    },
+    {
+      "source": "assets/highfold.webp",
+      "url": "assets/highfold.cb3bf416f7c2.webp",
+      "bytes": 975792,
+      "sha256": "cb3bf416f7c21671f7ade607e07aae2eccf9e0e2cb92dc3ed3481c5afc14f2ed"
+    },
+    {
+      "source": "assets/highroad/carver-ground-2x.webp",
+      "url": "assets/highroad/carver-ground-2x.f75e90a0a939.webp",
+      "bytes": 2762420,
+      "sha256": "f75e90a0a93915a4be56bfaea25ee526e89217a5304bd75d11927ec17b0efe42"
+    },
+    {
+      "source": "assets/highroad/carver-treehouse.webp",
+      "url": "assets/highroad/carver-treehouse.8282311b4cee.webp",
+      "bytes": 881378,
+      "sha256": "8282311b4ceee2ab4231efae10f4d554031a6f985d4f08e97c1169c705179c71"
+    },
+    {
+      "source": "assets/highroad/tree-loft-2x.webp",
+      "url": "assets/highroad/tree-loft-2x.6790d2d0bcc2.webp",
+      "bytes": 1594100,
+      "sha256": "6790d2d0bcc29cd84e878a7a0d49cb3a0779436303ec6cdeedb556833d1abcc0"
+    },
+    {
+      "source": "assets/highroad/tree-loft-underlay-v1.webp",
+      "url": "assets/highroad/tree-loft-underlay-v1.3d5d01ad3c4c.webp",
+      "bytes": 1287938,
+      "sha256": "3d5d01ad3c4c08a4b8ca05fa0ac3ab5f12ffd0db66f38592d56d5bf63b81e2b6"
+    },
+    {
+      "source": "assets/highroad/tree-workshop-2x.webp",
+      "url": "assets/highroad/tree-workshop-2x.70c145f0cfc7.webp",
+      "bytes": 1801350,
+      "sha256": "70c145f0cfc7d3a730517513311cb9775ad58bb8cb69d7192a9f4c0742405bca"
+    },
+    {
+      "source": "assets/highroad/tree-workshop-underlay-v1.webp",
+      "url": "assets/highroad/tree-workshop-underlay-v1.d1490a6a8641.webp",
+      "bytes": 1445162,
+      "sha256": "d1490a6a8641625fa66dbf0d35ae24c3412214d7b0f3ba7e660f6159303bd447"
+    },
+    {
+      "source": "assets/highroad/whiteledge-ground-2x.webp",
+      "url": "assets/highroad/whiteledge-ground-2x.c4c538fcf88e.webp",
+      "bytes": 2819020,
+      "sha256": "c4c538fcf88ef2fc835da7484ee85fedd58f4ec3b4c6db7569099f8da4f29512"
+    },
+    {
+      "source": "assets/highroad/whiteledge-hall.webp",
+      "url": "assets/highroad/whiteledge-hall.475dd689099f.webp",
+      "bytes": 614934,
+      "sha256": "475dd689099f2d16c3b263c9743b984b9acce7cc6559edf708acd39d8c219c13"
+    },
+    {
+      "source": "assets/highroad/whiteledge-interior-2x.webp",
+      "url": "assets/highroad/whiteledge-interior-2x.cc12713986af.webp",
+      "bytes": 1930448,
+      "sha256": "cc12713986af6fc0c19a167138fb78584d936e38dc2796abd7a34687bde43807"
+    },
+    {
+      "source": "assets/highroad/whiteledge-underlay-v1.webp",
+      "url": "assets/highroad/whiteledge-underlay-v1.7f82eaaa815b.webp",
+      "bytes": 1442110,
+      "sha256": "7f82eaaa815ba945d3793dc5f44d8920a926c64267ff54a660de6c9409c675f9"
+    },
+    {
+      "source": "assets/leaf13/bracken.webp",
+      "url": "assets/leaf13/bracken.c579875c8ec7.webp",
+      "bytes": 370178,
+      "sha256": "c579875c8ec74be742209336ff7d91a8122bce96111853006cf0a44de316ff51"
+    },
+    {
+      "source": "assets/leaf13/camp-basket.webp",
+      "url": "assets/leaf13/camp-basket.8a1450ccb39f.webp",
+      "bytes": 197808,
+      "sha256": "8a1450ccb39fdadf915c1d0dfb3cc5a3ff3b80d367bc004c59607ef9aa9efd51"
+    },
+    {
+      "source": "assets/leaf13/camp-bench.webp",
+      "url": "assets/leaf13/camp-bench.05035d52816f.webp",
+      "bytes": 166568,
+      "sha256": "05035d52816f1abcbf6642fda10390fec35ab3e6862ec8f4083399113a3ef842"
+    },
+    {
+      "source": "assets/leaf13/camp-kettle.webp",
+      "url": "assets/leaf13/camp-kettle.2eea022da480.webp",
+      "bytes": 215764,
+      "sha256": "2eea022da480d8ee4e4ac97e9113cad7a6066ae8f3dc920a69ac112736f05d74"
+    },
+    {
+      "source": "assets/leaf13/camp-lantern.webp",
+      "url": "assets/leaf13/camp-lantern.f7ee37d9100d.webp",
+      "bytes": 183228,
+      "sha256": "f7ee37d9100d7f2c3fdd2ed36c4d0fdec24f7283d0be6e8725340f46196be1e2"
+    },
+    {
+      "source": "assets/leaf13/camp-planter.webp",
+      "url": "assets/leaf13/camp-planter.de829f3070f9.webp",
+      "bytes": 258320,
+      "sha256": "de829f3070f9850dbc086e81eb9fe9874a90e196673fa27e94ffbed2766f70f8"
+    },
+    {
+      "source": "assets/leaf13/camp-roll.webp",
+      "url": "assets/leaf13/camp-roll.7446c206974d.webp",
+      "bytes": 219692,
+      "sha256": "7446c206974da79a79ad1add243e998771790880a3e314c441ba5c70977a3b07"
+    },
+    {
+      "source": "assets/leaf13/fern.webp",
+      "url": "assets/leaf13/fern.1fa67ace90ee.webp",
+      "bytes": 280782,
+      "sha256": "1fa67ace90ee192e714ffe15d20b88d3d008139358141e6064e07aef4a29abe8"
+    },
+    {
+      "source": "assets/leaf13/foxgloves.webp",
+      "url": "assets/leaf13/foxgloves.2491daca35ee.webp",
+      "bytes": 273018,
+      "sha256": "2491daca35ee075216c38e761a5d4aa3a50a98802d7164f2dfa29d0b00d5c91f"
+    },
+    {
+      "source": "assets/leaf13/hazel.webp",
+      "url": "assets/leaf13/hazel.f2f4fb295632.webp",
+      "bytes": 304104,
+      "sha256": "f2f4fb29563215a523518ff7f4596bfb1f538ddf81e71473583628ae708362f6"
+    },
+    {
+      "source": "assets/leaf13/moss-log.webp",
+      "url": "assets/leaf13/moss-log.ea921647bc89.webp",
+      "bytes": 217644,
+      "sha256": "ea921647bc89cf4dbaf41423f8d8a37081b50ac541ce7339d21bb1924592b05e"
+    },
+    {
+      "source": "assets/leaf13/oak-doorway.webp",
+      "url": "assets/leaf13/oak-doorway.a013f314dbe6.webp",
+      "bytes": 371352,
+      "sha256": "a013f314dbe6bf9e83c229363865d3f5945955965c8aae2c523ccd09a6fcd758"
+    },
+    {
+      "source": "assets/leaf13/rowan.webp",
+      "url": "assets/leaf13/rowan.0274ffcd96ad.webp",
+      "bytes": 203310,
+      "sha256": "0274ffcd96ad3a19d7a6e020f573bb99982a95717694001cc80bc346da6258cc"
+    },
+    {
+      "source": "assets/lilyfall.webp",
+      "url": "assets/lilyfall.f8d64bb7f68c.webp",
+      "bytes": 991252,
+      "sha256": "f8d64bb7f68cfba64a1ebef35919bc20bc5ee40c954452bdb860758ea92d9d76"
+    },
+    {
+      "source": "assets/opening/home-empty.webp",
+      "url": "assets/opening/home-empty.461505bb3255.webp",
+      "bytes": 459398,
+      "sha256": "461505bb32555d915b34db335b6f2c6490f103c11285bb3d1a51f6230280d3b0"
+    },
+    {
+      "source": "assets/opening/home-furniture.webp",
+      "url": "assets/opening/home-furniture.e72f10517f41.webp",
+      "bytes": 420154,
+      "sha256": "e72f10517f4139267b5344dcc5c00e825e1fcb0bf5c9486bfe1852615c2503b4"
+    },
+    {
+      "source": "assets/opening/home-interior.webp",
+      "url": "assets/opening/home-interior.2c2535d72172.webp",
+      "bytes": 549628,
+      "sha256": "2c2535d721722c4d1b12352fef0d8e9e28c96f6d5ffdd9f01a6b34fa74cdb773"
+    },
+    {
+      "source": "assets/opening/home-roof.webp",
+      "url": "assets/opening/home-roof.297cc6ef36f1.webp",
+      "bytes": 686130,
+      "sha256": "297cc6ef36f1e641ee768313dd48d9a39b9bfb2ff63f90d4e6b20e3e7d46253c"
+    },
+    {
+      "source": "assets/opening/reedbank-ground.webp",
+      "url": "assets/opening/reedbank-ground.bd2a45b32675.webp",
+      "bytes": 865014,
+      "sha256": "bd2a45b32675764ec7794e457091df67d8c59227a0ac4f7f7121f04ee626e2d9"
+    },
+    {
+      "source": "assets/opening/reedbank-north-exit.webp",
+      "url": "assets/opening/reedbank-north-exit.10ae04581286.webp",
+      "bytes": 772252,
+      "sha256": "10ae04581286ffab59c77c10c0373eda479f20644d9529af0b00acd5be89134a"
+    },
+    {
+      "source": "assets/opening/way-oak.webp",
+      "url": "assets/opening/way-oak.791cb54f4f70.webp",
+      "bytes": 924808,
+      "sha256": "791cb54f4f704ee126e5cb2909939b17939cec029007cb1132e0b0a26360abc2"
+    },
+    {
+      "source": "assets/opening/woodland-bridge.webp",
+      "url": "assets/opening/woodland-bridge.824d8f46851d.webp",
+      "bytes": 598424,
+      "sha256": "824d8f46851d34557ecb94fcc8bd30eff07dfd25a1254f246d8232891c8814f1"
+    },
+    {
+      "source": "assets/opening/woodland-ground.webp",
+      "url": "assets/opening/woodland-ground.14e0f40c795f.webp",
+      "bytes": 901660,
+      "sha256": "14e0f40c795f9baeb0c411aad188fb641a4003e56786cdd356513a7f07e4cacd"
+    },
+    {
+      "source": "assets/opening/woodland-north-road.webp",
+      "url": "assets/opening/woodland-north-road.ccdc4685ddb4.webp",
+      "bytes": 955252,
+      "sha256": "ccdc4685ddb437e4b21f7e1a1fdd838655dfa0b4be0409e807fd6e442469a212"
+    },
+    {
+      "source": "assets/quest16/archive-ground.webp",
+      "url": "assets/quest16/archive-ground.6c40f0c7a774.webp",
+      "bytes": 652800,
+      "sha256": "6c40f0c7a774b3ac3ad23ef24264beeea12a049415302672326920357e9c8f5c"
+    },
+    {
+      "source": "assets/quest16/basalt-float.webp",
+      "url": "assets/quest16/basalt-float.349ace408435.webp",
+      "bytes": 445500,
+      "sha256": "349ace4084353e0097f5a37b723b7b7d2117c30efcfcddad2b2e0c67f0f6881a"
+    },
+    {
+      "source": "assets/quest16/blackglass-ground.webp",
+      "url": "assets/quest16/blackglass-ground.cf5c2354b074.webp",
+      "bytes": 614676,
+      "sha256": "cf5c2354b074a8be355f5074d854f4e738a329097964f23b568edd75f49e1353"
+    },
+    {
+      "source": "assets/quest16/desert-ground.webp",
+      "url": "assets/quest16/desert-ground.f1d65640b60d.webp",
+      "bytes": 545752,
+      "sha256": "f1d65640b60d6800e21b264cfb79494b6da00ee3443fd9b45f872b12029490c5"
+    },
+    {
+      "source": "assets/quest16/giant-camel.webp",
+      "url": "assets/quest16/giant-camel.b680b781b7df.webp",
+      "bytes": 508412,
+      "sha256": "b680b781b7dfe72a48a580286e7ddc5f9557d6710289404cbb9bb39af7260446"
+    },
+    {
+      "source": "assets/quest16/lava-ground.webp",
+      "url": "assets/quest16/lava-ground.d686dd7052fc.webp",
+      "bytes": 603840,
+      "sha256": "d686dd7052fc29bb37b1ce988b5f4222f7537247b3022b176f3877598a579059"
+    },
+    {
+      "source": "assets/quest16/river-ferry.webp",
+      "url": "assets/quest16/river-ferry.c8cb7b07ecf1.webp",
+      "bytes": 288012,
+      "sha256": "c8cb7b07ecf18cdd583d2962b015ac57c4a383c4668293c9c4f86e871a6bb9f3"
+    },
+    {
+      "source": "assets/quest16/salt-ground.webp",
+      "url": "assets/quest16/salt-ground.f01233fb404c.webp",
+      "bytes": 571632,
+      "sha256": "f01233fb404ce797810130c7a51a901bed8f861c8b9c59b4b5bf7bf8d1aff31c"
+    },
+    {
+      "source": "assets/quest16/sand-burrower.webp",
+      "url": "assets/quest16/sand-burrower.882a979c7568.webp",
+      "bytes": 400436,
+      "sha256": "882a979c7568b8b4e94d07d7ff3f6e67038eb5ca65f485b3518ad7297a98e16d"
+    },
+    {
+      "source": "assets/quest16/sand-snake.webp",
+      "url": "assets/quest16/sand-snake.487677c23703.webp",
+      "bytes": 461526,
+      "sha256": "487677c23703101e5be5b82c7a5891f3c267eab25c0480bbc84f61bd28bc3e78"
+    },
+    {
+      "source": "assets/quest16/thorn-bush.webp",
+      "url": "assets/quest16/thorn-bush.a0395474d143.webp",
+      "bytes": 646628,
+      "sha256": "a0395474d14308973f684c3e610a038ebb874d47a8e0a272530f210a42a6c330"
+    },
+    {
+      "source": "assets/quest16/tide-arch.webp",
+      "url": "assets/quest16/tide-arch.c837ca983c72.webp",
+      "bytes": 375694,
+      "sha256": "c837ca983c72d77bbbcdcb1b242aa58193f5771dfe7438503c056bb74fdd7961"
+    },
+    {
+      "source": "assets/quest16/tideglass-ground.webp",
+      "url": "assets/quest16/tideglass-ground.7d3111239a27.webp",
+      "bytes": 684320,
+      "sha256": "7d3111239a273d28729566d3a74cb068f37a18736b72ca2958862b1653be9291"
+    },
+    {
+      "source": "assets/riverkin-girl-standing-relaxed.webp",
+      "url": "assets/riverkin-girl-standing-relaxed.2d56eff2153b.webp",
+      "bytes": 59606,
+      "sha256": "2d56eff2153b3893a80da4fb67ec866b27066db212fc80619cbfdb7e488453a4"
+    },
+    {
+      "source": "assets/riverkin-standing.webp",
+      "url": "assets/riverkin-standing.e7fda92c09f8.webp",
+      "bytes": 107566,
+      "sha256": "e7fda92c09f82198efaa5e9aece11143adc61723cb5a9b8336d34ffe76a4ec38"
+    },
+    {
+      "source": "assets/rooms15/indoor-fern.webp",
+      "url": "assets/rooms15/indoor-fern.b563e3c75600.webp",
+      "bytes": 229002,
+      "sha256": "b563e3c756007d7076ada36c15136a7879c62d74fa2f4439dec10bfad7aeed57"
+    },
+    {
+      "source": "assets/rooms15/indoor-lamp.webp",
+      "url": "assets/rooms15/indoor-lamp.c46ef5dd10c9.webp",
+      "bytes": 75858,
+      "sha256": "c46ef5dd10c9feaf4f2adaec4aa127306a6b1847789030cce63bcf5a8d8b3ba7"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-bridge-arch.webp",
+      "url": "assets/scenery/aldermarch/alder-bridge-arch.31529db2c507.webp",
+      "bytes": 6248,
+      "sha256": "31529db2c50754001a5a2c3b3040339e065135ec780d3d336ad924b267931f17"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-bridge-tree.webp",
+      "url": "assets/scenery/aldermarch/alder-bridge-tree.17e909df9730.webp",
+      "bytes": 63904,
+      "sha256": "17e909df9730499ea88d732c1000bbfc8ae1ed8317f5f37ff76e848fcbbbad13"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-camp-roof.webp",
+      "url": "assets/scenery/aldermarch/alder-camp-roof.7b2f253110a1.webp",
+      "bytes": 5072,
+      "sha256": "7b2f253110a144d2fccfa65037311d3ce751f229ba40af5699dd0e0b21fdcc6b"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-camp-tree.webp",
+      "url": "assets/scenery/aldermarch/alder-camp-tree.f1e2f9467966.webp",
+      "bytes": 30222,
+      "sha256": "f1e2f946796696c2d0d4d183bc09d0435df853cd764d4f802b991f656b54408a"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-east-oak.webp",
+      "url": "assets/scenery/aldermarch/alder-east-oak.bea9a5a1fc2c.webp",
+      "bytes": 35760,
+      "sha256": "bea9a5a1fc2c30fae5cb56d82fc1dff1b57184a9b461efd6a5ec190581a06bce"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-lodge-oak.webp",
+      "url": "assets/scenery/aldermarch/alder-lodge-oak.252ddffe6865.webp",
+      "bytes": 29118,
+      "sha256": "252ddffe6865426cdd1679d340ff24e83c179aeab49f7a5c5daab382bb5261d8"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-lodge-roof.webp",
+      "url": "assets/scenery/aldermarch/alder-lodge-roof.a95465c8143a.webp",
+      "bytes": 18470,
+      "sha256": "a95465c8143a399babc3df15498d3ed7fc211b91ad66796d296968ad7f1a9030"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-south-oak.webp",
+      "url": "assets/scenery/aldermarch/alder-south-oak.37b4fa37dbed.webp",
+      "bytes": 40960,
+      "sha256": "37b4fa37dbede5677834348b86baa8ccc5fc95fd069c25ec35c57699e0cd616d"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-standing-stone-1.webp",
+      "url": "assets/scenery/aldermarch/alder-standing-stone-1.9c1b7ed4821e.webp",
+      "bytes": 2876,
+      "sha256": "9c1b7ed4821e15564843786746884c8c948c2e10707822a7fa8d0a3e252ecedd"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-standing-stone-2.webp",
+      "url": "assets/scenery/aldermarch/alder-standing-stone-2.fac271c54160.webp",
+      "bytes": 3364,
+      "sha256": "fac271c541600bbc738ad781b6a205fdd78320243ab4ae2c816e938796c78880"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-standing-stone-3.webp",
+      "url": "assets/scenery/aldermarch/alder-standing-stone-3.8eb20a6c98e4.webp",
+      "bytes": 2628,
+      "sha256": "8eb20a6c98e4365b68bbfec1429295af7027836668352eb64e81dd426315d95c"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-standing-stone-4.webp",
+      "url": "assets/scenery/aldermarch/alder-standing-stone-4.5c33d6225dda.webp",
+      "bytes": 3396,
+      "sha256": "5c33d6225dda8e0eab59ad2edf52a6cc58632c6e47a612177777bd4909f16cc4"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-standing-stone-5.webp",
+      "url": "assets/scenery/aldermarch/alder-standing-stone-5.16a12787f4c4.webp",
+      "bytes": 4048,
+      "sha256": "16a12787f4c4299159dbb78d3bd6663bff32d205641206f5e77379ca7c7ef6db"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-standing-stone-6.webp",
+      "url": "assets/scenery/aldermarch/alder-standing-stone-6.924a958fda6c.webp",
+      "bytes": 3624,
+      "sha256": "924a958fda6ccd67519492ab22f0b1baaa1f75dfbca8610321f185daa9cacfdc"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-standing-stone-7.webp",
+      "url": "assets/scenery/aldermarch/alder-standing-stone-7.2734f3c9bdc3.webp",
+      "bytes": 3332,
+      "sha256": "2734f3c9bdc3b9130d7c50e13568e5fbf3ef0f5645e66e1c943059227ad363ba"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-study-roof.webp",
+      "url": "assets/scenery/aldermarch/alder-study-roof.0c0e8dd34555.webp",
+      "bytes": 14804,
+      "sha256": "0c0e8dd34555c8e7dc6fe4c18b248ed031fc112372ec059d13758e97c9421076"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-treehouse-roof.webp",
+      "url": "assets/scenery/aldermarch/alder-treehouse-roof.356c68d4c530.webp",
+      "bytes": 13938,
+      "sha256": "356c68d4c530fb183f28c9b42f1231e8e6e3930a282296df47047f160cf31ed1"
+    },
+    {
+      "source": "assets/scenery/aldermarch/alder-west-arch.webp",
+      "url": "assets/scenery/aldermarch/alder-west-arch.94c6623ba802.webp",
+      "bytes": 6664,
+      "sha256": "94c6623ba8028645df5e7d708806493f09f2013dd85d2c38969e92643a94ba54"
+    },
+    {
+      "source": "assets/scenery/aldermarch/ground.webp",
+      "url": "assets/scenery/aldermarch/ground.c0289fdadcc0.webp",
+      "bytes": 2676106,
+      "sha256": "c0289fdadcc01c841933eac4cffb7ddceae09c8db892e02e4f1177b4ea1d590e"
+    },
+    {
+      "source": "assets/scenery/aldermarch/study-column-1.webp",
+      "url": "assets/scenery/aldermarch/study-column-1.20f96fefa605.webp",
+      "bytes": 1358,
+      "sha256": "20f96fefa605612204d27dfcbf354d5acbc32e939568944f6e55154b8e86e634"
+    },
+    {
+      "source": "assets/scenery/aldermarch/study-column-2.webp",
+      "url": "assets/scenery/aldermarch/study-column-2.0bd4b2e66e34.webp",
+      "bytes": 1160,
+      "sha256": "0bd4b2e66e343b06c6a8f4bea17ae85595fb25240b0f08fdf1260abb534addc2"
+    },
+    {
+      "source": "assets/scenery/aldermarch/study-column-3.webp",
+      "url": "assets/scenery/aldermarch/study-column-3.e77a66974003.webp",
+      "bytes": 1494,
+      "sha256": "e77a6697400384b7e02044cc529f03027d8e7cd236073366775c9eeef69bb6bf"
+    },
+    {
+      "source": "assets/scenery/aldermarch/study-column-4.webp",
+      "url": "assets/scenery/aldermarch/study-column-4.6c8b335833f9.webp",
+      "bytes": 1504,
+      "sha256": "6c8b335833f93c0cd571afb91eaed24f9fbc5fe7ef52eea1c2d1c90b842892df"
+    },
+    {
+      "source": "assets/scenery/aldermarch/watch-tower-top.webp",
+      "url": "assets/scenery/aldermarch/watch-tower-top.ba7f004da718.webp",
+      "bytes": 12142,
+      "sha256": "ba7f004da71891db089be50d1775ad2e3ba46700baeaa6dee21911f4a552443d"
+    },
+    {
+      "source": "assets/scenery/birchwater/birch-bridge-arch.webp",
+      "url": "assets/scenery/birchwater/birch-bridge-arch.6c9e735ca554.webp",
+      "bytes": 3682,
+      "sha256": "6c9e735ca5546ac7394dc889cad0ea7c6e9145b81efab2deb86b31c63f0305d9"
+    },
+    {
+      "source": "assets/scenery/birchwater/birch-bridge-left-rail.webp",
+      "url": "assets/scenery/birchwater/birch-bridge-left-rail.1d5604184899.webp",
+      "bytes": 1200,
+      "sha256": "1d5604184899eea95a38ecb31ee484f234800b6cc995fddc7dc97081f8f4be52"
+    },
+    {
+      "source": "assets/scenery/birchwater/birch-bridge-right-rail.webp",
+      "url": "assets/scenery/birchwater/birch-bridge-right-rail.f46a6055255a.webp",
+      "bytes": 1018,
+      "sha256": "f46a6055255a157077e6af9c5f412354b14ff1833691d4e89a5134e899e067f9"
+    },
+    {
+      "source": "assets/scenery/birchwater/birch-palace-roof.webp",
+      "url": "assets/scenery/birchwater/birch-palace-roof.3f147b888506.webp",
+      "bytes": 32302,
+      "sha256": "3f147b888506ed814f1c6b821dedde9f492103f37bc74be64469f61d0b893c7e"
+    },
+    {
+      "source": "assets/scenery/birchwater/birch-west-gate.webp",
+      "url": "assets/scenery/birchwater/birch-west-gate.4dae27452bbe.webp",
+      "bytes": 4094,
+      "sha256": "4dae27452bbe98c9f803417a0850cf36f299c28d633a58ce2d18b07a3e058dfc"
+    },
+    {
+      "source": "assets/scenery/birchwater/cave-birch.webp",
+      "url": "assets/scenery/birchwater/cave-birch.ccf8c0b96119.webp",
+      "bytes": 36682,
+      "sha256": "ccf8c0b96119e5d0c5500ec021c732e82e7a69248726eec64fc38095652f32e1"
+    },
+    {
+      "source": "assets/scenery/birchwater/crossing-oak.webp",
+      "url": "assets/scenery/birchwater/crossing-oak.50bbfe1de3bb.webp",
+      "bytes": 68480,
+      "sha256": "50bbfe1de3bbcf568838395d3d2aedaa6663e5ef7f96b1bb6a99988cc826e2d8"
+    },
+    {
+      "source": "assets/scenery/birchwater/east-birch-roof.webp",
+      "url": "assets/scenery/birchwater/east-birch-roof.6fbba61153eb.webp",
+      "bytes": 39134,
+      "sha256": "6fbba61153eb16df99aa20d9edc02b10f3789084791afc169eb4bd100fa8e35d"
+    },
+    {
+      "source": "assets/scenery/birchwater/eastern-oak.webp",
+      "url": "assets/scenery/birchwater/eastern-oak.0660a5adae6f.webp",
+      "bytes": 70412,
+      "sha256": "0660a5adae6f83d86951a993c07d7f0cbd5f15cfc4650bffcfdec0f77b4dc46f"
+    },
+    {
+      "source": "assets/scenery/birchwater/ground.webp",
+      "url": "assets/scenery/birchwater/ground.973f977aec17.webp",
+      "bytes": 2796810,
+      "sha256": "973f977aec178f1bd672f005b786f426dab25f51f81e21dc44d6653ccf89885f"
+    },
+    {
+      "source": "assets/scenery/birchwater/lower-pavilion-roof.webp",
+      "url": "assets/scenery/birchwater/lower-pavilion-roof.cce2bb34877f.webp",
+      "bytes": 26294,
+      "sha256": "cce2bb34877f392b670b9b75afbc3965142a2a72eafdcd5296dcaca30a351eb0"
+    },
+    {
+      "source": "assets/scenery/birchwater/north-birch.webp",
+      "url": "assets/scenery/birchwater/north-birch.661c54e7d019.webp",
+      "bytes": 47334,
+      "sha256": "661c54e7d019d0672dd7c1c6c5ae80476d891960c4f9361a7cad60876d6002b6"
+    },
+    {
+      "source": "assets/scenery/birchwater/palace-crown.webp",
+      "url": "assets/scenery/birchwater/palace-crown.49cc7f5cdcf4.webp",
+      "bytes": 191688,
+      "sha256": "49cc7f5cdcf4009ae52200b15a5466cc8be8205570738f1b261ff645f4399e4b"
+    },
+    {
+      "source": "assets/scenery/birchwater/southern-birch.webp",
+      "url": "assets/scenery/birchwater/southern-birch.9ab763359f47.webp",
+      "bytes": 55608,
+      "sha256": "9ab763359f473e3f9bb5b0fca9d85ce47b980d3ce85939e14d6ace6819a71e35"
+    },
+    {
+      "source": "assets/scenery/birchwater/western-oak.webp",
+      "url": "assets/scenery/birchwater/western-oak.8d5b0147cb28.webp",
+      "bytes": 53584,
+      "sha256": "8d5b0147cb28d88714ae4b58187d8f43a0ebd25766188f8b98fb9116f25dd334"
+    },
+    {
+      "source": "assets/scenery/greenwood/bridge-north-arch.webp",
+      "url": "assets/scenery/greenwood/bridge-north-arch.e6e411913317.webp",
+      "bytes": 5406,
+      "sha256": "e6e411913317eac6760872366d8d6dfbd3f18b7ab2c3546a2d6fba48c50472b2"
+    },
+    {
+      "source": "assets/scenery/greenwood/bridge-south-arch.webp",
+      "url": "assets/scenery/greenwood/bridge-south-arch.e66a9f919edf.webp",
+      "bytes": 6128,
+      "sha256": "e66a9f919edf87730e5afff6c8d94730c4b000f8648b7dd1fc135e15e9d82813"
+    },
+    {
+      "source": "assets/scenery/greenwood/east-road-tree.webp",
+      "url": "assets/scenery/greenwood/east-road-tree.745db6107988.webp",
+      "bytes": 37312,
+      "sha256": "745db6107988ce34348f14b9ebc8ca9daf8a6db4849345514f08bdde2a422f82"
+    },
+    {
+      "source": "assets/scenery/greenwood/eastern-root-tree.webp",
+      "url": "assets/scenery/greenwood/eastern-root-tree.af1ca4965804.webp",
+      "bytes": 160652,
+      "sha256": "af1ca4965804d5bfed9651003be56b2c1a9cdcfdcd9f5222b8dbac46dfdcb034"
+    },
+    {
+      "source": "assets/scenery/greenwood/elder-tree.webp",
+      "url": "assets/scenery/greenwood/elder-tree.168c7a2b05c1.webp",
+      "bytes": 181812,
+      "sha256": "168c7a2b05c1981cef15c5f8c749d7bbcad55b69e9d6bf9b0207a16583ba2d59"
+    },
+    {
+      "source": "assets/scenery/greenwood/festival-roof.webp",
+      "url": "assets/scenery/greenwood/festival-roof.eebe112505ad.webp",
+      "bytes": 22968,
+      "sha256": "eebe112505ad130b66e7d5bec3bb8c890fc1a9ada59a3db5928d20091aa92468"
+    },
+    {
+      "source": "assets/scenery/greenwood/green-bridge-left-rail.webp",
+      "url": "assets/scenery/greenwood/green-bridge-left-rail.0bbb92b964ee.webp",
+      "bytes": 2142,
+      "sha256": "0bbb92b964eebc9fb4419b4df4383ec23d6e50dd058d91ceebe90ad888adc417"
+    },
+    {
+      "source": "assets/scenery/greenwood/green-bridge-right-rail.webp",
+      "url": "assets/scenery/greenwood/green-bridge-right-rail.d805d894e1b3.webp",
+      "bytes": 1772,
+      "sha256": "d805d894e1b31111c01f6e8a97037f38c16ee65cf82e66ef5ba2e29293a5fdab"
+    },
+    {
+      "source": "assets/scenery/greenwood/ground.webp",
+      "url": "assets/scenery/greenwood/ground.af7b738d8f55.webp",
+      "bytes": 2582162,
+      "sha256": "af7b738d8f55f42f12e9bb5d6a0db14a75b21d258730a3473bf098bdc618f83c"
+    },
+    {
+      "source": "assets/scenery/greenwood/north-road-tree.webp",
+      "url": "assets/scenery/greenwood/north-road-tree.794e84dc737e.webp",
+      "bytes": 37330,
+      "sha256": "794e84dc737e599033cd117152cd60cd68f1ace991a3751d058a6abbc5675735"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-1.webp",
+      "url": "assets/scenery/greenwood/watch-stone-1.7e45855d6a7e.webp",
+      "bytes": 10096,
+      "sha256": "7e45855d6a7e4f9b0d2e1c65696b0dae75bcca59acfc1311da4496633674d059"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-2.webp",
+      "url": "assets/scenery/greenwood/watch-stone-2.e887167e4021.webp",
+      "bytes": 5910,
+      "sha256": "e887167e4021cb4822cc5d1b39e747058210830bb2f2ab375f5fe100870adce6"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-3.webp",
+      "url": "assets/scenery/greenwood/watch-stone-3.f562915c4d83.webp",
+      "bytes": 3612,
+      "sha256": "f562915c4d8329cd9f65f6c45e1c49f31a813a2072ff6d4ebebe9a6ee823b3b2"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-4.webp",
+      "url": "assets/scenery/greenwood/watch-stone-4.1bc7862f116f.webp",
+      "bytes": 3738,
+      "sha256": "1bc7862f116f51ad52b104cb63af5fb65f3a5393f147034a9678abde38931d95"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-5.webp",
+      "url": "assets/scenery/greenwood/watch-stone-5.cf1262608983.webp",
+      "bytes": 5760,
+      "sha256": "cf1262608983501051ccfc8faa2e279bf478315daa0fc1aca941acd5f8fd59b9"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-6.webp",
+      "url": "assets/scenery/greenwood/watch-stone-6.8d1333df0495.webp",
+      "bytes": 8382,
+      "sha256": "8d1333df0495565551edf67aa5518dec23c8f10458feac61c0dbd28bf48e3fcd"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-7.webp",
+      "url": "assets/scenery/greenwood/watch-stone-7.c69f9e90ee87.webp",
+      "bytes": 4732,
+      "sha256": "c69f9e90ee874f95b7287976e498fc86cdbce847c637de979016f898c7b2fa0c"
+    },
+    {
+      "source": "assets/scenery/greenwood/watch-stone-8.webp",
+      "url": "assets/scenery/greenwood/watch-stone-8.8538ef649a90.webp",
+      "bytes": 6936,
+      "sha256": "8538ef649a90722dd166ebb31b65fffdfae0fbcf7082e1326ec914ae8fc69e93"
+    },
+    {
+      "source": "assets/scenery/greenwood/western-bank-tree.webp",
+      "url": "assets/scenery/greenwood/western-bank-tree.09b98c32a29d.webp",
+      "bytes": 39474,
+      "sha256": "09b98c32a29dbd5d3102de8b46b9d7e5fab13cdc194dfee1d46e32dc6476c53e"
+    },
+    {
+      "source": "assets/scenery/highfold/ground.webp",
+      "url": "assets/scenery/highfold/ground.9e7b9e2f0e87.webp",
+      "bytes": 2700134,
+      "sha256": "9e7b9e2f0e876a3adebfd024fa26d3324287696792c900bdbbb58614322e09a0"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-courtyard-tree.webp",
+      "url": "assets/scenery/highfold/highfold-courtyard-tree.c50e1c57a7f0.webp",
+      "bytes": 20326,
+      "sha256": "c50e1c57a7f0baa3cf427d0dfc7f3666129e900099b5c8704c29a279b7ed1ea5"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-east-monolith-1.webp",
+      "url": "assets/scenery/highfold/highfold-east-monolith-1.78f2d3bfd80e.webp",
+      "bytes": 3392,
+      "sha256": "78f2d3bfd80e6229166634e075e529aacea6d02319064b6cfae73fbf7ff278d3"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-east-monolith-2.webp",
+      "url": "assets/scenery/highfold/highfold-east-monolith-2.7c6b93896262.webp",
+      "bytes": 3134,
+      "sha256": "7c6b93896262a392471186ec1991db1539459aea39c5ab657c142caa7f4e0ff3"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-east-pine.webp",
+      "url": "assets/scenery/highfold/highfold-east-pine.1ba463e970c2.webp",
+      "bytes": 31820,
+      "sha256": "1ba463e970c2f13f7cd409e7d00aa13dabf05c85df1ad8a84a34af302330a363"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-log-rail.webp",
+      "url": "assets/scenery/highfold/highfold-log-rail.1d343360ecdb.webp",
+      "bytes": 2864,
+      "sha256": "1d343360ecdb7078c5baad318226a5c2c73526d0a8c829315143bf5177cf805b"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-south-tree.webp",
+      "url": "assets/scenery/highfold/highfold-south-tree.15732a2e0e37.webp",
+      "bytes": 37426,
+      "sha256": "15732a2e0e37f5bdf38514cfb1a9c58ed07ec63c371c6c228a5ad51df643dfc6"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-stone-1.webp",
+      "url": "assets/scenery/highfold/highfold-stone-1.0aeec792fef5.webp",
+      "bytes": 2982,
+      "sha256": "0aeec792fef536667713cc0ccab90182b0b27b0960222ed7a44b226726c453a9"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-stone-2.webp",
+      "url": "assets/scenery/highfold/highfold-stone-2.f189d9086414.webp",
+      "bytes": 2978,
+      "sha256": "f189d908641428d6d2ce51df5d109774653c371fc552d0696a98faba3a6dfa3e"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-stone-3.webp",
+      "url": "assets/scenery/highfold/highfold-stone-3.beab9f7b8988.webp",
+      "bytes": 3368,
+      "sha256": "beab9f7b898862f0751384a0d48e52b4f853721699a5a5f59031b7621492ee71"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-stone-4.webp",
+      "url": "assets/scenery/highfold/highfold-stone-4.ff6a70ce8c16.webp",
+      "bytes": 2592,
+      "sha256": "ff6a70ce8c16102642ffa02f60e83ed3a3873438f5cbe7adb3ad183dbf274a0a"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-stone-5.webp",
+      "url": "assets/scenery/highfold/highfold-stone-5.fcb3e2975f9a.webp",
+      "bytes": 3394,
+      "sha256": "fcb3e2975f9a6e7aa4e365d92e496b824f07bfdac21139961e838cb784d261db"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-stone-6.webp",
+      "url": "assets/scenery/highfold/highfold-stone-6.423e21d575a8.webp",
+      "bytes": 2568,
+      "sha256": "423e21d575a87a902064cb84a265976f5bcc77c3d33d807e246630aa96eda276"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-stone-bridge-rail.webp",
+      "url": "assets/scenery/highfold/highfold-stone-bridge-rail.912dbf2ba331.webp",
+      "bytes": 3514,
+      "sha256": "912dbf2ba33116244e1159d76f93847aaefbfae8d4d6c2af370793b9b8bfcc6e"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-wayhouse-roof.webp",
+      "url": "assets/scenery/highfold/highfold-wayhouse-roof.d45f3c87e455.webp",
+      "bytes": 21488,
+      "sha256": "d45f3c87e4550d3ade5988c40d831afc01c98ee2ea2ee689a566b9cecd3db8fe"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-west-birch.webp",
+      "url": "assets/scenery/highfold/highfold-west-birch.9200d0cfc8d8.webp",
+      "bytes": 36476,
+      "sha256": "9200d0cfc8d841858ec8bf3339a95e9efa839eb074d60a0e170f2507aa1e550f"
+    },
+    {
+      "source": "assets/scenery/highfold/highfold-west-gate.webp",
+      "url": "assets/scenery/highfold/highfold-west-gate.f35c1da34d4c.webp",
+      "bytes": 7438,
+      "sha256": "f35c1da34d4c7ee7c9facd554cb5d6f71a46d64dd7b728a4423f7531f457e024"
+    },
+    {
+      "source": "assets/scenery/highfold/observatory-crest.webp",
+      "url": "assets/scenery/highfold/observatory-crest.902498db5c39.webp",
+      "bytes": 10604,
+      "sha256": "902498db5c397fd2e8c81d5fced553510d0a8c39701ca713d4c0b4eeee171edd"
+    },
+    {
+      "source": "assets/scenery/highfold/portico-column-1.webp",
+      "url": "assets/scenery/highfold/portico-column-1.a28663c8a1e2.webp",
+      "bytes": 2010,
+      "sha256": "a28663c8a1e2c2fc2b24ce5f87bf259a464d1bb47fa4b6445e1510ee8f0818a0"
+    },
+    {
+      "source": "assets/scenery/highfold/portico-column-2.webp",
+      "url": "assets/scenery/highfold/portico-column-2.e4533491a4e9.webp",
+      "bytes": 2098,
+      "sha256": "e4533491a4e94c566c96b238c12867880f7c8cd1eea3e05a57a5e7bfd79db8eb"
+    },
+    {
+      "source": "assets/scenery/highfold/portico-column-3.webp",
+      "url": "assets/scenery/highfold/portico-column-3.751e29041c3f.webp",
+      "bytes": 1586,
+      "sha256": "751e29041c3f9212a3c4b5135e8a4776f737309bdfad052ffb3d3352e303a88b"
+    },
+    {
+      "source": "assets/scenery/highfold/portico-column-4.webp",
+      "url": "assets/scenery/highfold/portico-column-4.63538432b565.webp",
+      "bytes": 2176,
+      "sha256": "63538432b5659b575c037da7a542462cfe63e691cc2e04c76d6b109a79b0d46b"
+    },
+    {
+      "source": "assets/scenery/highfold/portico-lintel.webp",
+      "url": "assets/scenery/highfold/portico-lintel.662742e4d2b1.webp",
+      "bytes": 2452,
+      "sha256": "662742e4d2b14ab7d4a7c10bd31bc647027b2e464cfc1196da802105e23b2228"
+    },
+    {
+      "source": "assets/scenery/lilyfall/ground.webp",
+      "url": "assets/scenery/lilyfall/ground.3248be85ce61.webp",
+      "bytes": 2829350,
+      "sha256": "3248be85ce61c7b899b1f5e8f03e1dc5dcd3b7790d2040d4211225654d107911"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-bridge-north-rail.webp",
+      "url": "assets/scenery/lilyfall/lily-bridge-north-rail.93972d5c33f6.webp",
+      "bytes": 5268,
+      "sha256": "93972d5c33f6936d3afe913011f4512d9be2cf19bcee6300739cf4fa9796f2fa"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-camp-roof.webp",
+      "url": "assets/scenery/lilyfall/lily-camp-roof.612adc826758.webp",
+      "bytes": 13572,
+      "sha256": "612adc826758981393c437f179706bcc606953a350a33ef8ca0ced49267d9cab"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-cave-tree.webp",
+      "url": "assets/scenery/lilyfall/lily-cave-tree.65159de7d5f4.webp",
+      "bytes": 34486,
+      "sha256": "65159de7d5f4816de6dfcbba053ab9d77f7699fdfac1c995b590bb6b878a5b6b"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-court-column-1.webp",
+      "url": "assets/scenery/lilyfall/lily-court-column-1.5389451d498a.webp",
+      "bytes": 2856,
+      "sha256": "5389451d498ac792ce40a448194dade293ee8facf4f95ea29bee3446d6002d46"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-court-column-2.webp",
+      "url": "assets/scenery/lilyfall/lily-court-column-2.a4518e7d2ed2.webp",
+      "bytes": 2786,
+      "sha256": "a4518e7d2ed22b10eb2ce861924b23c9b8e7b298bbb14602044be90bbb3f2cc6"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-court-column-3.webp",
+      "url": "assets/scenery/lilyfall/lily-court-column-3.8d49c84534a2.webp",
+      "bytes": 2552,
+      "sha256": "8d49c84534a2e5783374d3c03459370deb838f08b616c7b776c3588a3d8595b4"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-court-column-4.webp",
+      "url": "assets/scenery/lilyfall/lily-court-column-4.6ddf025e0a53.webp",
+      "bytes": 2520,
+      "sha256": "6ddf025e0a5362e760580154be971c354220e1f6da7db02e25e3a5f21abd410f"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-court-column-5.webp",
+      "url": "assets/scenery/lilyfall/lily-court-column-5.5492dd411d25.webp",
+      "bytes": 2520,
+      "sha256": "5492dd411d25d986d927b225843911cc275c77de27eefc6db381c98fc22760dd"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-court-oak.webp",
+      "url": "assets/scenery/lilyfall/lily-court-oak.b8bd5cb81837.webp",
+      "bytes": 50302,
+      "sha256": "b8bd5cb81837f533151041d48571f1ae5b923fb035a853135fb077dbfa9cb8d7"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-library-roof.webp",
+      "url": "assets/scenery/lilyfall/lily-library-roof.ce1d2bd199ca.webp",
+      "bytes": 24336,
+      "sha256": "ce1d2bd199ca592e594969fddda0a9cffb32075c88c48c71428593f277d1c7ce"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-northern-tree.webp",
+      "url": "assets/scenery/lilyfall/lily-northern-tree.923055c94502.webp",
+      "bytes": 53504,
+      "sha256": "923055c9450270d7260febfdca343242a121f4d35ec95118bbad5c923b193faf"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-pavilion-roof.webp",
+      "url": "assets/scenery/lilyfall/lily-pavilion-roof.53095c7894f5.webp",
+      "bytes": 22434,
+      "sha256": "53095c7894f563c3f531db0d4aea1ef1359ef590b5294babd55c48a7f152613d"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-south-birch.webp",
+      "url": "assets/scenery/lilyfall/lily-south-birch.f785ac7a44b3.webp",
+      "bytes": 40582,
+      "sha256": "f785ac7a44b3f7c36d7153bb6b605cb89ee8a0a259590417bfab32ea35d22768"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-west-gate.webp",
+      "url": "assets/scenery/lilyfall/lily-west-gate.d8a868b3a570.webp",
+      "bytes": 5834,
+      "sha256": "d8a868b3a570103840009f743a1b4ee8440a433e93d334a641eb01394714d78e"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-west-oak.webp",
+      "url": "assets/scenery/lilyfall/lily-west-oak.6e8d26b1b35f.webp",
+      "bytes": 54830,
+      "sha256": "6e8d26b1b35fa8ba3780e4a3c97a82c0a8ed20b1e37ec7d445a717b4ef8f9354"
+    },
+    {
+      "source": "assets/scenery/lilyfall/lily-white-birch.webp",
+      "url": "assets/scenery/lilyfall/lily-white-birch.1b207bdc8ed9.webp",
+      "bytes": 72452,
+      "sha256": "1b207bdc8ed929e402ba23c9c38088de672393f1afa47ac32fde534a0e0c3a92"
+    },
+    {
+      "source": "assets/scenery/silvermere/east-bank-tree.webp",
+      "url": "assets/scenery/silvermere/east-bank-tree.d0ba8ce98eda.webp",
+      "bytes": 29238,
+      "sha256": "d0ba8ce98eda2c9ff06a17a89aa30fccb5db040b2037a675511dc964eeb73079"
+    },
+    {
+      "source": "assets/scenery/silvermere/garden-linden.webp",
+      "url": "assets/scenery/silvermere/garden-linden.1367fbf1831f.webp",
+      "bytes": 28340,
+      "sha256": "1367fbf1831fe618c8dc84a0b5a4fc39a3d0efbb17dec8136a2a60dbebccd888"
+    },
+    {
+      "source": "assets/scenery/silvermere/ground.webp",
+      "url": "assets/scenery/silvermere/ground.dcd025779a09.webp",
+      "bytes": 2631946,
+      "sha256": "dcd025779a09d47224cd559525b45a02f2fd43ffe63c2aa6f1d76324f465aad5"
+    },
+    {
+      "source": "assets/scenery/silvermere/island-white-tree.webp",
+      "url": "assets/scenery/silvermere/island-white-tree.fcc9a9deb8dd.webp",
+      "bytes": 27524,
+      "sha256": "fcc9a9deb8dd85827ec6a1f98cdaa8ba103affde34555ad3574c09d35ed14a60"
+    },
+    {
+      "source": "assets/scenery/silvermere/manor-roof.webp",
+      "url": "assets/scenery/silvermere/manor-roof.8331077cc654.webp",
+      "bytes": 28714,
+      "sha256": "8331077cc6541692d5cf97c8b27fd8405a4cf588bc8f13fcb59ee756357f0f78"
+    },
+    {
+      "source": "assets/scenery/silvermere/northern-alder.webp",
+      "url": "assets/scenery/silvermere/northern-alder.0c922d02cf8f.webp",
+      "bytes": 24690,
+      "sha256": "0c922d02cf8f9eb9c6ec0a7af8d65be787008bf57964b49975981af971629bf7"
+    },
+    {
+      "source": "assets/scenery/silvermere/orchard-white-east.webp",
+      "url": "assets/scenery/silvermere/orchard-white-east.3e82c2cae2bc.webp",
+      "bytes": 29566,
+      "sha256": "3e82c2cae2bc93c3c4aeb304da93935dccd0d6cbc3e3c9c3e66bf8178ef8acef"
+    },
+    {
+      "source": "assets/scenery/silvermere/orchard-white-west.webp",
+      "url": "assets/scenery/silvermere/orchard-white-west.d9bad0fd3c96.webp",
+      "bytes": 28884,
+      "sha256": "d9bad0fd3c96b3ad3e87dee0de9964f096c9fb273f26ec9977d970866bbfdede"
+    },
+    {
+      "source": "assets/scenery/silvermere/pavilion-column-1.webp",
+      "url": "assets/scenery/silvermere/pavilion-column-1.65ed2fb6304c.webp",
+      "bytes": 1926,
+      "sha256": "65ed2fb6304c25bea86bdc7e919902da96329d7a10ab3136875f4ab6cd3e159e"
+    },
+    {
+      "source": "assets/scenery/silvermere/pavilion-column-2.webp",
+      "url": "assets/scenery/silvermere/pavilion-column-2.d8772c0b72ef.webp",
+      "bytes": 1994,
+      "sha256": "d8772c0b72ef5ddca318266630f2d2cc1cc5ead9e60cca5f4b4e3f7ca8fe2a12"
+    },
+    {
+      "source": "assets/scenery/silvermere/pavilion-column-3.webp",
+      "url": "assets/scenery/silvermere/pavilion-column-3.50822d6c403a.webp",
+      "bytes": 2056,
+      "sha256": "50822d6c403a46b4a93e9d7a147cf0b31508905b31a0a07470e25ecbb495ab5c"
+    },
+    {
+      "source": "assets/scenery/silvermere/pavilion-column-4.webp",
+      "url": "assets/scenery/silvermere/pavilion-column-4.f8e99740bfc3.webp",
+      "bytes": 2030,
+      "sha256": "f8e99740bfc399136d74c59e3d1ee6c4a3c798ba51420a02744b5085333b4821"
+    },
+    {
+      "source": "assets/scenery/silvermere/pavilion-column-5.webp",
+      "url": "assets/scenery/silvermere/pavilion-column-5.c6d4a041eade.webp",
+      "bytes": 2094,
+      "sha256": "c6d4a041eade9cfca08acae5c2143750ba556a3c8b62bc41b7db3eb1836db87b"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-east-rail.webp",
+      "url": "assets/scenery/silvermere/silver-east-rail.5f9a2d228b3a.webp",
+      "bytes": 2488,
+      "sha256": "5f9a2d228b3a6f39d3600423c3584df3308575cc7908cf0e78b25afb53f0bbb0"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-island-rail.webp",
+      "url": "assets/scenery/silvermere/silver-island-rail.938ed99d9009.webp",
+      "bytes": 3528,
+      "sha256": "938ed99d9009690b53e82c71309ceb7ac01ec8f1c760e967630f30305f7712cf"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-pavilion-roof.webp",
+      "url": "assets/scenery/silvermere/silver-pavilion-roof.e8bda89d5780.webp",
+      "bytes": 19754,
+      "sha256": "e8bda89d5780d33d445d518b0bafb45d5540d7ae797c08e1bf6fcac7cb56c41b"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-1.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-1.2d54f029499d.webp",
+      "bytes": 3290,
+      "sha256": "2d54f029499d573de34bb635b1b5a74eb8b4f346d38c7b8f81929455f4ef4e5f"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-2.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-2.47359c0cc493.webp",
+      "bytes": 3506,
+      "sha256": "47359c0cc493578c9955fa4e00453c28da2c15b2957435f1043fd0fa7bc66502"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-3.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-3.6998cef4ae1e.webp",
+      "bytes": 3442,
+      "sha256": "6998cef4ae1eb4497ab9257e2e42f1c35a6236ec909da928e582550952acfc80"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-4.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-4.25d6ae9ef25a.webp",
+      "bytes": 3820,
+      "sha256": "25d6ae9ef25a883b26234852dfdff597742ff57b1b5d50654473bb4b887da05d"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-5.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-5.dffbbf0dc228.webp",
+      "bytes": 4326,
+      "sha256": "dffbbf0dc2282a01027a0dea29ad9b2079e349099495b0d37aa784aa23c07c33"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-6.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-6.bad02504ec79.webp",
+      "bytes": 4216,
+      "sha256": "bad02504ec798e3ba95100470a91f0c1cc00933c24b61e51d4cd8105ffdad8c3"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-7.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-7.06dfd3ca6be9.webp",
+      "bytes": 3354,
+      "sha256": "06dfd3ca6be9f77c93e69dea340ee1ee65f47055db8e5545c7655628cea94461"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-standing-stone-8.webp",
+      "url": "assets/scenery/silvermere/silver-standing-stone-8.e5456b3471f1.webp",
+      "bytes": 3406,
+      "sha256": "e5456b3471f16c30842bd053e93a19f5d76794fcb64c03ef2218d876e87b2302"
+    },
+    {
+      "source": "assets/scenery/silvermere/silver-west-gate.webp",
+      "url": "assets/scenery/silvermere/silver-west-gate.b7cf8b2fc6f8.webp",
+      "bytes": 8258,
+      "sha256": "b7cf8b2fc6f8fb6848fbd0f237fffd0150d5c009321295450cb462b890a551db"
+    },
+    {
+      "source": "assets/scenery/silvermere/south-bank-tree.webp",
+      "url": "assets/scenery/silvermere/south-bank-tree.e99c083da8cd.webp",
+      "bytes": 28306,
+      "sha256": "e99c083da8cd767926aef86f2ec49451d7915edeafccf0ebb58e70cce2fb6425"
+    },
+    {
+      "source": "assets/scenery/silvermere/western-oak.webp",
+      "url": "assets/scenery/silvermere/western-oak.84024b35884b.webp",
+      "bytes": 47360,
+      "sha256": "84024b35884b21e6dd6f0a79a3e2ca20c6a433c5b3f26e58d76fdc388fb272a7"
+    },
+    {
+      "source": "assets/silvermere.webp",
+      "url": "assets/silvermere.437b6f87172a.webp",
+      "bytes": 901620,
+      "sha256": "437b6f87172ac23a0b09076eb802a9a3cb895f05a77ea38dfc51fe684fb65ae9"
+    },
+    {
+      "source": "assets/tor12/bridgeFork.webp",
+      "url": "assets/tor12/bridgeFork.996a6aaa4d67.webp",
+      "bytes": 2211920,
+      "sha256": "996a6aaa4d6745514afbda85df31feb5edf29d691a4887d6d8610c4a485c4636"
+    },
+    {
+      "source": "assets/tor12/greenwoodClean.webp",
+      "url": "assets/tor12/greenwoodClean.45288dfb8854.webp",
+      "bytes": 2460318,
+      "sha256": "45288dfb8854ec93235d60b0282298f72c9a576d2e13436ea242b8e019e08503"
+    },
+    {
+      "source": "assets/tor12/greywing.webp",
+      "url": "assets/tor12/greywing.0a93c762fb14.webp",
+      "bytes": 992742,
+      "sha256": "0a93c762fb14e57db025ece3f2bbb191f9131a561f275e7bfeebe787207336d8"
+    },
+    {
+      "source": "assets/tor12/torGround.webp",
+      "url": "assets/tor12/torGround.3d46575dfc69.webp",
+      "bytes": 2354328,
+      "sha256": "3d46575dfc69daa0ca7c0c686e5daa89286451cbfbc3ec40b3aae45479cf29f8"
+    },
+    {
+      "source": "assets/tor12/torMonkeys.webp",
+      "url": "assets/tor12/torMonkeys.d804cfe299f5.webp",
+      "bytes": 866686,
+      "sha256": "d804cfe299f554b1a6735d9450c8087252aa45d1c32ba958912aa1aebee79541"
+    },
+    {
+      "source": "assets/travelers-diagonal.png",
+      "url": "assets/travelers-diagonal.c9a8e393a0c7.png",
+      "bytes": 1596192,
+      "sha256": "c9a8e393a0c7c9daf25a4a49253bd7695f7dd8acf721f33b32e69d43d819a335"
+    },
+    {
+      "source": "assets/travelers.png",
+      "url": "assets/travelers.b6b83c767213.png",
+      "bytes": 1060207,
+      "sha256": "b6b83c76721347b5295023cff218ce8cb4037e3c2570f0f45df944ec67a1dcec"
+    },
+    {
+      "source": "assets/treasure17/footbridge.webp",
+      "url": "assets/treasure17/footbridge.d3f62f635df2.webp",
+      "bytes": 224614,
+      "sha256": "d3f62f635df20c2dc18af857f24413e1c0d0d18723bd7313394e24b6c76ddafb"
+    },
+    {
+      "source": "assets/treasure17/garden-ground.webp",
+      "url": "assets/treasure17/garden-ground.de3bc7325bef.webp",
+      "bytes": 810612,
+      "sha256": "de3bc7325bef90a2a8f59f7c41a8a98a9ae744a84d12fa4f0b0d98886a17153f"
+    },
+    {
+      "source": "assets/treasure17/garden-key.webp",
+      "url": "assets/treasure17/garden-key.3421300a5738.webp",
+      "bytes": 180528,
+      "sha256": "3421300a573864763dc8e990bb7fefb1df7490c51fa652fbe28f4795436aa633"
+    },
+    {
+      "source": "assets/treasure17/quay-ground.webp",
+      "url": "assets/treasure17/quay-ground.80d04fb57059.webp",
+      "bytes": 659076,
+      "sha256": "80d04fb57059f9842e2bdf26ca7b83d288f978d750a5e1ab7287de14d08f0a15"
+    },
+    {
+      "source": "assets/walk-boy-stride-v3.webp",
+      "url": "assets/walk-boy-stride-v3.061321880fc9.webp",
+      "bytes": 458212,
+      "sha256": "061321880fc9a9f91c6cc3c348cb15fe00bd022bed7c92a2b6bf66c541bb0008"
+    },
+    {
+      "source": "assets/walk-boy.webp",
+      "url": "assets/walk-boy.a55088d485fa.webp",
+      "bytes": 1426658,
+      "sha256": "a55088d485faf5aa08257be3666f14dbe68128d7776b5076c082a876ff08abde"
+    },
+    {
+      "source": "assets/walk-girl-stride-v3.webp",
+      "url": "assets/walk-girl-stride-v3.721af8deeb65.webp",
+      "bytes": 423986,
+      "sha256": "721af8deeb659c600a6be743a93e689193fa48898b0484d316b1e0738b77a69b"
+    },
+    {
+      "source": "assets/walk-girl.webp",
+      "url": "assets/walk-girl.a2a5298b75ec.webp",
+      "bytes": 1373502,
+      "sha256": "a2a5298b75ec2329fbf332a374afcb9accaf3b1341e7c53e9866c881f041bb7c"
+    },
+    {
+      "source": "adventure-art.js",
+      "url": "adventure-art.6c52101b44f4.js",
+      "bytes": 1923,
+      "sha256": "6c52101b44f498c4cb73823bdccbe649be31146eef2183f0e14e8c5c6fb6ea2d"
+    },
+    {
+      "source": "adventure.js",
+      "url": "adventure.7a909b5b4fed.js",
+      "bytes": 20029,
+      "sha256": "7a909b5b4fed4c63fe51f32a6210f7dc866767bdc2d18076f29153fe6da77e1a"
+    },
+    {
+      "source": "app.js",
+      "url": "app.490579121cf2.js",
+      "bytes": 92221,
+      "sha256": "490579121cf29793497cc72c40140c50156249534f535a337e338178135bb563"
+    },
+    {
+      "source": "battle-art.js",
+      "url": "battle-art.48c0292a5196.js",
+      "bytes": 2095,
+      "sha256": "48c0292a5196b69c4557ed2248be2dd2f66fc747a2b34f802f0f2e25848e5400"
+    },
+    {
+      "source": "battle14.js",
+      "url": "battle14.39cd85490f4d.js",
+      "bytes": 17667,
+      "sha256": "39cd85490f4deabd984090828e2ff044fbf3da459cd34d5f72a59d23e0047df3"
+    },
+    {
+      "source": "bear-data.js",
+      "url": "bear-data.7b0feaf1d0f6.js",
+      "bytes": 347,
+      "sha256": "7b0feaf1d0f61e44a366f504b9ce2a9ac50a42e62f65f4df242b682ca210620f"
+    },
+    {
+      "source": "beta19.js",
+      "url": "beta19.dcc331c4af64.js",
+      "bytes": 7834,
+      "sha256": "dcc331c4af64555d74736750f36a7ce1ccc001b8801f7461b9e242dd94b50d4c"
+    },
+    {
+      "source": "core.js",
+      "url": "core.b30d6788f358.js",
+      "bytes": 14349,
+      "sha256": "b30d6788f3585fee1368071b9817262dca9c3f2dda8b6552e9c668cb351a989e"
+    },
+    {
+      "source": "defaults.js",
+      "url": "defaults.40d27809c15d.js",
+      "bytes": 467907,
+      "sha256": "40d27809c15ddbd0f7d75721b4ecc02b318cec218147c8d066e2ba050de5d588"
+    },
+    {
+      "source": "exploration.js",
+      "url": "exploration.9e233cd6b6bd.js",
+      "bytes": 13368,
+      "sha256": "9e233cd6b6bd7cfd34128e8634a4362806a0403ee75480cdd80a5b3e231084dc"
+    },
+    {
+      "source": "guides18.js",
+      "url": "guides18.24c800ca0c12.js",
+      "bytes": 14329,
+      "sha256": "24c800ca0c12d2c6e873576d86bc9ca0357b2aa57816d71dd415e8314a53fad8"
+    },
+    {
+      "source": "journey.js",
+      "url": "journey.1f7e12e8913f.js",
+      "bytes": 13028,
+      "sha256": "1f7e12e8913f3186dd59509b8c3e4ae53d7439fb2e5cbacfe634d0439fb0b630"
+    },
+    {
+      "source": "leaf.js",
+      "url": "leaf.daf4485f8c82.js",
+      "bytes": 2786,
+      "sha256": "daf4485f8c827995f551e5983db278d1e0b4817cd54b7411f6de4669afc3fd2d"
+    },
+    {
+      "source": "opening-content.js",
+      "url": "opening-content.c74d8713f834.js",
+      "bytes": 60131,
+      "sha256": "c74d8713f83492c5db7a8234988dceca92c5fc9ef8b47778db0f67ea83ba9139"
+    },
+    {
+      "source": "opening-life.js",
+      "url": "opening-life.9c344f462963.js",
+      "bytes": 8655,
+      "sha256": "9c344f46296336123fcfa740e5f4953f46d0a220c4fef1db4c779e96d40df997"
+    },
+    {
+      "source": "opening-render.js",
+      "url": "opening-render.63948f0a95af.js",
+      "bytes": 8525,
+      "sha256": "63948f0a95af94f9d94632dc7930172ea300c3d1c08dd47bd1a8638c84e53f0e"
+    },
+    {
+      "source": "opening-world.js",
+      "url": "opening-world.1b6f5106420b.js",
+      "bytes": 2796766,
+      "sha256": "1b6f5106420b61e8569ca668e42f81ffb73d6411b2b59156a505dd5d42c2fe55"
+    },
+    {
+      "source": "opening.js",
+      "url": "opening.8f82dd4ce7bd.js",
+      "bytes": 14962,
+      "sha256": "8f82dd4ce7bd6cb5397c29067115eca94fe00af88d67ae4ecdfa519c01916ea9"
+    },
+    {
+      "source": "quest16-data.js",
+      "url": "quest16-data.7158c806206a.js",
+      "bytes": 86792,
+      "sha256": "7158c806206acbff1329552f6b133f0c32e99d5bb202ecd8e7a31762f540aaf8"
+    },
+    {
+      "source": "quest16.js",
+      "url": "quest16.e2fccb8f13d7.js",
+      "bytes": 43997,
+      "sha256": "e2fccb8f13d7b13eb3176ee54ab5d3db1144cc14cbef769e404d9202f8a6e24f"
+    },
+    {
+      "source": "scenery-data.js",
+      "url": "scenery-data.8cf2830ec1e8.js",
+      "bytes": 62018,
+      "sha256": "8cf2830ec1e8fe8182d6d47048536bfd43927437bcb44090b66fcc8fd7d8429b"
+    },
+    {
+      "source": "scenery.js",
+      "url": "scenery.9f203aef3a42.js",
+      "bytes": 2647,
+      "sha256": "9f203aef3a42104ce8ff1805cddfef76a18e77f52e35d69c86658fcc07b9fe59"
+    },
+    {
+      "source": "sound.js",
+      "url": "sound.db3ab463d400.js",
+      "bytes": 1727,
+      "sha256": "db3ab463d4004cfd6f4d4ac76a88f96391e89ae8fb0087e15efbdd23e5caf5c3"
+    },
+    {
+      "source": "story-books.js",
+      "url": "story-books.eca682309185.js",
+      "bytes": 4062,
+      "sha256": "eca68230918532b5fe5bbdc684076fc9070718d48bf6b00f630d1f893f1d6e88"
+    },
+    {
+      "source": "style.css",
+      "url": "style.7e30aa0b8b3e.css",
+      "bytes": 18806,
+      "sha256": "7e30aa0b8b3e9ceced5b18ace2b4a5f652ae721262550ba56b00a7b931be7b91"
+    },
+    {
+      "source": "terrain-data.js",
+      "url": "terrain-data.290fdccd7d11.js",
+      "bytes": 261501,
+      "sha256": "290fdccd7d113e01887993d84a186d38e65685407766815f54c0b403d1842e6e"
+    },
+    {
+      "source": "tor-combat.js",
+      "url": "tor-combat.0533c06a2eaa.js",
+      "bytes": 14540,
+      "sha256": "0533c06a2eaa9a1d19c731f660acf43e977d718ecf2b7c1f986777eed56da8b4"
+    },
+    {
+      "source": "touch-stick.js",
+      "url": "touch-stick.77fb84a29a6c.js",
+      "bytes": 2212,
+      "sha256": "77fb84a29a6c102ecc501dd0f9ea46e9e5034a09887c51543a855e2b68f531c0"
+    },
+    {
+      "source": "treasure-data.js",
+      "url": "treasure-data.e1df5e259b7a.js",
+      "bytes": 4959,
+      "sha256": "e1df5e259b7a004ede175c11990610b75b7538ffc2e95c7d36423130c947a4c9"
+    },
+    {
+      "source": "treasure17.js",
+      "url": "treasure17.3cefb9f2dc26.js",
+      "bytes": 24269,
+      "sha256": "3cefb9f2dc26092612d811f62742a28bd4552e49aeb2fe214d25b5b3d89a9ed1"
+    },
+    {
+      "source": "walk-data.js",
+      "url": "walk-data.9b8c614f0843.js",
+      "bytes": 1263901,
+      "sha256": "9b8c614f08436184eac348a5dd0311e8a92c969a08d6fa88a77cfbcc1b143f67"
+    },
+    {
+      "source": "walker.js",
+      "url": "walker.6dd0443b2a9c.js",
+      "bytes": 950,
+      "sha256": "6dd0443b2a9c62ce10b44da427cf3705be7dd25d9406e309fc4b2be1198ccc3a"
+    }
+  ]
+}

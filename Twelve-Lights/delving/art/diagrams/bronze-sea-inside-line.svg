@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="650" viewBox="0 0 800 650" role="img" aria-labelledby="title desc">
+<title id="title">Bronze Sea: one line inside the rim</title>
+<desc id="desc">Schematic basin with a lily-flared thick rim. A single blue closed measuring line follows its inner wall. Supports are omitted to keep the hint clear; the companion oxen plan shows their arrangement. Perspective is schematic and dimensions are not to scale.</desc>
+<defs><g id="ox" fill="#b28b56" stroke="#6b542f" stroke-width="2" stroke-linejoin="round">
+<path d="M-17 1 Q-20 -11 -8 -14 L11 -14 Q20 -10 17 2 L11 6 L-10 6 Z"/>
+<path d="M-12 3 L-13 21 L-8 21 L-5 4 M8 3 L8 21 L13 21 L14 1"/>
+<path d="M-7 -12 L-9 -27 Q0 -33 9 -27 L7 -12 Z"/>
+<path d="M-8 -26 Q-18 -32 -14 -38 M8 -26 Q18 -32 14 -38" fill="none"/>
+<path d="M-5 -23 L5 -23 L5 -16 L-5 -16 Z" fill="#d8b879"/>
+</g><linearGradient id="bronze" x2="0" y2="1"><stop stop-color="#e1bc78"/><stop offset=".45" stop-color="#99703b"/><stop offset="1" stop-color="#71512b"/></linearGradient></defs>
+<path d="M146 277 C166 445 249 505 400 505 C551 505 634 445 654 277 Z" fill="#9c7643" stroke="#735730" stroke-width="4"/>
+<ellipse cx="400" cy="277" rx="254" ry="117" fill="#bd9658" stroke="#735730" stroke-width="4"/>
+<ellipse cx="400" cy="270" rx="222" ry="93" fill="#684f34" stroke="#d2ae6d" stroke-width="11"/>
+<ellipse cx="400" cy="283" rx="211" ry="76" fill="#d1dfd8" opacity=".72"/>
+<path id="measuring-line" d="M185 270 A215 87 0 1 1 615 270 A215 87 0 1 1 185 270 Z" fill="none" stroke="#197d9d" stroke-width="5" stroke-linecap="round"/>
+</svg>

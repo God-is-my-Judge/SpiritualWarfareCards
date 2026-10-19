@@ -1,0 +1,205 @@
+{
+  "AS-IRV": {
+    "zip": "SWCG-AS-IRV.zip",
+    "sha256": "7568faffcfc1aa4f6dedd5329c1262d1385fbb9bd5c471c1ab827dc502d1566c",
+    "size": 1602028,
+    "updated": "2026-09-09",
+    "source_fingerprint": "2de3221521c29c840fe0cf39e8066922798dcac9a391f967f2e10b9be54c05d6"
+  },
+  "BN-IRV": {
+    "zip": "SWCG-BN-IRV.zip",
+    "sha256": "de7b364f71d49143072551643fbfbe3097ce24f46a49105f8492c2530143f356",
+    "size": 1576502,
+    "updated": "2026-09-09",
+    "source_fingerprint": "f41b249009468ae2a02d4c3efe41920ad2506d963f4ced4029d14a3a4ebb727c"
+  },
+  "CEB-APSD": {
+    "zip": "SWCG-CEB-APSD.zip",
+    "sha256": "48425c2cda3db0d18d2b78b1908e8c806f136f2d7e1b1f78243ec0a8755e2bd3",
+    "size": 395899,
+    "updated": "2026-09-10",
+    "source_fingerprint": "926f2e05a91f124f23cd1761908eb292bd76f7e26b3719068fe681e5ca9dde6d"
+  },
+  "CSB": {
+    "zip": "SWCG-English-Modern.zip",
+    "sha256": "e5998151bba47c5c761b666d1635025de981f7d2c730ab7762503ae5be25b1eb",
+    "size": 3041343,
+    "updated": "2026-09-04",
+    "source_fingerprint": "b2d76ec484198c126fccb2d26d424136a955eb8cd2ab72d500bcb432e98045c1"
+  },
+  "CUV": {
+    "zip": "SWCG-Chinese-CUV.zip",
+    "sha256": "d49f1d80afd52dc637b516888c36d5f0ae7796a73daf612205e1bdffa634316f",
+    "size": 3781939,
+    "updated": "2026-09-04",
+    "source_fingerprint": "62f1ca45f378b123a370eb095a9520231879855e8a9b7df79bfb36c2288fe421"
+  },
+  "DE-ELB1905": {
+    "zip": "SWCG-DE-ELB1905.zip",
+    "sha256": "47abeb675ce4fd0f3f1bab3e99a2a7a8d188586be8ecd70207c0078838300375",
+    "size": 966374,
+    "updated": "2026-09-07",
+    "source_fingerprint": "6a565f29b49f693bc3197374433390797d690635ce204239636d3cff7924703b"
+  },
+  "DE-LUT1912": {
+    "zip": "SWCG-DE-LUT1912.zip",
+    "sha256": "49e9d9c679bbb807ec293b0fedef1df66877fe3b9cc8c3d5020b4b1f15a28808",
+    "size": 999645,
+    "updated": "2026-09-09",
+    "source_fingerprint": "d6999f835c809b92bb694bce8a06996380bbefb2aed7efacfd463461ff5b6c2a"
+  },
+  "GU-IRV": {
+    "zip": "SWCG-GU-IRV.zip",
+    "sha256": "3a74613d4457cb99d54fc8b57d4f051e645d4a6d0f2b5e1e5ff303c81761de6c",
+    "size": 1377568,
+    "updated": "2026-09-09",
+    "source_fingerprint": "2090fd1824f3ec835d9c4e8c3f64884c23ed0e8ce49454691d746afb3f40beb8"
+  },
+  "HI-IRV": {
+    "zip": "SWCG-HI-IRV.zip",
+    "sha256": "e203795e9afb2d9b72ffe5aa0f1fc39e8583cd139dcbb1af11b740dca7007c3b",
+    "size": 1466056,
+    "updated": "2026-09-09",
+    "source_fingerprint": "ed57af1c2d3854488e96f3dd8bf159ea9111a62c98e7782241b7d80d61b51fee"
+  },
+  "HIL-APSGD": {
+    "zip": "SWCG-HIL-APSGD.zip",
+    "sha256": "b5baa022cdd2a546d8a388dbe371a544a6cc68ce088a159437ef8c8a5dcbcf64",
+    "size": 401832,
+    "updated": "2026-09-10",
+    "source_fingerprint": "d6f4ffe85f66748dbd9418f685db7b9b7e44b4891f58f1b9a694fc49695cbf65"
+  },
+  "ILO-ULB": {
+    "zip": "SWCG-ILO-ULB.zip",
+    "sha256": "833aa15009fdff55b1855f3f2abb58f37a84160a41297b93190ce93304cdd980",
+    "size": 395008,
+    "updated": "2026-09-10",
+    "source_fingerprint": "73ca5635f8e444ca56bece490a38961225c82c493e02016398637e6dce0aa08c"
+  },
+  "KJV": {
+    "zip": "SWCG-English-KJV.zip",
+    "sha256": "13ab0ca52a2f6222afa8ee0bcd67b15c7d81f59be2dfcab86824e5ef8a59fdbe",
+    "size": 2272217,
+    "updated": "2026-08-28",
+    "source_fingerprint": "b82c15e105ebb1e808db7126bfa469a2c832cd8eb6d73d85db9a83aaeadcd7db"
+  },
+  "KN-IRV": {
+    "zip": "SWCG-KN-IRV.zip",
+    "sha256": "95fbcec280d0e6499d1f318a40ea03eb2d82e2ccccf3501e72a46800a53348a9",
+    "size": 1783505,
+    "updated": "2026-09-10",
+    "source_fingerprint": "2143d878a429ebe5262a1490f1cac425acb1c46fdefdbfe503dcc02379aac2d5"
+  },
+  "LS": {
+    "zip": "SWCG-Francais-LS.zip",
+    "sha256": "152052006e68d5ab01c18b589f78312ffc4837a3ab9f9d3c7902fbb9cb189f0c",
+    "size": 904991,
+    "updated": "2026-09-04",
+    "source_fingerprint": "d185f1f2699ce514d9cfa8b9b5456f7e65eba082616a8344ec18f420d6b38eea"
+  },
+  "ML-IRV": {
+    "zip": "SWCG-ML-IRV.zip",
+    "sha256": "38fd5a6d55dec1152252889d7da06e11a4bf8092edd6bc4a5fa8b4a5fb5f2501",
+    "size": 1707733,
+    "updated": "2026-09-10",
+    "source_fingerprint": "85f19d58005d41af256f80b6fd3c15cb1b4e3387457e57f99a807ff46175eea4"
+  },
+  "ML-SVP1910": {
+    "zip": "SWCG-ML-SVP1910.zip",
+    "sha256": "15e39ff4ec6ec89bd07d71e6c040a043758ec5f3264e518a9f13cb97b15305f7",
+    "size": 1701942,
+    "updated": "2026-09-10",
+    "source_fingerprint": "a669f39e3c95fc57398697433873c45341166627af30ac18d761ba953e3b4277"
+  },
+  "MR-IRV": {
+    "zip": "SWCG-MR-IRV.zip",
+    "sha256": "cc8cabf73028dc6bbe80e33c32666b43a01db77e3d398061fc5cf3ee4bd8bfdc",
+    "size": 1468105,
+    "updated": "2026-09-09",
+    "source_fingerprint": "36605ea099d072c678380742226db47e72b515902754571dfd5ed6d21aa28b1c"
+  },
+  "OR-IRV": {
+    "zip": "SWCG-OR-IRV.zip",
+    "sha256": "1f23a5b761f77970161b1b44f9129fdbb42051207c864bd6f97fd344d3506520",
+    "size": 1514179,
+    "updated": "2026-09-09",
+    "source_fingerprint": "13b7bca5ceb56efc0d172853166be946edfdf38e4829a81f77a566f57881bad8"
+  },
+  "PA-IRV": {
+    "zip": "SWCG-PA-IRV.zip",
+    "sha256": "1dffc2667d9a59a517c18b51bc06d4c0dbef1a617463ac24956d2dbfad426195",
+    "size": 1284885,
+    "updated": "2026-09-09",
+    "source_fingerprint": "c76c548418061d5509c142cf05f65ee92f129046c2f2dbf6b84cf0eb09d3dc50"
+  },
+  "PT-BPM": {
+    "zip": "SWCG-PT-BPM.zip",
+    "sha256": "13c51c4d5a8cf373af5cf0e8316b351a3b83e989e48a2018e86ba35ee38d28b7",
+    "size": 376226,
+    "updated": "2026-09-10",
+    "source_fingerprint": "839144eb87dfee5845b9a7905b4746272b2af83fdfd357e4c5e2adc1315b8622"
+  },
+  "PT-NBV": {
+    "zip": "SWCG-PT-NBV.zip",
+    "sha256": "9897858db4253479a98998ee9406beffbf866f3af1c11c693f2e30cbae7094ae",
+    "size": 392007,
+    "updated": "2026-09-10",
+    "source_fingerprint": "aa7e77192871a2c7e9a1469938966ef56b92459b2bd7dc7e182443e65f9202f0"
+  },
+  "RST": {
+    "zip": "SWCG-Russian-RST.zip",
+    "sha256": "1a83111e6208c33fd6f7a1e8db3795216212d327a4faefc768c35873e882a5a1",
+    "size": 890466,
+    "updated": "2026-09-04",
+    "source_fingerprint": "41f504046d8b1b759f9efd748d2ff573474d1aac07a96ac213665459d89ac7e6"
+  },
+  "RVR09": {
+    "zip": "SWCG-Espanol-RVR09.zip",
+    "sha256": "56ffb1bb3194cf31d1d29fd9a7f2eca882784225a3d9cd95d73f2aa8b7eaac8c",
+    "size": 928800,
+    "updated": "2026-09-04",
+    "source_fingerprint": "52f8d77f7dee68c17f0d0f13377e13a49018bc457f5892e2a48774004d7eac05"
+  },
+  "SVD": {
+    "zip": "SWCG-Arabic-SVD.zip",
+    "sha256": "336d1a29293b6a38a1cc606bd469358db86732c25e4c56f9bf53fe4ee1d1d194",
+    "size": 1307686,
+    "updated": "2026-09-04",
+    "source_fingerprint": "69513e4faae65e09574fb781f5da82b79e58655a5419851c8cba617a931e0abe"
+  },
+  "SW-NENO": {
+    "zip": "SWCG-SW-NENO.zip",
+    "sha256": "165ccd28db744ced5d400954c22c6cfe5126d57cb04c1cb636e5ee62404f5bf5",
+    "size": 369404,
+    "updated": "2026-09-10",
+    "source_fingerprint": "dffbe0ddebb8f813fa1deaa138a8914d99b1f91a3953a0b70c7b88eb4c90a9ed"
+  },
+  "TA-IRV": {
+    "zip": "SWCG-TA-IRV.zip",
+    "sha256": "980deb395e3c4c8ab211d0b2d91bbc97f211c344d1cc18753a2cf6f90309f310",
+    "size": 1376306,
+    "updated": "2026-09-10",
+    "source_fingerprint": "b72bd0470cb6f73cf8f94965ee24c6ff1a133dd10c23f8f0d22f258a1548cfbc"
+  },
+  "TE-IRV": {
+    "zip": "SWCG-TE-IRV.zip",
+    "sha256": "4ffa59da81a7666080f8f4a8681b7f751d0a20e811758cd487e0162ce772a4b6",
+    "size": 2221450,
+    "updated": "2026-09-10",
+    "source_fingerprint": "aa6a8450e7c0444ecbfa8766b346fb0bfd5f744ca166a5da740409704f49cb42"
+  },
+  "TL-ULB": {
+    "zip": "SWCG-TL-ULB.zip",
+    "sha256": "7d2d735d0acf0bc17de76f8033a27bfb05c37f70e0cda98547710a5d28e325c9",
+    "size": 404425,
+    "updated": "2026-09-10",
+    "source_fingerprint": "b714b8d624eb351ad72d44d12c43bace8584b44745847b8411289bb27f778821"
+  },
+  "UR-IRV": {
+    "zip": "SWCG-UR-IRV.zip",
+    "sha256": "a5f2bed5cb346b9a41686b9e015b38579e6d0f9a9ffe191d32e3263f790e303a",
+    "size": 1430790,
+    "updated": "2026-09-09",
+    "source_fingerprint": "783830417f2826126e210e745cb1dc3fb69b48683eebdb5d4193d4ec30b432d9"
+  }
+}
