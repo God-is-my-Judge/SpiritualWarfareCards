@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-theme="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Spiritual Warfare: The Card Game online. Choose an edition, draw a scenario, and receive four Scripture cards.">
+  <title>Play Online — Spiritual Warfare: The Card Game</title>
+  <link rel="stylesheet" href="styles.css?v=28">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('swcg_theme')||'day'}catch(_){}</script>
+  <script src="vendor/pdfjs/pdf.min.js"></script>
+</head>
+<body class="has-page-title">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="page-title-bar">Play</div><nav class="navbar" aria-label="Main navigation">
+  <a class="nav-brand" href="index.html"><span class="nav-brand-title">Spiritual Warfare</span><span class="nav-brand-sub">The Card Game</span></a>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="play.html">Play</a></li><li><a href="instructions.html">How to Play</a></li><li><a href="translations.html">Translations</a></li><li><a href="creative-commons.html">Community Expansion</a></li><li><a href="games.html">More Games</a></li></ul>
+  <div class="nav-actions"><button class="theme-toggle" id="theme-toggle" type="button"><span class="theme-icon">☀</span><span class="theme-label">Day</span></button><button class="nav-menu-btn" id="nav-menu-btn" type="button" aria-label="Open menu" aria-expanded="false">☰</button></div>
+</nav></header>
+
+<main id="main">
+  <section class="page-hero"><div class="container"><h1>Play</h1></div></section>
+
+  <section class="section">
+    <div class="play-shell">
+      <div class="play-toolbar" aria-label="Game controls">
+        <div class="control"><label for="edition-select">Translation</label><select id="edition-select"><option value="easy">English — Easy to Read (CSB/LSB)</option><option value="modern">English — Modern (CSB/LSB)</option><option value="kjv">English — KJV</option><option value="es">Español — RVR09</option><option value="ar">العربية — SVD</option><option value="fr">Français — LS</option><option value="ru">Русский — RST</option><option value="zh">中文 — CUV</option><option value="ML-SVP1910">മലയാളം — സത്യവേദപുസ്തകം 1910 · ML-SVP1910</option><option value="ML-IRV">മലയാളം — ഇന്ത്യൻ റിവൈസ്ഡ് വേർഷൻ · ML-IRV</option><option value="HI-IRV">हिन्दी — इंडियन रिवाइज्ड वर्जन · HI-IRV</option><option value="TA-IRV">தமிழ் — இந்தியன் ரிவைஸ்டு வெர்ஸன் · TA-IRV</option><option value="TE-IRV">తెలుగు — ఇండియన్ రివైజ్డ్ వెర్షన్ · TE-IRV</option><option value="KN-IRV">ಕನ್ನಡ — ಇಂಡಿಯನ್ ರಿವೈಜ್ಡ್ ವರ್ಸನ್ · KN-IRV</option><option value="MR-IRV">मराठी — इंडियन रीवाइज्ड वर्जन · MR-IRV</option><option value="GU-IRV">ગુજરાતી — ઇન્ડિયન રિવાઇઝ્ડ વર્ઝન · GU-IRV</option><option value="PA-IRV">ਪੰਜਾਬੀ — ਇੰਡਿਅਨ ਰਿਵਾਇਜ਼ਡ ਵਰਜ਼ਨ · PA-IRV</option><option value="BN-IRV">বাংলা — ইন্ডিয়ান রিভাইজড ভার্সন · BN-IRV</option><option value="AS-IRV">অসমীয়া — ইণ্ডিয়ান ৰিভাইজ্ড ভাৰ্চন · AS-IRV</option><option value="OR-IRV">ଓଡ଼ିଆ — ଇଣ୍ଡିଆନ ରିଭାଇଜଡ ଭର୍ସନ · OR-IRV</option><option value="UR-IRV">उर्दू — इंडियन रिवाइज्ड वर्जन · UR-IRV</option><option value="DE-LUT1912">Deutsch — Lutherbibel 1912 · DE-LUT1912</option><option value="DE-ELB1905">Deutsch — Elberfelder 1905 · DE-ELB1905</option></select></div>
+        <div class="mode-switch" aria-label="Choose Day or Night"><button id="day-mode" class="active" type="button" aria-pressed="true" aria-label="Day">☀ <span class="mode-label">Day</span></button><button id="night-mode" type="button" aria-pressed="false" aria-label="Night">☾ <span class="mode-label">Night</span></button></div>
+        <button class="btn btn-primary" id="new-round" type="button">New round</button>
+      </div>
+
+      <p class="game-status" id="game-status" role="status" aria-live="polite">Loading the table…</p>
+
+      <div class="game-table">
+        <section class="game-zone" aria-labelledby="scenario-title">
+          <div class="zone-head"><h2 id="scenario-title">Scenario</h2><button class="btn btn-quiet" id="replace-scenario" type="button">Draw another</button></div>
+          <div class="pdf-card-view scenario" id="scenario-card" tabindex="0" role="button" aria-label="Enlarge scenario card"><div class="card-loading">Preparing scenario…</div><canvas></canvas></div>
+        </section>
+        <section class="game-zone" aria-labelledby="hand-title">
+          <div class="zone-head"><h2 id="hand-title">Your Scripture hand</h2><button class="btn btn-quiet" id="replace-hand" type="button">New hand</button></div>
+          <div class="cards-grid" id="scripture-hand">
+            <div class="pdf-card-view scripture" tabindex="0" role="button" aria-label="Enlarge Scripture card 1"><div class="card-loading">Preparing card…</div><canvas></canvas><button class="card-action" type="button">Replace</button></div>
+            <div class="pdf-card-view scripture" tabindex="0" role="button" aria-label="Enlarge Scripture card 2"><div class="card-loading">Preparing card…</div><canvas></canvas><button class="card-action" type="button">Replace</button></div>
+            <div class="pdf-card-view scripture" tabindex="0" role="button" aria-label="Enlarge Scripture card 3"><div class="card-loading">Preparing card…</div><canvas></canvas><button class="card-action" type="button">Replace</button></div>
+            <div class="pdf-card-view scripture" tabindex="0" role="button" aria-label="Enlarge Scripture card 4"><div class="card-loading">Preparing card…</div><canvas></canvas><button class="card-action" type="button">Replace</button></div>
+          </div>
+        </section>
+      </div>
+
+      <p style="margin-top:44px;text-align:center;color:var(--ink-soft)"><strong>New players or a quick game?</strong> Just read the big text on each card.</p>
+      <div class="play-help" style="margin-top:16px">
+        <article class="info-card"><h3>1. Read the scenario</h3><p>The active player draws and reads the Scenario card aloud.</p></article>
+        <article class="info-card"><h3>2. Choose a response</h3><p>Everyone else offers the Scripture card that best meets the struggle.</p></article>
+        <article class="info-card"><h3>3. Award the point</h3><p>The active player chooses a response. That player receives one point.</p></article>
+      </div>
+
+      <div class="advanced-line"><p>Want custom page ranges, printing, or your own PDFs?</p><div class="cta-row" style="margin-top:14px"><a class="btn btn-outline" href="deckshuffle.html">Open advanced DeckShuffle</a><a class="btn btn-outline" href="translations.html">Download a translation</a></div></div>
+    </div>
+  </section>
+
+  <dialog class="card-dialog" id="card-dialog"><button class="dialog-close" type="button" aria-label="Close enlarged card">×</button><canvas></canvas></dialog>
+</main>
+  <section class="section"><div class="container"><p class="feedback-note">Spotted a wording problem in any translation? <a href="creative-commons.html#wording-feedback">Tell us on the workshop page</a> &mdash; every edition here is improved by readers who know the language.</p></div></section>
+
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-about"><div class="footer-brand">Spiritual Warfare: The Card Game</div><p>Card files stay on this website; PDF rendering happens in your browser.</p></div><div><h3>Play</h3><div class="footer-links"><a href="instructions.html">Full instructions</a><a href="translations.html">Translations &amp; downloads</a><a href="deckshuffle.html">Advanced DeckShuffle</a></div></div><div><h3>Build</h3><div class="footer-links"><a href="creative-commons.html">Community expansion</a><a href="creative-commons.html#workshop-notes">Workshop notes</a></div></div></div><div class="footer-bottom"><p>© Daniel W Kerr 2025–2026. Scripture text remains subject to its publisher’s terms.</p></div></div></footer>
+<script src="script.js?v=10"></script>
+<script src="play.js?v=6"></script>
+</body>
+</html>

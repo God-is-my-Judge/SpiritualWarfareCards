@@ -1,0 +1,317 @@
+[
+  {
+    "theme": "victorian",
+    "variant": "lily",
+    "file": "assets/victorian-lily.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny lilies edging corners. Style: fine Victorian botanical engraving on cream. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "victorian",
+    "variant": "fern",
+    "file": "assets/victorian-fern.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: fern fronds edging corners. Style: fine Victorian botanical engraving on cream. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "victorian",
+    "variant": "ivy",
+    "file": "assets/victorian-ivy.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: fine ivy edging corners. Style: fine Victorian botanical engraving on cream. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "space",
+    "variant": "dawn",
+    "file": "assets/space-dawn.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: planetary dawn glow at bottom perimeter. Style: elegant navy and cyan astronomical illustration, uniformly dark navy blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "space",
+    "variant": "orbit",
+    "file": "assets/space-orbit.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: slender orbital paths and tiny planets at perimeter. Style: elegant navy and cyan astronomical illustration, uniformly dark navy blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "space",
+    "variant": "constellation",
+    "file": "assets/space-constellation.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: small star constellations at corners. Style: elegant navy and cyan astronomical illustration, uniformly dark navy blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "jungle",
+    "variant": "river",
+    "file": "assets/jungle-river.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny friendly frog and turtle beside river at bottom. Style: original friendly children’s book illustration, pale warm cream center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "jungle",
+    "variant": "forest",
+    "file": "assets/jungle-forest.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny friendly elephant and tiger among forest foliage corners. Style: original friendly children’s book illustration, pale warm cream center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "jungle",
+    "variant": "canopy",
+    "file": "assets/jungle-canopy.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny friendly original toucan and monkey in canopy corners. Style: original friendly children’s book illustration, pale warm cream center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "traditional",
+    "variant": "bible",
+    "file": "assets/traditional-bible.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny closed unlettered Bible at top and tiny open unlettered Bible at bottom. Style: restrained sacred engraving on cream. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "traditional",
+    "variant": "window",
+    "file": "assets/traditional-window.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: restrained stained glass fragments at corners. Style: restrained sacred engraving on cream. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "traditional",
+    "variant": "candle",
+    "file": "assets/traditional-candle.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny candle and unlettered Bibles at bottom corners. Style: restrained sacred engraving on cream. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "celestial",
+    "variant": "watchman",
+    "file": "assets/celestial-watchman.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny original winged watchman with shield at corner. Style: original graphic novel illustration, pale warm blank center; no identifiable branded art. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "celestial",
+    "variant": "light",
+    "file": "assets/celestial-light.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny kneeling human figure and gentle rays at bottom corner. Style: original graphic novel illustration, pale warm blank center; no identifiable branded art. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "celestial",
+    "variant": "messenger",
+    "file": "assets/celestial-messenger.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: tiny original winged messenger over mountains along bottom. Style: original graphic novel illustration, pale warm blank center; no identifiable branded art. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "storm",
+    "variant": "lightning",
+    "file": "assets/storm-lightning.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: subtle lightning along perimeter. Style: painterly dark slate, uniformly dark slate blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "storm",
+    "variant": "clearing",
+    "file": "assets/storm-clearing.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: storm break with thin ray of light at perimeter. Style: painterly dark slate, uniformly dark slate blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "storm",
+    "variant": "hands",
+    "file": "assets/storm-hands.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: extremely faint praying hands watermark in center, only 4 percent contrast, storm clouds at edges. Style: painterly dark slate, uniformly dark slate blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "woodland",
+    "variant": "lantern",
+    "file": "assets/woodland-lantern.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: small lantern and woodland branches at perimeter. Style: realistic painterly green woodland, pale warm blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "woodland",
+    "variant": "path",
+    "file": "assets/woodland-path.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: small mountain path along bottom. Style: realistic painterly green woodland, pale warm blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "woodland",
+    "variant": "arch",
+    "file": "assets/woodland-arch.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: moonlit forest arch at perimeter. Style: realistic painterly green woodland, pale warm blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "desert",
+    "variant": "lamp",
+    "file": "assets/desert-lamp.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: small ancient oil lamp in corner. Style: muted limestone and sand painterly engraving, pale blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "desert",
+    "variant": "sunrise",
+    "file": "assets/desert-sunrise.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: muted desert sunrise along bottom. Style: muted limestone and sand painterly engraving, pale blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "desert",
+    "variant": "arches",
+    "file": "assets/desert-arches.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: limestone stone arch at perimeter. Style: muted limestone and sand painterly engraving, pale blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "watercolor",
+    "variant": "meadow",
+    "file": "assets/watercolor-meadow.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: delicate meadow flowers at perimeter. Style: delicate watercolor, almost white blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "watercolor",
+    "variant": "stream",
+    "file": "assets/watercolor-stream.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: small mountains and stream along bottom. Style: delicate watercolor, almost white blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "watercolor",
+    "variant": "sea",
+    "file": "assets/watercolor-sea.webp",
+    "prompt": "Use case: illustration-story. Asset type: standalone portrait prayer card decorative border, 3:4 aspect ratio. Subject: small sea and sky wash along bottom. Style: delicate watercolor, almost white blank center. Composition: extremely narrow decorative border confined to outermost 5 percent of edges and tiny corner accents. At least 80 percent of area unobstructed blank flat reading region. No text, lettering, numbers, logos, watermark, interface, page mockup, or branded characters. Single flat artwork filling canvas.",
+    "method": "Built-in ImageGen"
+  },
+  {
+    "theme": "summit",
+    "variant": "ridge",
+    "file": "assets/summit-ridge.webp",
+    "prompt": "Use case: stylized-concept. Asset type: original prayer-card background contact sheet for cropping into four independent portraits. Create ONE horizontal image exactly 3:1 overall aspect ratio made of FOUR equal adjacent portrait panels, each panel 3:4. No gutters, no labels, no frames, no text anywhere. The panels must be equally sized and fill the canvas edge to edge. Every individual panel has a softly luminous pale calm sparse central 65% of its area suitable for readable prayer text later, with detailed immersive scenery concentrated at outer sides, top and bottom; the light center integrates naturally with the scene rather than becoming a rectangle. Left to right: (1) SUMMIT AND SKY: mature older-teen adventure, realistic magnificent blue mountains at sunrise, cobalt and charcoal distant mountain layers, dark evergreen forest ridge low edges, warm sunrise rimlight, pale airy sky and mist in broad center. No childish graphics, weapons, animation or people. (2) GALILEE SPRING: bright realistic idealized spring Sea of Galilee meadow, warm sun, joyful spring pastel wildflowers abundant only at bottom edges, a tiny natural lamb at lower right edge, a few tiny birds at top edge, lake view with pale cream blue atmosphere center. Original film-quality natural environment with gentle watercolor softness, never cartoon characters. (3) VICTORIAN REVERIE: romantic modern period-drama lavender wisteria country estate garden, elegant dreamy lilac gauzy curtain from top corner, lavender roses at low edge, subtle country estate barely visible far background edge. Strong lilac and purple accent; engaging soft modern cinematic beauty, not stiff historic. Vast calm luminous ivory-lilac middle. (4) WATERCOLOR CREATION: genuine wet-in-wet watercolor tie-dye pigments bleeding and diffusing in watercolor paper, richly saturated cobalt turquoise lilac pink outer edges, pale near-white softly blended middle, visible granulation and blooms, expressive organic pigments, not digital gradients. No text, letters, UI, ruled borders, double lines, ornamental frames, symbols or watermarks anywhere. Seven-card series originals; emphasize strong difference between these four panels.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "galilee",
+    "variant": "spring",
+    "file": "assets/galilee-spring.webp",
+    "prompt": "Use case: stylized-concept. Asset type: original prayer-card background contact sheet for cropping into four independent portraits. Create ONE horizontal image exactly 3:1 overall aspect ratio made of FOUR equal adjacent portrait panels, each panel 3:4. No gutters, no labels, no frames, no text anywhere. The panels must be equally sized and fill the canvas edge to edge. Every individual panel has a softly luminous pale calm sparse central 65% of its area suitable for readable prayer text later, with detailed immersive scenery concentrated at outer sides, top and bottom; the light center integrates naturally with the scene rather than becoming a rectangle. Left to right: (1) SUMMIT AND SKY: mature older-teen adventure, realistic magnificent blue mountains at sunrise, cobalt and charcoal distant mountain layers, dark evergreen forest ridge low edges, warm sunrise rimlight, pale airy sky and mist in broad center. No childish graphics, weapons, animation or people. (2) GALILEE SPRING: bright realistic idealized spring Sea of Galilee meadow, warm sun, joyful spring pastel wildflowers abundant only at bottom edges, a tiny natural lamb at lower right edge, a few tiny birds at top edge, lake view with pale cream blue atmosphere center. Original film-quality natural environment with gentle watercolor softness, never cartoon characters. (3) VICTORIAN REVERIE: romantic modern period-drama lavender wisteria country estate garden, elegant dreamy lilac gauzy curtain from top corner, lavender roses at low edge, subtle country estate barely visible far background edge. Strong lilac and purple accent; engaging soft modern cinematic beauty, not stiff historic. Vast calm luminous ivory-lilac middle. (4) WATERCOLOR CREATION: genuine wet-in-wet watercolor tie-dye pigments bleeding and diffusing in watercolor paper, richly saturated cobalt turquoise lilac pink outer edges, pale near-white softly blended middle, visible granulation and blooms, expressive organic pigments, not digital gradients. No text, letters, UI, ruled borders, double lines, ornamental frames, symbols or watermarks anywhere. Seven-card series originals; emphasize strong difference between these four panels.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "victorian",
+    "variant": "reverie",
+    "file": "assets/victorian-reverie.webp",
+    "prompt": "Use case: stylized-concept. Asset type: original prayer-card background contact sheet for cropping into four independent portraits. Create ONE horizontal image exactly 3:1 overall aspect ratio made of FOUR equal adjacent portrait panels, each panel 3:4. No gutters, no labels, no frames, no text anywhere. The panels must be equally sized and fill the canvas edge to edge. Every individual panel has a softly luminous pale calm sparse central 65% of its area suitable for readable prayer text later, with detailed immersive scenery concentrated at outer sides, top and bottom; the light center integrates naturally with the scene rather than becoming a rectangle. Left to right: (1) SUMMIT AND SKY: mature older-teen adventure, realistic magnificent blue mountains at sunrise, cobalt and charcoal distant mountain layers, dark evergreen forest ridge low edges, warm sunrise rimlight, pale airy sky and mist in broad center. No childish graphics, weapons, animation or people. (2) GALILEE SPRING: bright realistic idealized spring Sea of Galilee meadow, warm sun, joyful spring pastel wildflowers abundant only at bottom edges, a tiny natural lamb at lower right edge, a few tiny birds at top edge, lake view with pale cream blue atmosphere center. Original film-quality natural environment with gentle watercolor softness, never cartoon characters. (3) VICTORIAN REVERIE: romantic modern period-drama lavender wisteria country estate garden, elegant dreamy lilac gauzy curtain from top corner, lavender roses at low edge, subtle country estate barely visible far background edge. Strong lilac and purple accent; engaging soft modern cinematic beauty, not stiff historic. Vast calm luminous ivory-lilac middle. (4) WATERCOLOR CREATION: genuine wet-in-wet watercolor tie-dye pigments bleeding and diffusing in watercolor paper, richly saturated cobalt turquoise lilac pink outer edges, pale near-white softly blended middle, visible granulation and blooms, expressive organic pigments, not digital gradients. No text, letters, UI, ruled borders, double lines, ornamental frames, symbols or watermarks anywhere. Seven-card series originals; emphasize strong difference between these four panels.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "watercolor",
+    "variant": "pigment",
+    "file": "assets/watercolor-pigment.webp",
+    "prompt": "Use case: stylized-concept. Asset type: original prayer-card background contact sheet for cropping into four independent portraits. Create ONE horizontal image exactly 3:1 overall aspect ratio made of FOUR equal adjacent portrait panels, each panel 3:4. No gutters, no labels, no frames, no text anywhere. The panels must be equally sized and fill the canvas edge to edge. Every individual panel has a softly luminous pale calm sparse central 65% of its area suitable for readable prayer text later, with detailed immersive scenery concentrated at outer sides, top and bottom; the light center integrates naturally with the scene rather than becoming a rectangle. Left to right: (1) SUMMIT AND SKY: mature older-teen adventure, realistic magnificent blue mountains at sunrise, cobalt and charcoal distant mountain layers, dark evergreen forest ridge low edges, warm sunrise rimlight, pale airy sky and mist in broad center. No childish graphics, weapons, animation or people. (2) GALILEE SPRING: bright realistic idealized spring Sea of Galilee meadow, warm sun, joyful spring pastel wildflowers abundant only at bottom edges, a tiny natural lamb at lower right edge, a few tiny birds at top edge, lake view with pale cream blue atmosphere center. Original film-quality natural environment with gentle watercolor softness, never cartoon characters. (3) VICTORIAN REVERIE: romantic modern period-drama lavender wisteria country estate garden, elegant dreamy lilac gauzy curtain from top corner, lavender roses at low edge, subtle country estate barely visible far background edge. Strong lilac and purple accent; engaging soft modern cinematic beauty, not stiff historic. Vast calm luminous ivory-lilac middle. (4) WATERCOLOR CREATION: genuine wet-in-wet watercolor tie-dye pigments bleeding and diffusing in watercolor paper, richly saturated cobalt turquoise lilac pink outer edges, pale near-white softly blended middle, visible granulation and blooms, expressive organic pigments, not digital gradients. No text, letters, UI, ruled borders, double lines, ornamental frames, symbols or watermarks anywhere. Seven-card series originals; emphasize strong difference between these four panels.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "woodland",
+    "variant": "wonder",
+    "file": "assets/woodland-wonder.webp",
+    "prompt": "Use case: photorealistic-natural. Asset type: original prayer-card background contact sheet for cropping into three independent portraits. Create ONE horizontal image exactly 9:4 overall aspect ratio made of THREE equal adjacent portrait panels, each panel 3:4. No gutters, no labels, no frames, no text anywhere. The panels must be equally sized and fill the canvas edge to edge. Every individual panel has a softly luminous pale calm sparse central 65% of its area suitable for readable prayer text later, with detailed immersive scenery concentrated at outer sides, top and bottom; the light center integrates naturally with the scene rather than becoming a rectangle. Left to right: (1) WOODLAND CHRONICLE: realistic majestic redwood and cedar green forest, immense trunks at left and right edges, warm sunrise shafts filtering softly through trees, tiny sparkling creek and vivid green ferns along bottom edges, pale green-gold mist opening through broad center. Peaceful praise and wonder, real photographic natural textures, no cartoon or fantasy lettering. (2) DESERT MANUSCRIPT: immersive warm Judean desert pale limestone cliffs along outer edges, soft distant Dead Sea shoreline lower background, subtle warm aged parchment texture in vast calm light central area, a tiny ancient blank rolled scroll in bottom corner, no writing. Beautiful realistic idealized sandy amber sunrise atmosphere, ochre and terracotta edge textures. (3) QUIET BIBLE: minimalist cool ivory linen paper with natural tactile fibers, a SINGLE small unobtrusive pressed olive sprig near lower left edge, delicate soft shadow, almost entirely blank cool ivory center. No additional ornament. No text, letters, UI, ruled borders, double lines, ornamental frames, symbols, people or watermarks anywhere. Strong distinction between lush forest, warm desert and minimalist ivory paper.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "desert",
+    "variant": "shore",
+    "file": "assets/desert-shore.webp",
+    "prompt": "Use case: photorealistic-natural. Asset type: original prayer-card background contact sheet for cropping into three independent portraits. Create ONE horizontal image exactly 9:4 overall aspect ratio made of THREE equal adjacent portrait panels, each panel 3:4. No gutters, no labels, no frames, no text anywhere. The panels must be equally sized and fill the canvas edge to edge. Every individual panel has a softly luminous pale calm sparse central 65% of its area suitable for readable prayer text later, with detailed immersive scenery concentrated at outer sides, top and bottom; the light center integrates naturally with the scene rather than becoming a rectangle. Left to right: (1) WOODLAND CHRONICLE: realistic majestic redwood and cedar green forest, immense trunks at left and right edges, warm sunrise shafts filtering softly through trees, tiny sparkling creek and vivid green ferns along bottom edges, pale green-gold mist opening through broad center. Peaceful praise and wonder, real photographic natural textures, no cartoon or fantasy lettering. (2) DESERT MANUSCRIPT: immersive warm Judean desert pale limestone cliffs along outer edges, soft distant Dead Sea shoreline lower background, subtle warm aged parchment texture in vast calm light central area, a tiny ancient blank rolled scroll in bottom corner, no writing. Beautiful realistic idealized sandy amber sunrise atmosphere, ochre and terracotta edge textures. (3) QUIET BIBLE: minimalist cool ivory linen paper with natural tactile fibers, a SINGLE small unobtrusive pressed olive sprig near lower left edge, delicate soft shadow, almost entirely blank cool ivory center. No additional ornament. No text, letters, UI, ruled borders, double lines, ornamental frames, symbols, people or watermarks anywhere. Strong distinction between lush forest, warm desert and minimalist ivory paper.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "storm",
+    "variant": "bible",
+    "file": "assets/storm-bible.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL quiet-simple: minimal cool ivory. Tiny plain single gold L shapes ONLY top-left and bottom-right. Small olive branch decals ONLY top-right and bottom-left. Sophisticated green/gold. No full frame, no double lines, no other ornaments.\nMIDDLE PANEL storm-bible: restrained masculine charcoal slate uniform blank upper center. Tiny compass-point decorations at upper corners, minimal very thin gold edge lines. Tiny natural lightning at bottom corners. Small realistic open Bible bottom center with unreadable plain page texture. Barely visible gray storm-cloud turbulence lower half, strongest bottom, upper center uniformly dark slate. Preserve the quiet original storm-card feeling.\nRIGHT PANEL storm-compass: same masculine dark charcoal slate palette, uniform blank upper center, small compass points at top-right and bottom-left, two plain minimalist gold corner angles at top-left and bottom-right. Restrained realistic storm cloud and tiny lightning concentrated lower half. Small realistic open Bible bottom center. Distinct arrangement, otherwise preserved dignified original storm feeling.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "storm",
+    "variant": "compass",
+    "file": "assets/storm-compass.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL quiet-simple: minimal cool ivory. Tiny plain single gold L shapes ONLY top-left and bottom-right. Small olive branch decals ONLY top-right and bottom-left. Sophisticated green/gold. No full frame, no double lines, no other ornaments.\nMIDDLE PANEL storm-bible: restrained masculine charcoal slate uniform blank upper center. Tiny compass-point decorations at upper corners, minimal very thin gold edge lines. Tiny natural lightning at bottom corners. Small realistic open Bible bottom center with unreadable plain page texture. Barely visible gray storm-cloud turbulence lower half, strongest bottom, upper center uniformly dark slate. Preserve the quiet original storm-card feeling.\nRIGHT PANEL storm-compass: same masculine dark charcoal slate palette, uniform blank upper center, small compass points at top-right and bottom-left, two plain minimalist gold corner angles at top-left and bottom-right. Restrained realistic storm cloud and tiny lightning concentrated lower half. Small realistic open Bible bottom center. Distinct arrangement, otherwise preserved dignified original storm feeling.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "traditional",
+    "variant": "shepherd",
+    "file": "assets/traditional-shepherd.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL traditional-shepherd: thin stained glass BORDER ONLY top and sides with muted jewel tones and small gold leading. Calm cream paper blank center upper 65%. Bottom third stained glass scene depicts Jesus Christ, gentle recognizable Good Shepherd with sheep, respectful Christian iconography, wearing cream robe with subtle muted red mantle, small cup and bread icon on ground below his hands. Figure and scene entirely in bottom third. Jewel colors subdued for later text.\nMIDDLE PANEL woodland-border: vibrant modern cinematic natural fantasy border with tall realistic trees on far edges and interlaced leaf branches around top outer edge, deep emerald green and gold. Cream blank upper center 65% with zero landscape or objects in center. Lower portion forest stream, realistic moss, golden atmospheric light. Mature cinematic wonder, no cute animals, no pink, no antique storybook styling.\nRIGHT PANEL watercolor-border: extremely subtle minimalist painter border, airy ivory central paper blank upper 65%. Small watery blue, lilac, teal corner blooms hugging edges. Barely visible wash at bottom. Authentic watercolor pigment granulation, delicate pooling, no full bold tie dye, no saturated color fields.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "woodland",
+    "variant": "border",
+    "file": "assets/woodland-border.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL traditional-shepherd: thin stained glass BORDER ONLY top and sides with muted jewel tones and small gold leading. Calm cream paper blank center upper 65%. Bottom third stained glass scene depicts Jesus Christ, gentle recognizable Good Shepherd with sheep, respectful Christian iconography, wearing cream robe with subtle muted red mantle, small cup and bread icon on ground below his hands. Figure and scene entirely in bottom third. Jewel colors subdued for later text.\nMIDDLE PANEL woodland-border: vibrant modern cinematic natural fantasy border with tall realistic trees on far edges and interlaced leaf branches around top outer edge, deep emerald green and gold. Cream blank upper center 65% with zero landscape or objects in center. Lower portion forest stream, realistic moss, golden atmospheric light. Mature cinematic wonder, no cute animals, no pink, no antique storybook styling.\nRIGHT PANEL watercolor-border: extremely subtle minimalist painter border, airy ivory central paper blank upper 65%. Small watery blue, lilac, teal corner blooms hugging edges. Barely visible wash at bottom. Authentic watercolor pigment granulation, delicate pooling, no full bold tie dye, no saturated color fields.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "watercolor",
+    "variant": "border",
+    "file": "assets/watercolor-border.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL traditional-shepherd: thin stained glass BORDER ONLY top and sides with muted jewel tones and small gold leading. Calm cream paper blank center upper 65%. Bottom third stained glass scene depicts Jesus Christ, gentle recognizable Good Shepherd with sheep, respectful Christian iconography, wearing cream robe with subtle muted red mantle, small cup and bread icon on ground below his hands. Figure and scene entirely in bottom third. Jewel colors subdued for later text.\nMIDDLE PANEL woodland-border: vibrant modern cinematic natural fantasy border with tall realistic trees on far edges and interlaced leaf branches around top outer edge, deep emerald green and gold. Cream blank upper center 65% with zero landscape or objects in center. Lower portion forest stream, realistic moss, golden atmospheric light. Mature cinematic wonder, no cute animals, no pink, no antique storybook styling.\nRIGHT PANEL watercolor-border: extremely subtle minimalist painter border, airy ivory central paper blank upper 65%. Small watery blue, lilac, teal corner blooms hugging edges. Barely visible wash at bottom. Authentic watercolor pigment granulation, delicate pooling, no full bold tie dye, no saturated color fields.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "space",
+    "variant": "nova",
+    "file": "assets/space-nova.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL space-nova: dark navy blank uniform upper center 65%, very sparse tiny constellations and delicate technical gold border lines around edges. Small stunning glowing nova/nebula ONLY bottom 25%, authentic cosmic wonder, beautifully subdued for later text. Border first. No planets in center.\nMIDDLE PANEL space-depth: EVEN darker nearly black navy, restrained compass/constellation decorations hugging edges. Luminous distant galaxy and subtle stellar haze ONLY bottom third. Calm blank upper text center 65%. Deep cosmic mystery, sparse stars only in border and bottom.\nRIGHT PANEL ohana-sunset: minimalist Hawaiian island relaxed family feeling, warm cream blank upper 65%, tiny plumeria flowers and palm fronds only at corners, slender coral and gold decorations on edges. Bottom soft ocean sunset horizon muted pink gold, serene luminous atmosphere. No people, no text, no center palm trees.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "space",
+    "variant": "depth",
+    "file": "assets/space-depth.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL space-nova: dark navy blank uniform upper center 65%, very sparse tiny constellations and delicate technical gold border lines around edges. Small stunning glowing nova/nebula ONLY bottom 25%, authentic cosmic wonder, beautifully subdued for later text. Border first. No planets in center.\nMIDDLE PANEL space-depth: EVEN darker nearly black navy, restrained compass/constellation decorations hugging edges. Luminous distant galaxy and subtle stellar haze ONLY bottom third. Calm blank upper text center 65%. Deep cosmic mystery, sparse stars only in border and bottom.\nRIGHT PANEL ohana-sunset: minimalist Hawaiian island relaxed family feeling, warm cream blank upper 65%, tiny plumeria flowers and palm fronds only at corners, slender coral and gold decorations on edges. Bottom soft ocean sunset horizon muted pink gold, serene luminous atmosphere. No people, no text, no center palm trees.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "ohana",
+    "variant": "sunset",
+    "file": "assets/ohana-sunset.webp",
+    "prompt": "Use case: stylized-concept. Create one wide contact sheet EXACTLY 9:4 aspect ratio, composed of THREE adjacent equal portrait panels, each 3:4 aspect ratio, edge to edge, no gutters or captions. Each panel is a premium original PRAYER CARD BACKGROUND, designed for later text overlay. No text, no letters, no numbers, no UI, no labels, no readable writing even in books. Each panel's upper central 65% must be entirely calm blank paper or dark ink area. Decorations stay within very thin outer 10% top and sides. Lower 30% can contain atmospheric narrative detail, subdued to allow later Scripture and Story overlay. No landscape stretching across top. Full bleed panel backgrounds. Very refined confident art direction. LEFT PANEL space-nova: dark navy blank uniform upper center 65%, very sparse tiny constellations and delicate technical gold border lines around edges. Small stunning glowing nova/nebula ONLY bottom 25%, authentic cosmic wonder, beautifully subdued for later text. Border first. No planets in center.\nMIDDLE PANEL space-depth: EVEN darker nearly black navy, restrained compass/constellation decorations hugging edges. Luminous distant galaxy and subtle stellar haze ONLY bottom third. Calm blank upper text center 65%. Deep cosmic mystery, sparse stars only in border and bottom.\nRIGHT PANEL ohana-sunset: minimalist Hawaiian island relaxed family feeling, warm cream blank upper 65%, tiny plumeria flowers and palm fronds only at corners, slender coral and gold decorations on edges. Bottom soft ocean sunset horizon muted pink gold, serene luminous atmosphere. No people, no text, no center palm trees.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "quiet",
+    "variant": "cross",
+    "file": "assets/quiet-cross.webp",
+    "prompt": "Use case: stylized-concept\nAsset type: single contact sheet of three minimal pen-art prayer-card backgrounds for modern readable scripture cards.\nComposition: overall wide 9:4 image. Exactly THREE EQUAL adjacent portrait panels, each 3:4, edge-to-edge with NO gaps, NO dividers, NO shadows. Each is pure cool near-white #fafbfc. Entire central 95% of each panel must be empty white space. Tiny line drawings confined to extreme corners and thin outermost edge only, with generous open space.\nStyle: exceptionally sparse fine pen art, hairline charcoal and soft slate blue ink, modern calm restrained white paper, no paper texture. LEFT panel quiet-cross: tiny thin outlined double-line Christian Latin cross in top left and bottom right corners ONLY; other two corners just very short plain fine pen marks; never full border. MIDDLE panel quiet-celtic: tiny restrained penned Irish/Celtic cross top right and bottom left; remaining two corners have small simple curved corner flourishes; refined and extremely minimal, not knot-filled or medieval. RIGHT panel quiet-flourish: small fine elegant curly ink corner motifs upper left and lower right; tiny grayscale olive or abstract sprig ONLY at other two corners; fine outlined leaves, no filled leaves.\nConstraints: NO text, letters, titles, watermark, UI, tan, cream, beige, parchment, colored olives, bright colors, heavy linework, ornament-filled borders, complete frame, floral fullness, shadows, perspective, desks. Flat white digital art suitable for cropping at one-third and two-thirds width. All three panels calm and truly minimal. No visible dividing lines.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "quiet",
+    "variant": "celtic",
+    "file": "assets/quiet-celtic.webp",
+    "prompt": "Use case: stylized-concept\nAsset type: single contact sheet of three minimal pen-art prayer-card backgrounds for modern readable scripture cards.\nComposition: overall wide 9:4 image. Exactly THREE EQUAL adjacent portrait panels, each 3:4, edge-to-edge with NO gaps, NO dividers, NO shadows. Each is pure cool near-white #fafbfc. Entire central 95% of each panel must be empty white space. Tiny line drawings confined to extreme corners and thin outermost edge only, with generous open space.\nStyle: exceptionally sparse fine pen art, hairline charcoal and soft slate blue ink, modern calm restrained white paper, no paper texture. LEFT panel quiet-cross: tiny thin outlined double-line Christian Latin cross in top left and bottom right corners ONLY; other two corners just very short plain fine pen marks; never full border. MIDDLE panel quiet-celtic: tiny restrained penned Irish/Celtic cross top right and bottom left; remaining two corners have small simple curved corner flourishes; refined and extremely minimal, not knot-filled or medieval. RIGHT panel quiet-flourish: small fine elegant curly ink corner motifs upper left and lower right; tiny grayscale olive or abstract sprig ONLY at other two corners; fine outlined leaves, no filled leaves.\nConstraints: NO text, letters, titles, watermark, UI, tan, cream, beige, parchment, colored olives, bright colors, heavy linework, ornament-filled borders, complete frame, floral fullness, shadows, perspective, desks. Flat white digital art suitable for cropping at one-third and two-thirds width. All three panels calm and truly minimal. No visible dividing lines.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "quiet",
+    "variant": "flourish",
+    "file": "assets/quiet-flourish.webp",
+    "prompt": "Use case: stylized-concept\nAsset type: single contact sheet of three minimal pen-art prayer-card backgrounds for modern readable scripture cards.\nComposition: overall wide 9:4 image. Exactly THREE EQUAL adjacent portrait panels, each 3:4, edge-to-edge with NO gaps, NO dividers, NO shadows. Each is pure cool near-white #fafbfc. Entire central 95% of each panel must be empty white space. Tiny line drawings confined to extreme corners and thin outermost edge only, with generous open space.\nStyle: exceptionally sparse fine pen art, hairline charcoal and soft slate blue ink, modern calm restrained white paper, no paper texture. LEFT panel quiet-cross: tiny thin outlined double-line Christian Latin cross in top left and bottom right corners ONLY; other two corners just very short plain fine pen marks; never full border. MIDDLE panel quiet-celtic: tiny restrained penned Irish/Celtic cross top right and bottom left; remaining two corners have small simple curved corner flourishes; refined and extremely minimal, not knot-filled or medieval. RIGHT panel quiet-flourish: small fine elegant curly ink corner motifs upper left and lower right; tiny grayscale olive or abstract sprig ONLY at other two corners; fine outlined leaves, no filled leaves.\nConstraints: NO text, letters, titles, watermark, UI, tan, cream, beige, parchment, colored olives, bright colors, heavy linework, ornament-filled borders, complete frame, floral fullness, shadows, perspective, desks. Flat white digital art suitable for cropping at one-third and two-thirds width. All three panels calm and truly minimal. No visible dividing lines.",
+    "method": "Built-in ImageGen; portrait cropped from sheet"
+  },
+  {
+    "theme": "quiet",
+    "variant": "celtic-minimal",
+    "file": "assets/quiet-celtic-minimal.webp",
+    "prompt": "Use case: stylized-concept\nAsset type: raster background for a prayer card website.\nPrimary request: ONE portrait 3:4 digital-paper prayer-card background, extremely minimal, elegant, quiet contemporary Celtic style.\nScene/backdrop: perfectly flat, uniform cool white #fafbfc, with no texture or shading.\nSubject: ONLY TWO tiny hairline silver/slate geometric Celtic interlace corner marks, one at top-left and one at bottom-right. Each ornament very short, delicate and refined, occupying no more than about 4% of image width, set near its corner. A few simple interwoven angular/loop strokes only. No cross needed.\nComposition/framing: portrait 3:4; approximately 98% empty cool-white negative space. The central region entirely blank. Two discrete tiny corner marks only, no connecting lines, no full border or frame. Clearly far sparser than traditional Celtic crosses.\nStyle/medium: flat clean digital line art with fine pale silver/slate hairlines, subtle enough for a quiet modern prayer card.\nConstraints: no text, letters, numbers, watermark, shadows, glow, gradients, colored patches, parchment texture, medieval ornament, UI, photograph or physical paper mockup.\nAvoid: leaves, foliage, plants, flowers, botanical motifs, tan, beige, cream, warm paper, heavy ornamental knots, elaborate cross designs, full frames or borders. Generate one image only.",
+    "method": "Built-in ImageGen"
+  }
+]

@@ -1,0 +1,205 @@
+{
+  "AS-IRV": {
+    "zip": "SWCG-AS-IRV.zip",
+    "sha256": "11fdd9b9b8b6d2c3ef4408e00939b2a8f3d8cf8061874d36bc6239d4d422b53c",
+    "size": 1857566,
+    "updated": "2026-11-01",
+    "source_fingerprint": "bf4deec9169927f6a9a3019f847bc788e11135d68a307ceb4655b3b300a4d623"
+  },
+  "BN-IRV": {
+    "zip": "SWCG-BN-IRV.zip",
+    "sha256": "cb11be2bcea41c6615629e3844fd4292ad2addd5ae27c636870431894c3defea",
+    "size": 1832708,
+    "updated": "2026-11-01",
+    "source_fingerprint": "653cecdef5ea26629087d2878b624be4780fdd66b0412464ecaf58a61395fff3"
+  },
+  "CEB-APSD": {
+    "zip": "SWCG-CEB-APSD.zip",
+    "sha256": "6260009f0dea7bdb2b9c22f62b3bcbb36eba366076cff1b99e83444255c88bd3",
+    "size": 397610,
+    "updated": "2026-11-01",
+    "source_fingerprint": "495c257a6bc57abeefe8a37c4114be85da846a3766e286301bfbf0e6afa6feb4"
+  },
+  "DE-ELB1905": {
+    "zip": "SWCG-DE-ELB1905.zip",
+    "sha256": "10607ee4fa490cee17523b6448a3c938aed9cc9df46ef53db6e957a589d9eaa7",
+    "size": 1023693,
+    "updated": "2026-11-01",
+    "source_fingerprint": "6960b49949c05e577a9c6c2c1e1b36ba61350f183e63acfcbc8be29d4fab3622"
+  },
+  "DE-LUT1912": {
+    "zip": "SWCG-DE-LUT1912.zip",
+    "sha256": "746a31dddc308c08bb8df47385d2dc06f795d532d6a24b6f75fc849bc9972d95",
+    "size": 1017763,
+    "updated": "2026-11-01",
+    "source_fingerprint": "3c260f790debbfa08713ba0680c3228300d070185300d092fbcb53eee9fb1e47"
+  },
+  "GU-IRV": {
+    "zip": "SWCG-GU-IRV.zip",
+    "sha256": "f6baf3f7494967fe205ef4286142efe12b7c59cac3075d7d40aebf82f69b14ae",
+    "size": 1437223,
+    "updated": "2026-11-01",
+    "source_fingerprint": "7b3b0d744e990d6814ecb55a6ef4978615c79830e3c5c580de6f8b35e9484dd8"
+  },
+  "HI-IRV": {
+    "zip": "SWCG-HI-IRV.zip",
+    "sha256": "0d72b8138c2593c34904db7fb5b554f04ca66718e14273dfcdfa311a165929e5",
+    "size": 1975571,
+    "updated": "2026-11-01",
+    "source_fingerprint": "fdb41448c010d79552830f74a88d0120c3d3f1a60384ed467195c7550d65ee1a"
+  },
+  "HIL-APSGD": {
+    "zip": "SWCG-HIL-APSGD.zip",
+    "sha256": "676e767f6e68429ebc10be11756a7b80244d7580a0f1b6ca8072962c7684eb76",
+    "size": 402123,
+    "updated": "2026-11-01",
+    "source_fingerprint": "0851da6790e2f3d880d33533910ae71126ab776f898a353f682a59c5a24e5858"
+  },
+  "ILO-ULB": {
+    "zip": "SWCG-ILO-ULB.zip",
+    "sha256": "401faaf832f9a4a39b3b5a61f794e8b2d10347cd14d7a35aa4ea5372f4c60a37",
+    "size": 391977,
+    "updated": "2026-11-01",
+    "source_fingerprint": "bc112ce1f84e600b3ab79cd8707cd26c12a3d2f10d770bf163193aac25a65bb4"
+  },
+  "KN-IRV": {
+    "zip": "SWCG-KN-IRV.zip",
+    "sha256": "d40eb9c037f31cfb702030d2630da9f4c4723fa049ee5e18a6dbf415230cc1aa",
+    "size": 1792144,
+    "updated": "2026-11-01",
+    "source_fingerprint": "d3441bf55295b2308c52acad9c159665b02073aa372e88c601c84b862205bcb8"
+  },
+  "ML-IRV": {
+    "zip": "SWCG-ML-IRV.zip",
+    "sha256": "6773dd484597685a629a5fda4eb4e4304a32e64b3bc93d68321d612d70d18517",
+    "size": 1670769,
+    "updated": "2026-11-01",
+    "source_fingerprint": "02229a4a5b07090e745877aa046081596b50f6d9d4b7e6c508ae818e8735a3e6"
+  },
+  "ML-SVP1910": {
+    "zip": "SWCG-ML-SVP1910.zip",
+    "sha256": "6f0f9bb6a10bacbafbc8ad051059f14ab631cd4dd779b01e0b454a79fe589614",
+    "size": 1667603,
+    "updated": "2026-11-01",
+    "source_fingerprint": "b08050faebf7fc2906be15fe376534580ebc7485608a5a699374ce2f217a9c4c"
+  },
+  "MR-IRV": {
+    "zip": "SWCG-MR-IRV.zip",
+    "sha256": "1f367ddbc3d6970ce484060061108ca58d3f0cc0c4f10f0a133302bac0db35f4",
+    "size": 1673589,
+    "updated": "2026-11-01",
+    "source_fingerprint": "c019fbcc82bae3553b0180c4102d2710c812ce7959f14ebc56c83b727c0f88eb"
+  },
+  "OR-IRV": {
+    "zip": "SWCG-OR-IRV.zip",
+    "sha256": "9969fb93ac1ce3f43b8647c81d06f1bb390fe794d09c9ffd2e2aa5b0483bab77",
+    "size": 1579086,
+    "updated": "2026-11-01",
+    "source_fingerprint": "5712560b058122dec368efb5aacd6fcfa4463f7eacfde41a6b37cc5ab8b54a0d"
+  },
+  "PA-IRV": {
+    "zip": "SWCG-PA-IRV.zip",
+    "sha256": "53b803f7912da21b54a15253d30fc07824f79be0e8f9cfcd06ae610d5996f807",
+    "size": 1311478,
+    "updated": "2026-11-01",
+    "source_fingerprint": "b2d4b62e47d15a7feaca50b546980dc6e4afad6de324da4df4ce9f3726c45890"
+  },
+  "PT-BPM": {
+    "zip": "SWCG-PT-BPM.zip",
+    "sha256": "6c3216e379fcc9a9c5e5d0534a82f78d08f73e41d7b0a56a4be95279c23b8d8f",
+    "size": 1030373,
+    "updated": "2026-11-01",
+    "source_fingerprint": "552a6fe7c1ef35a2b6d36b277e98c4175f9c273408de95207539bc034df0b1db"
+  },
+  "PT-NBV": {
+    "zip": "SWCG-PT-NBV.zip",
+    "sha256": "9ab0057fbb629d52871407bc508993174ba1a52079d7dd88f4e00b0d73230e85",
+    "size": 1049535,
+    "updated": "2026-11-01",
+    "source_fingerprint": "e5adc42f5834d26b851c7bfabfa6b5d9b588dd276d362c7bb352e05d946fd107"
+  },
+  "SW-NENO": {
+    "zip": "SWCG-SW-NENO.zip",
+    "sha256": "0c54d9853740e54ab79bc11e993541cf3c3e2df639a3a41994824e68cfa93006",
+    "size": 367296,
+    "updated": "2026-11-01",
+    "source_fingerprint": "7b9a593689455e37acfe6266c1b8e2c425586ddcace3a2caeecce6c9718e7fab"
+  },
+  "TA-IRV": {
+    "zip": "SWCG-TA-IRV.zip",
+    "sha256": "d62f4a9e9846d2c9fd6ef0706d5ae8fa8f8a05474cb606247cc1cd98ab221e56",
+    "size": 1567998,
+    "updated": "2026-11-01",
+    "source_fingerprint": "a9d2019a9b3a526b0637532f2990cbbac806887fb08141e2c58b6aa6b0337f3f"
+  },
+  "TE-IRV": {
+    "zip": "SWCG-TE-IRV.zip",
+    "sha256": "736f82a95ce95ad27cb0474f126dfc421a7b310e4850a9e47021ce783ade1aab",
+    "size": 2169228,
+    "updated": "2026-11-01",
+    "source_fingerprint": "fdb9959827ebf0e9bdb6b70a91d5ce26a26baa1a75b92d62d39668f9ec7243b9"
+  },
+  "TL-ULB": {
+    "zip": "SWCG-TL-ULB.zip",
+    "sha256": "04b1cd5e8fd3ad70a18e5bc0e1c610b21d8f02223246a7edde5bc332317fc13a",
+    "size": 403669,
+    "updated": "2026-11-01",
+    "source_fingerprint": "175d4d4fd963f63a225d445d3af377dd290143e5699a4256d8f2fe6d93fc7bee"
+  },
+  "UR-IRV": {
+    "zip": "SWCG-UR-IRV.zip",
+    "sha256": "5f6a697b9e81f4659dc808b482c21e540cebc45f21f1591be2ed24e4a8e48383",
+    "size": 1969090,
+    "updated": "2026-11-01",
+    "source_fingerprint": "9eb54e67c802ed26b729171c8937efc4b51e747ed1118cb47a6ca97f981f70b1"
+  },
+  "CSB": {
+    "zip": "SWCG-English-Modern.zip",
+    "sha256": "55c88bba19c67db1fd39df549368952d3f6799abf55f7fc14087eca93512e274",
+    "size": 3343404,
+    "updated": "2026-11-01",
+    "source_fingerprint": "c8065bd1f2937ac86c925df98cb36d8fe7f9f4d3fbee24174b7fa2133ec1bb72"
+  },
+  "CUV": {
+    "zip": "SWCG-Chinese-CUV.zip",
+    "sha256": "679ff230f853f40c705baabb9b0ea89da031371f54355a283f86f4c9ed0f72f6",
+    "size": 5058594,
+    "updated": "2026-11-01",
+    "source_fingerprint": "6f08c7a4c386e69203132aad099b402ea770cd223041835de6e7fb86b0474962"
+  },
+  "KJV": {
+    "zip": "SWCG-English-KJV.zip",
+    "sha256": "ef18565e8c6a2e34a997214dc0c8db557755624ba1d6268d08eb29ba9bba4342",
+    "size": 2298723,
+    "updated": "2026-11-01",
+    "source_fingerprint": "b98868cab55e3d1cda873bacbe3feb9bd4d84d99f4e1e60557c2f062ea65ff0d"
+  },
+  "LS": {
+    "zip": "SWCG-Francais-LS.zip",
+    "sha256": "9cc960ed693352e64e3cfbe5e33a462b16f6b050dc0d94948a8fba53353a64da",
+    "size": 1051256,
+    "updated": "2026-11-01",
+    "source_fingerprint": "b0c68f259703f49096e8fe2421cd83da3c88bc4bbae22632f557b42bc7d9efb8"
+  },
+  "RST": {
+    "zip": "SWCG-Russian-RST.zip",
+    "sha256": "1a0efa450d08342353e6c83020ed9f527cbbd9e013e0a21e91412fa7ed34ce1f",
+    "size": 1026300,
+    "updated": "2026-11-01",
+    "source_fingerprint": "f4976296fed51a3fea3a22272044636a8c36e43b9c9cbbbd75b0c61246a7051c"
+  },
+  "RVR09": {
+    "zip": "SWCG-Espanol-RVR09.zip",
+    "sha256": "114c94d965379f8ad41fa0cb2da88d93c0c941d3ab26b108bbe5d177bb0b78cd",
+    "size": 1077213,
+    "updated": "2026-11-01",
+    "source_fingerprint": "153c10da5c687f974fd016cc66d40aea54127f3591ecbe86d932bdc6cc1c794b"
+  },
+  "SVD": {
+    "zip": "SWCG-Arabic-SVD.zip",
+    "sha256": "945287819b72509c8f6688b2b4322e2c0e2845281d16d439a9a67a1e5390561e",
+    "size": 1883929,
+    "updated": "2026-11-01",
+    "source_fingerprint": "2d91c1356a9a0d9547ee6f1501e75bcf14ef64cae581b4784f0d3e04a3524b2c"
+  }
+}

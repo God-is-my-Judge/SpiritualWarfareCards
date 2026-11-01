@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b181e">
+  <title>The Twelve Lights · An Elven puzzle collection</title>
+  <meta name="description" content="Weave arithmetic into starlight, turn linked moonwheels, and solve Twelvefold Sudoku. An original Elven-inspired puzzle collection with Tengwar numerals.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230b181e'/%3E%3Ccircle cx='20' cy='20' r='13' fill='none' stroke='%23c6b276'/%3E%3Cpath d='M20 8L23 17L32 20L23 23L20 32L17 23L8 20L17 17Z' fill='%23c6b276'/%3E%3C/svg%3E">
+  <style>:root{color-scheme:dark;--bg:#0b181e;--panel:#102229;--line:#294048;--gold:#d2bd82;--muted:#a6b8ba;--text:#edf1eb;--green:#94ceb9;--error:#ffb7a4;--serif:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}button,select{font:inherit}button{cursor:pointer;color:inherit}button:disabled{cursor:default}button,a,select{touch-action:manipulation}button:focus-visible,a:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outline-offset:5px}button{border:0}a{color:var(--gold)}[hidden]{display:none!important}.app{display:flex;min-height:100vh}.sidebar{width:265px;flex-shrink:0;border-right:1px solid var(--line);background:#0c1b20;padding:36px 20px 24px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:14px;text-decoration:none;font-family:var(--serif);font-size:20px;line-height:1.25;letter-spacing:.13em;color:var(--text);margin:0 12px 56px}.brand-mark{font-size:49px;color:var(--gold);line-height:1}.sidebar-label,.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--muted);font-weight:600}.sidebar-label{margin:0 14px 16px}.nav-item{width:100%;padding:15px 13px;display:flex;align-items:center;text-align:left;gap:13px;margin-bottom:7px;background:transparent;border:1px solid transparent;border-radius:7px;font-size:15px}.nav-item small{display:block;color:var(--muted);font-size:12px;margin-top:3px}.nav-icon{font-size:28px;color:#7d9599;width:29px;text-align:center}.grid-icon{font-size:32px}.nav-dot{margin-left:auto;width:5px;height:5px;border-radius:50%;background:transparent}.nav-item.active{background:#193037;border-color:#355057}.nav-item.active .nav-icon{color:var(--gold)}.nav-item.active .nav-dot{background:var(--gold)}.nav-item:hover{background:#152a30}.sidebar-note{margin:65px 12px 30px;color:var(--muted)}.sidebar-note>span{color:var(--gold);font-size:21px}.sidebar-note p{font-family:var(--serif);font-size:18px;font-style:italic;line-height:1.7}.sidebar-note small{font-size:12px}.quiet{background:transparent;color:var(--muted);font-size:14px;padding:10px 8px}.quiet:hover{color:var(--gold)}.about{text-align:left;margin-top:auto;padding-left:12px}.main-shell{flex:1;min-width:0;display:flex;flex-direction:column}.topbar{min-height:87px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 44px}.header-controls{display:flex;align-items:center;gap:17px}.toggle{display:flex;align-items:center;gap:10px;background:none;font-size:14px;white-space:nowrap}.switch-track{width:33px;height:19px;border:1px solid #63787c;border-radius:20px;padding:3px;display:block}.switch-track span{width:11px;height:11px;border-radius:50%;background:#a5b4b6;display:block;transition:transform .2s}.toggle[aria-checked=true] .switch-track{border-color:var(--gold);background:#34443a}.toggle[aria-checked=true] .switch-track span{background:var(--gold);transform:translateX(13px)}main{width:100%;max-width:1220px;margin:0 auto;padding:37px 44px 28px;flex:1}.title-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:27px}.gold{color:var(--gold)}h1{font-family:var(--serif);font-size:clamp(29px,3vw,40px);line-height:1.2;font-weight:400;letter-spacing:-.015em;margin:10px 0 12px}#instruction{color:var(--muted);margin:0;font-size:15px;max-width:710px}#level-wrap label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}select{border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--text);padding:8px 30px 8px 12px;font-size:14px}.play-layout{display:grid;grid-template-columns:minmax(270px,1fr) minmax(300px,.9fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-height:480px}.observatory{background:radial-gradient(ellipse at center,#1c363a 0%,#10262e 48%,#0d2028 76%);position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:26px 18px}.board-top{width:100%;display:flex;justify-content:space-between;color:var(--muted);font-size:12px;letter-spacing:.1em;padding:0 9px}.mode-bar{display:inline-flex;flex-wrap:wrap;gap:4px;margin-top:14px;padding:4px;border:1px solid var(--line);border-radius:99px;background:var(--panel)}.mode-bar button{padding:7px 15px;border:0;border-radius:99px;background:none;color:var(--muted);font:inherit;font-size:13px;cursor:pointer}.mode-bar button:hover{color:var(--text)}.mode-bar button[aria-pressed="true"]{background:var(--gold);color:#13221f;font-weight:700}.mode-bar button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}.delving-loading{color:var(--muted);font-family:var(--serif);font-style:italic;padding:40px 0}.ring{width:100%;max-width:410px;height:auto;display:block;overflow:visible}.ring .orbit{fill:none;stroke:#66847d;stroke-width:1;opacity:.5}.ring .fine{stroke:#526e6d;opacity:.3}.ring .lamp{fill:#18393d;stroke:#94b2a2;stroke-width:1.5}.ring .lit{fill:#e2d399;stroke:#f3e9b7;filter:drop-shadow(0 0 5px #d9c687)}.ring .ray{stroke:#a0cdb7;stroke-width:1;opacity:.13}.ring .center-label{fill:var(--muted);font:11px system-ui;letter-spacing:2px}.ring .center-value{fill:#e6dbb5;font:58px Georgia}.ring .center-value.elvish{font-family:Tengwar;font-size:58px}.ring .ring-number{fill:var(--muted);font:12px system-ui}.ring .ring-number.elvish{font:20px Tengwar}.board-caption{color:var(--muted);font-family:var(--serif);font-style:italic;font-size:16px;text-align:center;margin-top:-12px}.workbench{background:var(--panel);padding:31px 28px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--line)}.label{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--muted);margin-bottom:13px}.stones{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:29px}.stone{width:65px;height:70px;border:1px solid #59766e;background:linear-gradient(145deg,#304e4c,#1a3337);border-radius:10px 10px 15px 15px;font-family:var(--serif);font-size:29px;box-shadow:inset 0 1px 0 #68877d44,0 5px 15px #07111466}.stone:hover:not(:disabled){background:#385b53;border-color:var(--gold);transform:translateY(-2px)}.stone:disabled{opacity:.22}.elvish{font-family:Tengwar!important}.expression{min-height:72px;border:1px solid #456069;border-radius:7px;background:#0c1e25;padding:12px 14px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:12px}.expression-placeholder{color:#93a8ac;font-size:14px}.expression .token{background:none;padding:2px 3px;font-family:var(--serif);font-size:26px;line-height:1.3}.expression .token:hover{color:var(--gold)}.operators{display:flex;gap:7px;margin-bottom:24px}.op{background:#20373d;border:1px solid #365159;border-radius:5px;min-width:37px;min-height:39px;font-size:21px;flex:1}.op:hover{border-color:var(--gold)}.actions{display:flex;gap:9px;flex-wrap:wrap}.primary,.secondary{border-radius:6px;padding:11px 17px;font-size:14px;min-height:43px;font-weight:600}.primary{background:var(--gold);color:#162426;box-shadow:0 2px 8px #0002}.primary:hover{background:#e0cf9d}.primary:disabled{opacity:.6}.secondary{background:transparent;border:1px solid #4a6269;color:#d0dbd9}.secondary:hover{border-color:var(--gold);color:var(--gold)}.small-actions{display:flex;gap:12px;margin-top:15px;align-items:center}.small-actions button{font-size:14px}.puzzle-nav{margin-top:26px;padding-top:19px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted)}.puzzle-nav button{color:var(--gold)}.feedback{min-height:53px;margin-top:16px;padding:12px 16px;border:1px solid var(--line);border-radius:7px;font-size:14px;color:var(--muted);background:#11232a}.feedback.success{color:#bbebd5;border-color:#4b8870;background:#18352f}.feedback.error{color:var(--error);border-color:#815346}.hint-expression{font-family:var(--serif);font-size:19px;color:var(--gold);margin-top:9px}.help-row{margin-top:16px;color:var(--muted);font-size:13px;display:flex;gap:8px;align-items:center}.help-row span{color:var(--gold);font-size:16px}footer{border-top:1px solid var(--line);padding:16px 44px;display:flex;justify-content:space-between;color:var(--muted);gap:12px;font-size:12px}.skip{position:absolute;left:15px;top:-100px;background:var(--panel);padding:10px;z-index:50}.skip:focus{top:10px}dialog{background:#132930;color:var(--text);border:1px solid #5c777c;border-radius:12px;max-width:590px;width:calc(100% - 32px);padding:25px 29px;box-shadow:0 30px 100px #0007}dialog::backdrop{background:#030b10cc;backdrop-filter:blur(4px)}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:20px}.dialog-head h2{font:26px var(--serif);margin:0}.close{background:none;font-size:30px;color:var(--muted);padding:0 7px}dialog p{color:#c2d0ce;font-size:15px}.small{font-size:13px!important;line-height:1.7}.number-key{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:24px 0}.key-cell{background:#0b1d24;border:1px solid #37565e;border-radius:6px;text-align:center;padding:10px}.key-cell .elvish{font-size:33px;display:block;color:var(--gold);line-height:1.5}.key-cell small{display:block;color:var(--muted);font-size:14px}.moon-stats{display:flex;gap:20px;justify-content:center;margin-bottom:8px;font-size:14px;color:var(--muted)}.moon-stats strong{color:var(--gold);font-weight:400;font-size:20px}.gear-buttons{display:flex;flex-direction:column;gap:12px;margin-bottom:23px}.gear{background:#20383e;border:1px solid #49666c;border-radius:7px;padding:15px 18px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:15px}.gear strong{font-family:var(--serif);font-weight:400;font-size:20px}.gear small{color:var(--muted);font-size:14px}.gear:hover:not(:disabled){border-color:var(--gold);background:#2c494b}.gear:disabled{opacity:.4}.moon-target{color:var(--gold);font-size:15px;margin:0 0 25px}.sudoku-layout{display:grid;grid-template-columns:minmax(0,1fr) 255px;gap:27px}.sudoku-board{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border:2px solid #809893;border-radius:6px;overflow:hidden;aspect-ratio:1;background:#59716c;gap:1px}.cell{background:#10262d;aspect-ratio:1;padding:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:clamp(14px,1.65vw,24px);position:relative;min-width:0}.cell.given{background:#183039;color:#e1e7dd}.cell.entered{color:#e0cc91}.cell.related{background:#223d41}.cell.same{background:#354f48}.cell.selected{background:#415d4e;box-shadow:inset 0 0 0 2px var(--gold);z-index:1}.cell.conflict{color:#ffb7a4;background:#493534}.cell.box-right{border-right:2px solid #809893}.cell.box-bottom{border-bottom:2px solid #809893}.cell.elvish{font-size:clamp(16px,2vw,29px)}.notes{display:grid;grid-template-columns:repeat(4,1fr);width:100%;height:100%;align-items:center;padding:2px;font:clamp(7px,.75vw,10px) system-ui;color:#b8cdc4;line-height:1}.notes span{min-width:0;text-align:center}.notes span.elvish{font-size:11px}.sudoku-tools{border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:22px 19px;align-self:start}.sudoku-tools h2{font:24px var(--serif);margin:0 0 6px}.sudoku-tools p{color:var(--muted);font-size:14px;margin:0 0 20px}.number-pad{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:13px 0}.pad{border:1px solid #496269;background:#233b41;font-family:var(--serif);font-size:22px;border-radius:5px;aspect-ratio:1;min-width:0;padding:2px}.pad:hover{border-color:var(--gold)}.sudoku-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.sudoku-buttons button{padding:8px 10px;min-height:38px;font-size:13px}.notes-button[aria-pressed=true]{color:var(--gold);border-color:var(--gold);background:#354438}.sudoku-tools .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sudoku-tools .primary{grid-column:1/-1}.sudoku-progress{font-size:13px;color:var(--muted);margin-top:18px}.progress-track{height:3px;background:#294148;margin-top:9px;border-radius:4px}.progress-fill{height:100%;background:var(--gold);transition:width .2s}.sudoku-help{font-size:13px;color:var(--muted);margin:15px 0 0}.sudoku-help kbd{border:1px solid #4a6269;border-radius:3px;padding:0 4px}.generating{padding:80px 20px;text-align:center;color:var(--muted)}
+@media(min-width:1500px){main{padding-top:48px}.play-layout{min-height:560px}.ring{max-width:470px}.stones{gap:15px}.stone{width:72px;height:78px}}
+@media(max-width:1100px){.sidebar{width:220px;padding:30px 12px}.brand{font-size:17px;gap:8px;margin-left:8px;margin-bottom:38px}.brand-mark{font-size:41px}.topbar{padding:15px 26px}.topbar>.eyebrow{display:none}main{padding:30px 26px}.play-layout{grid-template-columns:1fr 1fr}.workbench{padding:24px 20px}.stone{width:54px;height:62px}.sudoku-layout{grid-template-columns:minmax(0,1fr);gap:18px}.sudoku-board{max-width:690px}.sudoku-tools{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.sudoku-tools>div{flex:1;min-width:200px}.sudoku-tools h2{font-size:22px}.sudoku-tools p{margin-bottom:0}.sudoku-tools .number-pad{margin:0}.sudoku-buttons{margin-bottom:8px}.sudoku-progress{margin-top:8px}.cell{font-size:23px}.cell.elvish{font-size:28px}.notes{font-size:10px}footer{padding:16px 26px}}
+@media(max-width:760px){.app{display:block}.sidebar{width:100%;padding:15px 18px 12px;border-right:0;border-bottom:1px solid var(--line);display:block}.brand{font-size:16px;margin:0 0 15px;line-height:1.15}.brand br{display:none}.brand-mark{font-size:31px}.sidebar-label,.sidebar-note,.about{display:none}nav{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.nav-item{display:block;text-align:center;padding:8px 3px;margin:0;font-size:12px;line-height:1.3}.nav-item small,.nav-dot{display:none}.nav-icon{display:block;margin:0 auto 4px;font-size:23px;width:auto}.topbar{min-height:58px;padding:8px 18px;justify-content:flex-end}.header-controls{gap:13px}.toggle{font-size:13px}main{padding:24px 18px}.title-row{margin-bottom:19px}.title-row .eyebrow{font-size:10px}h1{font-size:31px}#instruction{font-size:14px}.play-layout{grid-template-columns:1fr;min-height:0}.observatory{padding:15px 22px 22px}.ring{max-width:300px}.board-caption{font-size:14px;margin-top:-18px}.workbench{border-left:0;border-top:1px solid var(--line);padding:23px}.stones{justify-content:center;margin-bottom:23px;gap:12px}.stone{width:58px;height:63px}.expression{min-height:60px}.operators{margin-bottom:19px}.puzzle-nav{margin-top:17px;padding-top:13px}.label{font-size:11px}.feedback{font-size:13px}.help-row{font-size:12px}footer{padding:16px 18px;display:block;font-size:11px}footer span{display:block;margin-bottom:3px}.sudoku-board{gap:1px}.cell{font-size:clamp(13px,4vw,23px)}.cell.elvish{font-size:clamp(16px,4.2vw,27px)}.sudoku-tools{padding:18px;display:block}.sudoku-tools>div{min-width:0}.sudoku-tools p{margin-bottom:16px}.number-pad{grid-template-columns:repeat(6,1fr)!important;margin:12px 0!important}.sudoku-tools .actions{grid-template-columns:repeat(3,1fr)}.sudoku-tools .primary{grid-column:auto}.sudoku-help{font-size:12px}.notes{font-size:7px;padding:0}.notes span.elvish{font-size:8px}dialog{padding:22px}.dialog-head h2{font-size:23px}.number-key{gap:7px}.key-cell{padding:7px 3px}.key-cell .elvish{font-size:28px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.sudoku-row{display:contents}
+
+/* Embedded outlines display without a font download or local font installation. */
+.number-wrap{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;line-height:1.2}
+.tengwar-number{display:block;height:1.2em;flex-shrink:0;fill:currentColor;overflow:visible}
+.ring .numeral-vector path{fill:inherit}
+.key-glyph{display:flex;justify-content:center;font-size:33px;line-height:1.5;color:var(--gold);padding:6px 0}
+.notes .number-wrap{line-height:1;width:100%}
+.notes .tengwar-number{height:1.05em;max-width:100%}
+@media(max-width:760px){.key-glyph{font-size:28px}}
+
+.game-scripture{margin:24px 0 12px;padding:16px 20px;border-left:2px solid #aa976166;background:#19372c55;color:#d1dbc9}.game-scripture blockquote{margin:0;font:16px/1.65 Georgia,serif}.game-scripture p{margin:5px 0}.game-scripture sup{font:11px system-ui;color:#d5bf86;margin-right:4px}.game-scripture a{display:inline-block;margin-top:8px;color:#d5bf86;font-size:12px;text-decoration:none}.game-scripture a:hover{text-decoration:underline}
+
+/* One persistent menu button; collapsing removes the sidebar's entire footprint. */
+.games-menu-toggle{position:fixed;top:16px;left:16px;z-index:40;display:grid;place-items:center;width:44px;height:44px;padding:10px;border:1px solid #4a6269;border-radius:12px;background:#102229;color:var(--gold);box-shadow:0 3px 14px #0003}
+.games-menu-toggle:hover{border-color:var(--gold);background:#193037}
+.games-menu-toggle svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.games-menu-toggle .menu-open-icon,.games-menu-collapsed .games-menu-toggle .menu-close-icon{display:none}
+.games-menu-collapsed .games-menu-toggle .menu-open-icon{display:block}
+.app .sidebar{padding-top:84px}
+.games-menu-collapsed .topbar{padding-left:80px}
+@media(max-width:760px){
+  .app .sidebar{padding-top:76px}
+  .games-menu-collapsed .header-controls{flex-wrap:wrap;justify-content:flex-end;gap:6px 13px}
+  .games-menu-collapsed .topbar{min-height:76px}
+}
+</style>
+</head>
+<body>
+  <a class="skip" href="#play">Skip to the game</a>
+  <div class="app">
+    <button id="games-menu-toggle" class="games-menu-toggle" type="button" aria-controls="games-sidebar" aria-expanded="true" aria-label="Collapse game menu" title="Collapse game menu"><svg class="menu-open-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><svg class="menu-close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <aside class="sidebar" id="games-sidebar">
+      <a class="brand" href="#lights" aria-label="The Twelve Lights home"><span class="brand-mark" aria-hidden="true">✧</span><span>THE TWELVE<br>LIGHTS</span></a>
+      <div class="sidebar-label">THE COLLECTION</div>
+      <nav aria-label="Games" id="games">
+        <button data-game="delving" class="nav-item" id="delving-tab"><span class="nav-icon" aria-hidden="true">△</span><span>The Delving<small>Forty doors beneath the mountain</small></span><span class="nav-dot" aria-hidden="true"></span></button>
+        <button data-game="rings" class="nav-item active"><span class="nav-icon" aria-hidden="true">☼</span><span>The Rings<small>Lights · Starweaver · Moonwheel</small></span><span class="nav-dot" aria-hidden="true"></span></button>
+        <button data-game="sudoku" class="nav-item"><span class="nav-icon grid-icon" aria-hidden="true">▦</span><span>Twelvefold Sudoku<small>A 12 × 12 challenge</small></span><span class="nav-dot" aria-hidden="true"></span></button>
+      </nav>
+      <div class="sidebar-note"><span aria-hidden="true">✦</span><p>“The Eldar preferred to reckon in sixes and twelves as far as possible.”</p><small>J. R. R. Tolkien · Appendix D</small></div>
+      <button id="about-button" class="quiet about">About the collection</button>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar"><span class="eyebrow">THE WOODLAND OBSERVATORY</span><div class="header-controls"><button id="numerals" class="toggle" role="switch" aria-checked="false"><span class="switch-track"><span></span></span>Elvish numerals</button><button id="key-button" class="quiet">Number key</button></div></header>
+      <main id="play" tabindex="-1">
+        <div class="title-row"><div><div class="eyebrow gold" id="chapter">I · THE FIRST RECKONING</div><h1 id="game-title">The Twelve Lights</h1><p id="instruction">Use every stone once. Weave an expression that makes twelve.</p><div id="mode-bar" class="mode-bar" role="group" aria-label="Ring puzzle" hidden><button data-mode="lights">The Twelve Lights</button><button data-mode="weaver">Starweaver</button><button data-mode="moon">Moonwheel</button></div></div><div id="level-wrap" hidden><label for="level">Difficulty</label><select id="level"><option value="adept">Adept</option><option value="master">Master</option></select></div></div>
+        <div id="game-content"></div>
+        <div id="delving-root" class="delving-root" hidden></div>
+        <section id="game-scripture" class="game-scripture" aria-label="Scripture for this game"></section>
+        <div id="feedback" role="status" aria-live="polite" class="feedback">Choose a numbered stone to begin.</div>
+      </main>
+      <footer><span>Original puzzles, inspired by Elven reckoning.</span><span id="footer-mode">Ordinary numerals · base ten</span></footer>
+    </div>
+  </div>
+  <dialog id="key-dialog"><div class="dialog-head"><h2>A key to the numerals</h2><button data-close="key-dialog" aria-label="Close numeral key" class="close">×</button></div><p>Tengwar numeral glyphs from the Free Tengwar Font Project. Hover or focus a game number to see its ordinary value.</p><div id="number-key" class="number-key"></div><p class="small">This collection uses decimal place values for familiar arithmetic. Multi-digit Tengwar values place the units first, reading left to right. Ten and eleven have separate glyphs in the key for learning; in these games, 10–12 are written as decimal multi-digit values. Number-identification marks are omitted for a clean game display. The toggle changes notation, not the puzzle rules.</p></dialog>
+  <dialog id="about-dialog"><div class="dialog-head"><h2>At the observatory</h2><button data-close="about-dialog" aria-label="Close about" class="close">×</button></div><p>This is an original puzzle collection inspired by Tolkien’s Elves, their love of craftsmanship and stars, and their preference for reckoning in sixes and twelves. These games are imagined, not games described by Tolkien.</p><p>Begin with The Twelve Lights. Starweaver offers five-stone and six-stone arithmetic. Moonwheel explores arithmetic modulo twelve. Twelvefold Sudoku uses numbers 1–12, once in every row, column, and 3-row × 4-column region.</p><p>Tolkien’s numeral systems evolved across his manuscripts. The display here uses a conventional Tengwar decimal presentation rather than claiming one definitive Elvish mathematical system.</p><p class="small">Scripture quotations marked CSB have been taken from the Christian Standard Bible®, Copyright © 2017 by Holman Bible Publishers. Used by permission. Christian Standard Bible® and CSB® are federally registered trademarks of Holman Bible Publishers.</p><p class="small">Numeral font: FreeMonoTengwar by j. ‘mach’ wust, Johan Winge, and GNU FreeFont contributors. <a href="data:text/plain;base64,RnJlZU1vbm9UZW5nd2FyLCBDb3B5cmlnaHQgai4gbWFjaCB3dXN0LCBKb2hhbiBXaW5nZSwgYW5kIEdOVSBGcmVlRm9udCBjb250cmlidXRvcnMuClNvdXJjZTogaHR0cHM6Ly9mcmVldGVuZ3dhci5zb3VyY2Vmb3JnZS5uZXQvCkdQTCB2MyBvciBsYXRlciwgd2l0aCBmb250IGVtYmVkZGluZyBleGNlcHRpb246CkFzIGEgc3BlY2lhbCBleGNlcHRpb24sIGlmIHlvdSBjcmVhdGUgYSBkb2N1bWVudCB3aGljaCB1c2VzIGEgRnJlZSBUZW5nd2FyIEZvbnQgUHJvamVjdCBmb250LCBhbmQgZW1iZWQgdGhhdCBmb250IG9yIHVuYWx0ZXJlZCBwb3J0aW9ucyBvZiB0aGF0IGZvbnQgaW50byB0aGUgZG9jdW1lbnQsIHRoYXQgZm9udCBkb2VzIG5vdCBieSBpdHNlbGYgY2F1c2UgdGhlIHJlc3VsdGluZyBkb2N1bWVudCB0byBiZSBjb3ZlcmVkIGJ5IHRoZSBHTlUgR2VuZXJhbCBQdWJsaWMgTGljZW5zZS4gVGhpcyBleGNlcHRpb24gZG9lcyBub3QgaG93ZXZlciBpbnZhbGlkYXRlIGFueSBvdGhlciByZWFzb25zIHdoeSB0aGUgZG9jdW1lbnQgbWlnaHQgYmUgY292ZXJlZCBieSB0aGUgR05VIEdlbmVyYWwgUHVibGljIExpY2Vuc2UuIElmIHlvdSBtb2RpZnkgdGhhdCBmb250LCB5b3UgbWF5IGV4dGVuZCB0aGlzIGV4Y2VwdGlvbiB0byB5b3VyIHZlcnNpb24gb2YgdGhhdCBmb250LCBidXQgeW91IGFyZSBub3Qgb2JsaWdhdGVkIHRvIGRvIHNvLiBJZiB5b3UgZG8gbm90IHdpc2ggdG8gZG8gc28sIGRlbGV0ZSB0aGlzIGV4Y2VwdGlvbiBzdGF0ZW1lbnQgZnJvbSB5b3VyIHZlcnNpb24uCgogICAgICAgICAgICAgICAgICAgIEdOVSBHRU5FUkFMIFBVQkxJQyBMSUNFTlNFCiAgICAgICAgICAgICAgICAgICAgICAgVmVyc2lvbiAzLCAyOSBKdW5lIDIwMDcKCiBDb3B5cmlnaHQgKEMpIDIwMDcgRnJlZSBTb2Z0d2FyZSBGb3VuZGF0aW9uLCBJbmMuIDxodHRwczovL2ZzZi5vcmcvPgogRXZlcnlvbmUgaXMgcGVybWl0dGVkIHRvIGNvcHkgYW5kIGRpc3RyaWJ1dGUgdmVyYmF0aW0gY29waWVzCiBvZiB0aGlzIGxpY2Vuc2UgZG9jdW1lbnQsIGJ1dCBjaGFuZ2luZyBpdCBpcyBub3QgYWxsb3dlZC4KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBQcmVhbWJsZQoKICBUaGUgR05VIEdlbmVyYWwgUHVibGljIExpY2Vuc2UgaXMgYSBmcmVlLCBjb3B5bGVmdCBsaWNlbnNlIGZvcgpzb2Z0d2FyZSBhbmQgb3RoZXIga2luZHMgb2Ygd29ya3MuCgogIFRoZSBsaWNlbnNlcyBmb3IgbW9zdCBzb2Z0d2FyZSBhbmQgb3RoZXIgcHJhY3RpY2FsIHdvcmtzIGFyZSBkZXNpZ25lZAp0byB0YWtlIGF3YXkgeW91ciBmcmVlZG9tIHRvIHNoYXJlIGFuZCBjaGFuZ2UgdGhlIHdvcmtzLiAgQnkgY29udHJhc3QsCnRoZSBHTlUgR2VuZXJhbCBQdWJsaWMgTGljZW5zZSBpcyBpbnRlbmRlZCB0byBndWFyYW50ZWUgeW91ciBmcmVlZG9tIHRvCnNoYXJlIGFuZCBjaGFuZ2UgYWxsIHZlcnNpb25zIG9mIGEgcHJvZ3JhbS0tdG8gbWFrZSBzdXJlIGl0IHJlbWFpbnMgZnJlZQpzb2Z0d2FyZSBmb3IgYWxsIGl0cyB1c2Vycy4gIFdlLCB0aGUgRnJlZSBTb2Z0d2FyZSBGb3VuZGF0aW9uLCB1c2UgdGhlCkdOVSBHZW5lcmFsIFB1YmxpYyBMaWNlbnNlIGZvciBtb3N0IG9mIG91ciBzb2Z0d2FyZTsgaXQgYXBwbGllcyBhbHNvIHRvCmFueSBvdGhlciB3b3JrIHJlbGVhc2VkIHRoaXMgd2F5IGJ5IGl0cyBhdXRob3JzLiAgWW91IGNhbiBhcHBseSBpdCB0bwp5b3VyIHByb2dyYW1zLCB0b28uCgogIFdoZW4gd2Ugc3BlYWsgb2YgZnJlZSBzb2Z0d2FyZSwgd2UgYXJlIHJlZmVycmluZyB0byBmcmVlZG9tLCBub3QKcHJpY2UuICBPdXIgR2VuZXJhbCBQdWJsaWMgTGljZW5zZXMgYXJlIGRlc2lnbmVkIHRvIG1ha2Ugc3VyZSB0aGF0IHlvdQpoYXZlIHRoZSBmcmVlZG9tIHRvIGRpc3RyaWJ1dGUgY29waWVzIG9mIGZyZWUgc29mdHdhcmUgKGFuZCBjaGFyZ2UgZm9yCnRoZW0gaWYgeW91IHdpc2gpLCB0aGF0IHlvdSByZWNlaXZlIHNvdXJjZSBjb2RlIG9yIGNhbiBnZXQgaXQgaWYgeW91CndhbnQgaXQsIHRoYXQgeW91IGNhbiBjaGFuZ2UgdGhlIHNvZnR3YXJlIG9yIHVzZSBwaWVjZXMgb2YgaXQgaW4gbmV3CmZyZWUgcHJvZ3JhbXMsIGFuZCB0aGF0IHlvdSBrbm93IHlvdSBjYW4gZG8gdGhlc2UgdGhpbmdzLgoKICBUbyBwcm90ZWN0IHlvdXIgcmlnaHRzLCB3ZSBuZWVkIHRvIHByZXZlbnQgb3RoZXJzIGZyb20gZGVueWluZyB5b3UKdGhlc2UgcmlnaHRzIG9yIGFza2luZyB5b3UgdG8gc3VycmVuZGVyIHRoZSByaWdodHMuICBUaGVyZWZvcmUsIHlvdSBoYXZlCmNlcnRhaW4gcmVzcG9uc2liaWxpdGllcyBpZiB5b3UgZGlzdHJpYnV0ZSBjb3BpZXMgb2YgdGhlIHNvZnR3YXJlLCBvciBpZgp5b3UgbW9kaWZ5IGl0OiByZXNwb25zaWJpbGl0aWVzIHRvIHJlc3BlY3QgdGhlIGZyZWVkb20gb2Ygb3RoZXJzLgoKICBGb3IgZXhhbXBsZSwgaWYgeW91IGRpc3RyaWJ1dGUgY29waWVzIG9mIHN1Y2ggYSBwcm9ncmFtLCB3aGV0aGVyCmdyYXRpcyBvciBmb3IgYSBmZWUsIHlvdSBtdXN0IHBhc3Mgb24gdG8gdGhlIHJlY2lwaWVudHMgdGhlIHNhbWUKZnJlZWRvbXMgdGhhdCB5b3UgcmVjZWl2ZWQuICBZb3UgbXVzdCBtYWtlIHN1cmUgdGhhdCB0aGV5LCB0b28sIHJlY2VpdmUKb3IgY2FuIGdldCB0aGUgc291cmNlIGNvZGUuICBBbmQgeW91IG11c3Qgc2hvdyB0aGVtIHRoZXNlIHRlcm1zIHNvIHRoZXkKa25vdyB0aGVpciByaWdodHMuCgogIERldmVsb3BlcnMgdGhhdCB1c2UgdGhlIEdOVSBHUEwgcHJvdGVjdCB5b3VyIHJpZ2h0cyB3aXRoIHR3byBzdGVwczoKKDEpIGFzc2VydCBjb3B5cmlnaHQgb24gdGhlIHNvZnR3YXJlLCBhbmQgKDIpIG9mZmVyIHlvdSB0aGlzIExpY2Vuc2UKZ2l2aW5nIHlvdSBsZWdhbCBwZXJtaXNzaW9uIHRvIGNvcHksIGRpc3RyaWJ1dGUgYW5kL29yIG1vZGlmeSBpdC4KCiAgRm9yIHRoZSBkZXZlbG9wZXJzJyBhbmQgYXV0aG9ycycgcHJvdGVjdGlvbiwgdGhlIEdQTCBjbGVhcmx5IGV4cGxhaW5zCnRoYXQgdGhlcmUgaXMgbm8gd2FycmFudHkgZm9yIHRoaXMgZnJlZSBzb2Z0d2FyZS4gIEZvciBib3RoIHVzZXJzJyBhbmQKYXV0aG9ycycgc2FrZSwgdGhlIEdQTCByZXF1aXJlcyB0aGF0IG1vZGlmaWVkIHZlcnNpb25zIGJlIG1hcmtlZCBhcwpjaGFuZ2VkLCBzbyB0aGF0IHRoZWlyIHByb2JsZW1zIHdpbGwgbm90IGJlIGF0dHJpYnV0ZWQgZXJyb25lb3VzbHkgdG8KYXV0aG9ycyBvZiBwcmV2aW91cyB2ZXJzaW9ucy4KCiAgU29tZSBkZXZpY2VzIGFyZSBkZXNpZ25lZCB0byBkZW55IHVzZXJzIGFjY2VzcyB0byBpbnN0YWxsIG9yIHJ1bgptb2RpZmllZCB2ZXJzaW9ucyBvZiB0aGUgc29mdHdhcmUgaW5zaWRlIHRoZW0sIGFsdGhvdWdoIHRoZSBtYW51ZmFjdHVyZXIKY2FuIGRvIHNvLiAgVGhpcyBpcyBmdW5kYW1lbnRhbGx5IGluY29tcGF0aWJsZSB3aXRoIHRoZSBhaW0gb2YKcHJvdGVjdGluZyB1c2VycycgZnJlZWRvbSB0byBjaGFuZ2UgdGhlIHNvZnR3YXJlLiAgVGhlIHN5c3RlbWF0aWMKcGF0dGVybiBvZiBzdWNoIGFidXNlIG9jY3VycyBpbiB0aGUgYXJlYSBvZiBwcm9kdWN0cyBmb3IgaW5kaXZpZHVhbHMgdG8KdXNlLCB3aGljaCBpcyBwcmVjaXNlbHkgd2hlcmUgaXQgaXMgbW9zdCB1bmFjY2VwdGFibGUuICBUaGVyZWZvcmUsIHdlCmhhdmUgZGVzaWduZWQgdGhpcyB2ZXJzaW9uIG9mIHRoZSBHUEwgdG8gcHJvaGliaXQgdGhlIHByYWN0aWNlIGZvciB0aG9zZQpwcm9kdWN0cy4gIElmIHN1Y2ggcHJvYmxlbXMgYXJpc2Ugc3Vic3RhbnRpYWxseSBpbiBvdGhlciBkb21haW5zLCB3ZQpzdGFuZCByZWFkeSB0byBleHRlbmQgdGhpcyBwcm92aXNpb24gdG8gdGhvc2UgZG9tYWlucyBpbiBmdXR1cmUgdmVyc2lvbnMKb2YgdGhlIEdQTCwgYXMgbmVlZGVkIHRvIHByb3RlY3QgdGhlIGZyZWVkb20gb2YgdXNlcnMuCgogIEZpbmFsbHksIGV2ZXJ5IHByb2dyYW0gaXMgdGhyZWF0ZW5lZCBjb25zdGFudGx5IGJ5IHNvZnR3YXJlIHBhdGVudHMuClN0YXRlcyBzaG91bGQgbm90IGFsbG93IHBhdGVudHMgdG8gcmVzdHJpY3QgZGV2ZWxvcG1lbnQgYW5kIHVzZSBvZgpzb2Z0d2FyZSBvbiBnZW5lcmFsLXB1cnBvc2UgY29tcHV0ZXJzLCBidXQgaW4gdGhvc2UgdGhhdCBkbywgd2Ugd2lzaCB0bwphdm9pZCB0aGUgc3BlY2lhbCBkYW5nZXIgdGhhdCBwYXRlbnRzIGFwcGxpZWQgdG8gYSBmcmVlIHByb2dyYW0gY291bGQKbWFrZSBpdCBlZmZlY3RpdmVseSBwcm9wcmlldGFyeS4gIFRvIHByZXZlbnQgdGhpcywgdGhlIEdQTCBhc3N1cmVzIHRoYXQKcGF0ZW50cyBjYW5ub3QgYmUgdXNlZCB0byByZW5kZXIgdGhlIHByb2dyYW0gbm9uLWZyZWUuCgogIFRoZSBwcmVjaXNlIHRlcm1zIGFuZCBjb25kaXRpb25zIGZvciBjb3B5aW5nLCBkaXN0cmlidXRpb24gYW5kCm1vZGlmaWNhdGlvbiBmb2xsb3cuCgogICAgICAgICAgICAgICAgICAgICAgIFRFUk1TIEFORCBDT05ESVRJT05TCgogIDAuIERlZmluaXRpb25zLgoKICAiVGhpcyBMaWNlbnNlIiByZWZlcnMgdG8gdmVyc2lvbiAzIG9mIHRoZSBHTlUgR2VuZXJhbCBQdWJsaWMgTGljZW5zZS4KCiAgIkNvcHlyaWdodCIgYWxzbyBtZWFucyBjb3B5cmlnaHQtbGlrZSBsYXdzIHRoYXQgYXBwbHkgdG8gb3RoZXIga2luZHMgb2YKd29ya3MsIHN1Y2ggYXMgc2VtaWNvbmR1Y3RvciBtYXNrcy4KCiAgIlRoZSBQcm9ncmFtIiByZWZlcnMgdG8gYW55IGNvcHlyaWdodGFibGUgd29yayBsaWNlbnNlZCB1bmRlciB0aGlzCkxpY2Vuc2UuICBFYWNoIGxpY2Vuc2VlIGlzIGFkZHJlc3NlZCBhcyAieW91Ii4gICJMaWNlbnNlZXMiIGFuZAoicmVjaXBpZW50cyIgbWF5IGJlIGluZGl2aWR1YWxzIG9yIG9yZ2FuaXphdGlvbnMuCgogIFRvICJtb2RpZnkiIGEgd29yayBtZWFucyB0byBjb3B5IGZyb20gb3IgYWRhcHQgYWxsIG9yIHBhcnQgb2YgdGhlIHdvcmsKaW4gYSBmYXNoaW9uIHJlcXVpcmluZyBjb3B5cmlnaHQgcGVybWlzc2lvbiwgb3RoZXIgdGhhbiB0aGUgbWFraW5nIG9mIGFuCmV4YWN0IGNvcHkuICBUaGUgcmVzdWx0aW5nIHdvcmsgaXMgY2FsbGVkIGEgIm1vZGlmaWVkIHZlcnNpb24iIG9mIHRoZQplYXJsaWVyIHdvcmsgb3IgYSB3b3JrICJiYXNlZCBvbiIgdGhlIGVhcmxpZXIgd29yay4KCiAgQSAiY292ZXJlZCB3b3JrIiBtZWFucyBlaXRoZXIgdGhlIHVubW9kaWZpZWQgUHJvZ3JhbSBvciBhIHdvcmsgYmFzZWQKb24gdGhlIFByb2dyYW0uCgogIFRvICJwcm9wYWdhdGUiIGEgd29yayBtZWFucyB0byBkbyBhbnl0aGluZyB3aXRoIGl0IHRoYXQsIHdpdGhvdXQKcGVybWlzc2lvbiwgd291bGQgbWFrZSB5b3UgZGlyZWN0bHkgb3Igc2Vjb25kYXJpbHkgbGlhYmxlIGZvcgppbmZyaW5nZW1lbnQgdW5kZXIgYXBwbGljYWJsZSBjb3B5cmlnaHQgbGF3LCBleGNlcHQgZXhlY3V0aW5nIGl0IG9uIGEKY29tcHV0ZXIgb3IgbW9kaWZ5aW5nIGEgcHJpdmF0ZSBjb3B5LiAgUHJvcGFnYXRpb24gaW5jbHVkZXMgY29weWluZywKZGlzdHJpYnV0aW9uICh3aXRoIG9yIHdpdGhvdXQgbW9kaWZpY2F0aW9uKSwgbWFraW5nIGF2YWlsYWJsZSB0byB0aGUKcHVibGljLCBhbmQgaW4gc29tZSBjb3VudHJpZXMgb3RoZXIgYWN0aXZpdGllcyBhcyB3ZWxsLgoKICBUbyAiY29udmV5IiBhIHdvcmsgbWVhbnMgYW55IGtpbmQgb2YgcHJvcGFnYXRpb24gdGhhdCBlbmFibGVzIG90aGVyCnBhcnRpZXMgdG8gbWFrZSBvciByZWNlaXZlIGNvcGllcy4gIE1lcmUgaW50ZXJhY3Rpb24gd2l0aCBhIHVzZXIgdGhyb3VnaAphIGNvbXB1dGVyIG5ldHdvcmssIHdpdGggbm8gdHJhbnNmZXIgb2YgYSBjb3B5LCBpcyBub3QgY29udmV5aW5nLgoKICBBbiBpbnRlcmFjdGl2ZSB1c2VyIGludGVyZmFjZSBkaXNwbGF5cyAiQXBwcm9wcmlhdGUgTGVnYWwgTm90aWNlcyIKdG8gdGhlIGV4dGVudCB0aGF0IGl0IGluY2x1ZGVzIGEgY29udmVuaWVudCBhbmQgcHJvbWluZW50bHkgdmlzaWJsZQpmZWF0dXJlIHRoYXQgKDEpIGRpc3BsYXlzIGFuIGFwcHJvcHJpYXRlIGNvcHlyaWdodCBub3RpY2UsIGFuZCAoMikKdGVsbHMgdGhlIHVzZXIgdGhhdCB0aGVyZSBpcyBubyB3YXJyYW50eSBmb3IgdGhlIHdvcmsgKGV4Y2VwdCB0byB0aGUKZXh0ZW50IHRoYXQgd2FycmFudGllcyBhcmUgcHJvdmlkZWQpLCB0aGF0IGxpY2Vuc2VlcyBtYXkgY29udmV5IHRoZQp3b3JrIHVuZGVyIHRoaXMgTGljZW5zZSwgYW5kIGhvdyB0byB2aWV3IGEgY29weSBvZiB0aGlzIExpY2Vuc2UuICBJZgp0aGUgaW50ZXJmYWNlIHByZXNlbnRzIGEgbGlzdCBvZiB1c2VyIGNvbW1hbmRzIG9yIG9wdGlvbnMsIHN1Y2ggYXMgYQptZW51LCBhIHByb21pbmVudCBpdGVtIGluIHRoZSBsaXN0IG1lZXRzIHRoaXMgY3JpdGVyaW9uLgoKICAxLiBTb3VyY2UgQ29kZS4KCiAgVGhlICJzb3VyY2UgY29kZSIgZm9yIGEgd29yayBtZWFucyB0aGUgcHJlZmVycmVkIGZvcm0gb2YgdGhlIHdvcmsKZm9yIG1ha2luZyBtb2RpZmljYXRpb25zIHRvIGl0LiAgIk9iamVjdCBjb2RlIiBtZWFucyBhbnkgbm9uLXNvdXJjZQpmb3JtIG9mIGEgd29yay4KCiAgQSAiU3RhbmRhcmQgSW50ZXJmYWNlIiBtZWFucyBhbiBpbnRlcmZhY2UgdGhhdCBlaXRoZXIgaXMgYW4gb2ZmaWNpYWwKc3RhbmRhcmQgZGVmaW5lZCBieSBhIHJlY29nbml6ZWQgc3RhbmRhcmRzIGJvZHksIG9yLCBpbiB0aGUgY2FzZSBvZgppbnRlcmZhY2VzIHNwZWNpZmllZCBmb3IgYSBwYXJ0aWN1bGFyIHByb2dyYW1taW5nIGxhbmd1YWdlLCBvbmUgdGhhdAppcyB3aWRlbHkgdXNlZCBhbW9uZyBkZXZlbG9wZXJzIHdvcmtpbmcgaW4gdGhhdCBsYW5ndWFnZS4KCiAgVGhlICJTeXN0ZW0gTGlicmFyaWVzIiBvZiBhbiBleGVjdXRhYmxlIHdvcmsgaW5jbHVkZSBhbnl0aGluZywgb3RoZXIKdGhhbiB0aGUgd29yayBhcyBhIHdob2xlLCB0aGF0IChhKSBpcyBpbmNsdWRlZCBpbiB0aGUgbm9ybWFsIGZvcm0gb2YKcGFja2FnaW5nIGEgTWFqb3IgQ29tcG9uZW50LCBidXQgd2hpY2ggaXMgbm90IHBhcnQgb2YgdGhhdCBNYWpvcgpDb21wb25lbnQsIGFuZCAoYikgc2VydmVzIG9ubHkgdG8gZW5hYmxlIHVzZSBvZiB0aGUgd29yayB3aXRoIHRoYXQKTWFqb3IgQ29tcG9uZW50LCBvciB0byBpbXBsZW1lbnQgYSBTdGFuZGFyZCBJbnRlcmZhY2UgZm9yIHdoaWNoIGFuCmltcGxlbWVudGF0aW9uIGlzIGF2YWlsYWJsZSB0byB0aGUgcHVibGljIGluIHNvdXJjZSBjb2RlIGZvcm0uICBBCiJNYWpvciBDb21wb25lbnQiLCBpbiB0aGlzIGNvbnRleHQsIG1lYW5zIGEgbWFqb3IgZXNzZW50aWFsIGNvbXBvbmVudAooa2VybmVsLCB3aW5kb3cgc3lzdGVtLCBhbmQgc28gb24pIG9mIHRoZSBzcGVjaWZpYyBvcGVyYXRpbmcgc3lzdGVtCihpZiBhbnkpIG9uIHdoaWNoIHRoZSBleGVjdXRhYmxlIHdvcmsgcnVucywgb3IgYSBjb21waWxlciB1c2VkIHRvCnByb2R1Y2UgdGhlIHdvcmssIG9yIGFuIG9iamVjdCBjb2RlIGludGVycHJldGVyIHVzZWQgdG8gcnVuIGl0LgoKICBUaGUgIkNvcnJlc3BvbmRpbmcgU291cmNlIiBmb3IgYSB3b3JrIGluIG9iamVjdCBjb2RlIGZvcm0gbWVhbnMgYWxsCnRoZSBzb3VyY2UgY29kZSBuZWVkZWQgdG8gZ2VuZXJhdGUsIGluc3RhbGwsIGFuZCAoZm9yIGFuIGV4ZWN1dGFibGUKd29yaykgcnVuIHRoZSBvYmplY3QgY29kZSBhbmQgdG8gbW9kaWZ5IHRoZSB3b3JrLCBpbmNsdWRpbmcgc2NyaXB0cyB0bwpjb250cm9sIHRob3NlIGFjdGl2aXRpZXMuICBIb3dldmVyLCBpdCBkb2VzIG5vdCBpbmNsdWRlIHRoZSB3b3JrJ3MKU3lzdGVtIExpYnJhcmllcywgb3IgZ2VuZXJhbC1wdXJwb3NlIHRvb2xzIG9yIGdlbmVyYWxseSBhdmFpbGFibGUgZnJlZQpwcm9ncmFtcyB3aGljaCBhcmUgdXNlZCB1bm1vZGlmaWVkIGluIHBlcmZvcm1pbmcgdGhvc2UgYWN0aXZpdGllcyBidXQKd2hpY2ggYXJlIG5vdCBwYXJ0IG9mIHRoZSB3b3JrLiAgRm9yIGV4YW1wbGUsIENvcnJlc3BvbmRpbmcgU291cmNlCmluY2x1ZGVzIGludGVyZmFjZSBkZWZpbml0aW9uIGZpbGVzIGFzc29jaWF0ZWQgd2l0aCBzb3VyY2UgZmlsZXMgZm9yCnRoZSB3b3JrLCBhbmQgdGhlIHNvdXJjZSBjb2RlIGZvciBzaGFyZWQgbGlicmFyaWVzIGFuZCBkeW5hbWljYWxseQpsaW5rZWQgc3VicHJvZ3JhbXMgdGhhdCB0aGUgd29yayBpcyBzcGVjaWZpY2FsbHkgZGVzaWduZWQgdG8gcmVxdWlyZSwKc3VjaCBhcyBieSBpbnRpbWF0ZSBkYXRhIGNvbW11bmljYXRpb24gb3IgY29udHJvbCBmbG93IGJldHdlZW4gdGhvc2UKc3VicHJvZ3JhbXMgYW5kIG90aGVyIHBhcnRzIG9mIHRoZSB3b3JrLgoKICBUaGUgQ29ycmVzcG9uZGluZyBTb3VyY2UgbmVlZCBub3QgaW5jbHVkZSBhbnl0aGluZyB0aGF0IHVzZXJzCmNhbiByZWdlbmVyYXRlIGF1dG9tYXRpY2FsbHkgZnJvbSBvdGhlciBwYXJ0cyBvZiB0aGUgQ29ycmVzcG9uZGluZwpTb3VyY2UuCgogIFRoZSBDb3JyZXNwb25kaW5nIFNvdXJjZSBmb3IgYSB3b3JrIGluIHNvdXJjZSBjb2RlIGZvcm0gaXMgdGhhdApzYW1lIHdvcmsuCgogIDIuIEJhc2ljIFBlcm1pc3Npb25zLgoKICBBbGwgcmlnaHRzIGdyYW50ZWQgdW5kZXIgdGhpcyBMaWNlbnNlIGFyZSBncmFudGVkIGZvciB0aGUgdGVybSBvZgpjb3B5cmlnaHQgb24gdGhlIFByb2dyYW0sIGFuZCBhcmUgaXJyZXZvY2FibGUgcHJvdmlkZWQgdGhlIHN0YXRlZApjb25kaXRpb25zIGFyZSBtZXQuICBUaGlzIExpY2Vuc2UgZXhwbGljaXRseSBhZmZpcm1zIHlvdXIgdW5saW1pdGVkCnBlcm1pc3Npb24gdG8gcnVuIHRoZSB1bm1vZGlmaWVkIFByb2dyYW0uICBUaGUgb3V0cHV0IGZyb20gcnVubmluZyBhCmNvdmVyZWQgd29yayBpcyBjb3ZlcmVkIGJ5IHRoaXMgTGljZW5zZSBvbmx5IGlmIHRoZSBvdXRwdXQsIGdpdmVuIGl0cwpjb250ZW50LCBjb25zdGl0dXRlcyBhIGNvdmVyZWQgd29yay4gIFRoaXMgTGljZW5zZSBhY2tub3dsZWRnZXMgeW91cgpyaWdodHMgb2YgZmFpciB1c2Ugb3Igb3RoZXIgZXF1aXZhbGVudCwgYXMgcHJvdmlkZWQgYnkgY29weXJpZ2h0IGxhdy4KCiAgWW91IG1heSBtYWtlLCBydW4gYW5kIHByb3BhZ2F0ZSBjb3ZlcmVkIHdvcmtzIHRoYXQgeW91IGRvIG5vdApjb252ZXksIHdpdGhvdXQgY29uZGl0aW9ucyBzbyBsb25nIGFzIHlvdXIgbGljZW5zZSBvdGhlcndpc2UgcmVtYWlucwppbiBmb3JjZS4gIFlvdSBtYXkgY29udmV5IGNvdmVyZWQgd29ya3MgdG8gb3RoZXJzIGZvciB0aGUgc29sZSBwdXJwb3NlCm9mIGhhdmluZyB0aGVtIG1ha2UgbW9kaWZpY2F0aW9ucyBleGNsdXNpdmVseSBmb3IgeW91LCBvciBwcm92aWRlIHlvdQp3aXRoIGZhY2lsaXRpZXMgZm9yIHJ1bm5pbmcgdGhvc2Ugd29ya3MsIHByb3ZpZGVkIHRoYXQgeW91IGNvbXBseSB3aXRoCnRoZSB0ZXJtcyBvZiB0aGlzIExpY2Vuc2UgaW4gY29udmV5aW5nIGFsbCBtYXRlcmlhbCBmb3Igd2hpY2ggeW91IGRvCm5vdCBjb250cm9sIGNvcHlyaWdodC4gIFRob3NlIHRodXMgbWFraW5nIG9yIHJ1bm5pbmcgdGhlIGNvdmVyZWQgd29ya3MKZm9yIHlvdSBtdXN0IGRvIHNvIGV4Y2x1c2l2ZWx5IG9uIHlvdXIgYmVoYWxmLCB1bmRlciB5b3VyIGRpcmVjdGlvbgphbmQgY29udHJvbCwgb24gdGVybXMgdGhhdCBwcm9oaWJpdCB0aGVtIGZyb20gbWFraW5nIGFueSBjb3BpZXMgb2YKeW91ciBjb3B5cmlnaHRlZCBtYXRlcmlhbCBvdXRzaWRlIHRoZWlyIHJlbGF0aW9uc2hpcCB3aXRoIHlvdS4KCiAgQ29udmV5aW5nIHVuZGVyIGFueSBvdGhlciBjaXJjdW1zdGFuY2VzIGlzIHBlcm1pdHRlZCBzb2xlbHkgdW5kZXIKdGhlIGNvbmRpdGlvbnMgc3RhdGVkIGJlbG93LiAgU3VibGljZW5zaW5nIGlzIG5vdCBhbGxvd2VkOyBzZWN0aW9uIDEwCm1ha2VzIGl0IHVubmVjZXNzYXJ5LgoKICAzLiBQcm90ZWN0aW5nIFVzZXJzJyBMZWdhbCBSaWdodHMgRnJvbSBBbnRpLUNpcmN1bXZlbnRpb24gTGF3LgoKICBObyBjb3ZlcmVkIHdvcmsgc2hhbGwgYmUgZGVlbWVkIHBhcnQgb2YgYW4gZWZmZWN0aXZlIHRlY2hub2xvZ2ljYWwKbWVhc3VyZSB1bmRlciBhbnkgYXBwbGljYWJsZSBsYXcgZnVsZmlsbGluZyBvYmxpZ2F0aW9ucyB1bmRlciBhcnRpY2xlCjExIG9mIHRoZSBXSVBPIGNvcHlyaWdodCB0cmVhdHkgYWRvcHRlZCBvbiAyMCBEZWNlbWJlciAxOTk2LCBvcgpzaW1pbGFyIGxhd3MgcHJvaGliaXRpbmcgb3IgcmVzdHJpY3RpbmcgY2lyY3VtdmVudGlvbiBvZiBzdWNoCm1lYXN1cmVzLgoKICBXaGVuIHlvdSBjb252ZXkgYSBjb3ZlcmVkIHdvcmssIHlvdSB3YWl2ZSBhbnkgbGVnYWwgcG93ZXIgdG8gZm9yYmlkCmNpcmN1bXZlbnRpb24gb2YgdGVjaG5vbG9naWNhbCBtZWFzdXJlcyB0byB0aGUgZXh0ZW50IHN1Y2ggY2lyY3VtdmVudGlvbgppcyBlZmZlY3RlZCBieSBleGVyY2lzaW5nIHJpZ2h0cyB1bmRlciB0aGlzIExpY2Vuc2Ugd2l0aCByZXNwZWN0IHRvCnRoZSBjb3ZlcmVkIHdvcmssIGFuZCB5b3UgZGlzY2xhaW0gYW55IGludGVudGlvbiB0byBsaW1pdCBvcGVyYXRpb24gb3IKbW9kaWZpY2F0aW9uIG9mIHRoZSB3b3JrIGFzIGEgbWVhbnMgb2YgZW5mb3JjaW5nLCBhZ2FpbnN0IHRoZSB3b3JrJ3MKdXNlcnMsIHlvdXIgb3IgdGhpcmQgcGFydGllcycgbGVnYWwgcmlnaHRzIHRvIGZvcmJpZCBjaXJjdW12ZW50aW9uIG9mCnRlY2hub2xvZ2ljYWwgbWVhc3VyZXMuCgogIDQuIENvbnZleWluZyBWZXJiYXRpbSBDb3BpZXMuCgogIFlvdSBtYXkgY29udmV5IHZlcmJhdGltIGNvcGllcyBvZiB0aGUgUHJvZ3JhbSdzIHNvdXJjZSBjb2RlIGFzIHlvdQpyZWNlaXZlIGl0LCBpbiBhbnkgbWVkaXVtLCBwcm92aWRlZCB0aGF0IHlvdSBjb25zcGljdW91c2x5IGFuZAphcHByb3ByaWF0ZWx5IHB1Ymxpc2ggb24gZWFjaCBjb3B5IGFuIGFwcHJvcHJpYXRlIGNvcHlyaWdodCBub3RpY2U7CmtlZXAgaW50YWN0IGFsbCBub3RpY2VzIHN0YXRpbmcgdGhhdCB0aGlzIExpY2Vuc2UgYW5kIGFueQpub24tcGVybWlzc2l2ZSB0ZXJtcyBhZGRlZCBpbiBhY2NvcmQgd2l0aCBzZWN0aW9uIDcgYXBwbHkgdG8gdGhlIGNvZGU7CmtlZXAgaW50YWN0IGFsbCBub3RpY2VzIG9mIHRoZSBhYnNlbmNlIG9mIGFueSB3YXJyYW50eTsgYW5kIGdpdmUgYWxsCnJlY2lwaWVudHMgYSBjb3B5IG9mIHRoaXMgTGljZW5zZSBhbG9uZyB3aXRoIHRoZSBQcm9ncmFtLgoKICBZb3UgbWF5IGNoYXJnZSBhbnkgcHJpY2Ugb3Igbm8gcHJpY2UgZm9yIGVhY2ggY29weSB0aGF0IHlvdSBjb252ZXksCmFuZCB5b3UgbWF5IG9mZmVyIHN1cHBvcnQgb3Igd2FycmFudHkgcHJvdGVjdGlvbiBmb3IgYSBmZWUuCgogIDUuIENvbnZleWluZyBNb2RpZmllZCBTb3VyY2UgVmVyc2lvbnMuCgogIFlvdSBtYXkgY29udmV5IGEgd29yayBiYXNlZCBvbiB0aGUgUHJvZ3JhbSwgb3IgdGhlIG1vZGlmaWNhdGlvbnMgdG8KcHJvZHVjZSBpdCBmcm9tIHRoZSBQcm9ncmFtLCBpbiB0aGUgZm9ybSBvZiBzb3VyY2UgY29kZSB1bmRlciB0aGUKdGVybXMgb2Ygc2VjdGlvbiA0LCBwcm92aWRlZCB0aGF0IHlvdSBhbHNvIG1lZXQgYWxsIG9mIHRoZXNlIGNvbmRpdGlvbnM6CgogICAgYSkgVGhlIHdvcmsgbXVzdCBjYXJyeSBwcm9taW5lbnQgbm90aWNlcyBzdGF0aW5nIHRoYXQgeW91IG1vZGlmaWVkCiAgICBpdCwgYW5kIGdpdmluZyBhIHJlbGV2YW50IGRhdGUuCgogICAgYikgVGhlIHdvcmsgbXVzdCBjYXJyeSBwcm9taW5lbnQgbm90aWNlcyBzdGF0aW5nIHRoYXQgaXQgaXMKICAgIHJlbGVhc2VkIHVuZGVyIHRoaXMgTGljZW5zZSBhbmQgYW55IGNvbmRpdGlvbnMgYWRkZWQgdW5kZXIgc2VjdGlvbgogICAgNy4gIFRoaXMgcmVxdWlyZW1lbnQgbW9kaWZpZXMgdGhlIHJlcXVpcmVtZW50IGluIHNlY3Rpb24gNCB0bwogICAgImtlZXAgaW50YWN0IGFsbCBub3RpY2VzIi4KCiAgICBjKSBZb3UgbXVzdCBsaWNlbnNlIHRoZSBlbnRpcmUgd29yaywgYXMgYSB3aG9sZSwgdW5kZXIgdGhpcwogICAgTGljZW5zZSB0byBhbnlvbmUgd2hvIGNvbWVzIGludG8gcG9zc2Vzc2lvbiBvZiBhIGNvcHkuICBUaGlzCiAgICBMaWNlbnNlIHdpbGwgdGhlcmVmb3JlIGFwcGx5LCBhbG9uZyB3aXRoIGFueSBhcHBsaWNhYmxlIHNlY3Rpb24gNwogICAgYWRkaXRpb25hbCB0ZXJtcywgdG8gdGhlIHdob2xlIG9mIHRoZSB3b3JrLCBhbmQgYWxsIGl0cyBwYXJ0cywKICAgIHJlZ2FyZGxlc3Mgb2YgaG93IHRoZXkgYXJlIHBhY2thZ2VkLiAgVGhpcyBMaWNlbnNlIGdpdmVzIG5vCiAgICBwZXJtaXNzaW9uIHRvIGxpY2Vuc2UgdGhlIHdvcmsgaW4gYW55IG90aGVyIHdheSwgYnV0IGl0IGRvZXMgbm90CiAgICBpbnZhbGlkYXRlIHN1Y2ggcGVybWlzc2lvbiBpZiB5b3UgaGF2ZSBzZXBhcmF0ZWx5IHJlY2VpdmVkIGl0LgoKICAgIGQpIElmIHRoZSB3b3JrIGhhcyBpbnRlcmFjdGl2ZSB1c2VyIGludGVyZmFjZXMsIGVhY2ggbXVzdCBkaXNwbGF5CiAgICBBcHByb3ByaWF0ZSBMZWdhbCBOb3RpY2VzOyBob3dldmVyLCBpZiB0aGUgUHJvZ3JhbSBoYXMgaW50ZXJhY3RpdmUKICAgIGludGVyZmFjZXMgdGhhdCBkbyBub3QgZGlzcGxheSBBcHByb3ByaWF0ZSBMZWdhbCBOb3RpY2VzLCB5b3VyCiAgICB3b3JrIG5lZWQgbm90IG1ha2UgdGhlbSBkbyBzby4KCiAgQSBjb21waWxhdGlvbiBvZiBhIGNvdmVyZWQgd29yayB3aXRoIG90aGVyIHNlcGFyYXRlIGFuZCBpbmRlcGVuZGVudAp3b3Jrcywgd2hpY2ggYXJlIG5vdCBieSB0aGVpciBuYXR1cmUgZXh0ZW5zaW9ucyBvZiB0aGUgY292ZXJlZCB3b3JrLAphbmQgd2hpY2ggYXJlIG5vdCBjb21iaW5lZCB3aXRoIGl0IHN1Y2ggYXMgdG8gZm9ybSBhIGxhcmdlciBwcm9ncmFtLAppbiBvciBvbiBhIHZvbHVtZSBvZiBhIHN0b3JhZ2Ugb3IgZGlzdHJpYnV0aW9uIG1lZGl1bSwgaXMgY2FsbGVkIGFuCiJhZ2dyZWdhdGUiIGlmIHRoZSBjb21waWxhdGlvbiBhbmQgaXRzIHJlc3VsdGluZyBjb3B5cmlnaHQgYXJlIG5vdAp1c2VkIHRvIGxpbWl0IHRoZSBhY2Nlc3Mgb3IgbGVnYWwgcmlnaHRzIG9mIHRoZSBjb21waWxhdGlvbidzIHVzZXJzCmJleW9uZCB3aGF0IHRoZSBpbmRpdmlkdWFsIHdvcmtzIHBlcm1pdC4gIEluY2x1c2lvbiBvZiBhIGNvdmVyZWQgd29yawppbiBhbiBhZ2dyZWdhdGUgZG9lcyBub3QgY2F1c2UgdGhpcyBMaWNlbnNlIHRvIGFwcGx5IHRvIHRoZSBvdGhlcgpwYXJ0cyBvZiB0aGUgYWdncmVnYXRlLgoKICA2LiBDb252ZXlpbmcgTm9uLVNvdXJjZSBGb3Jtcy4KCiAgWW91IG1heSBjb252ZXkgYSBjb3ZlcmVkIHdvcmsgaW4gb2JqZWN0IGNvZGUgZm9ybSB1bmRlciB0aGUgdGVybXMKb2Ygc2VjdGlvbnMgNCBhbmQgNSwgcHJvdmlkZWQgdGhhdCB5b3UgYWxzbyBjb252ZXkgdGhlCm1hY2hpbmUtcmVhZGFibGUgQ29ycmVzcG9uZGluZyBTb3VyY2UgdW5kZXIgdGhlIHRlcm1zIG9mIHRoaXMgTGljZW5zZSwKaW4gb25lIG9mIHRoZXNlIHdheXM6CgogICAgYSkgQ29udmV5IHRoZSBvYmplY3QgY29kZSBpbiwgb3IgZW1ib2RpZWQgaW4sIGEgcGh5c2ljYWwgcHJvZHVjdAogICAgKGluY2x1ZGluZyBhIHBoeXNpY2FsIGRpc3RyaWJ1dGlvbiBtZWRpdW0pLCBhY2NvbXBhbmllZCBieSB0aGUKICAgIENvcnJlc3BvbmRpbmcgU291cmNlIGZpeGVkIG9uIGEgZHVyYWJsZSBwaHlzaWNhbCBtZWRpdW0KICAgIGN1c3RvbWFyaWx5IHVzZWQgZm9yIHNvZnR3YXJlIGludGVyY2hhbmdlLgoKICAgIGIpIENvbnZleSB0aGUgb2JqZWN0IGNvZGUgaW4sIG9yIGVtYm9kaWVkIGluLCBhIHBoeXNpY2FsIHByb2R1Y3QKICAgIChpbmNsdWRpbmcgYSBwaHlzaWNhbCBkaXN0cmlidXRpb24gbWVkaXVtKSwgYWNjb21wYW5pZWQgYnkgYQogICAgd3JpdHRlbiBvZmZlciwgdmFsaWQgZm9yIGF0IGxlYXN0IHRocmVlIHllYXJzIGFuZCB2YWxpZCBmb3IgYXMKICAgIGxvbmcgYXMgeW91IG9mZmVyIHNwYXJlIHBhcnRzIG9yIGN1c3RvbWVyIHN1cHBvcnQgZm9yIHRoYXQgcHJvZHVjdAogICAgbW9kZWwsIHRvIGdpdmUgYW55b25lIHdobyBwb3NzZXNzZXMgdGhlIG9iamVjdCBjb2RlIGVpdGhlciAoMSkgYQogICAgY29weSBvZiB0aGUgQ29ycmVzcG9uZGluZyBTb3VyY2UgZm9yIGFsbCB0aGUgc29mdHdhcmUgaW4gdGhlCiAgICBwcm9kdWN0IHRoYXQgaXMgY292ZXJlZCBieSB0aGlzIExpY2Vuc2UsIG9uIGEgZHVyYWJsZSBwaHlzaWNhbAogICAgbWVkaXVtIGN1c3RvbWFyaWx5IHVzZWQgZm9yIHNvZnR3YXJlIGludGVyY2hhbmdlLCBmb3IgYSBwcmljZSBubwogICAgbW9yZSB0aGFuIHlvdXIgcmVhc29uYWJsZSBjb3N0IG9mIHBoeXNpY2FsbHkgcGVyZm9ybWluZyB0aGlzCiAgICBjb252ZXlpbmcgb2Ygc291cmNlLCBvciAoMikgYWNjZXNzIHRvIGNvcHkgdGhlCiAgICBDb3JyZXNwb25kaW5nIFNvdXJjZSBmcm9tIGEgbmV0d29yayBzZXJ2ZXIgYXQgbm8gY2hhcmdlLgoKICAgIGMpIENvbnZleSBpbmRpdmlkdWFsIGNvcGllcyBvZiB0aGUgb2JqZWN0IGNvZGUgd2l0aCBhIGNvcHkgb2YgdGhlCiAgICB3cml0dGVuIG9mZmVyIHRvIHByb3ZpZGUgdGhlIENvcnJlc3BvbmRpbmcgU291cmNlLiAgVGhpcwogICAgYWx0ZXJuYXRpdmUgaXMgYWxsb3dlZCBvbmx5IG9jY2FzaW9uYWxseSBhbmQgbm9uY29tbWVyY2lhbGx5LCBhbmQKICAgIG9ubHkgaWYgeW91IHJlY2VpdmVkIHRoZSBvYmplY3QgY29kZSB3aXRoIHN1Y2ggYW4gb2ZmZXIsIGluIGFjY29yZAogICAgd2l0aCBzdWJzZWN0aW9uIDZiLgoKICAgIGQpIENvbnZleSB0aGUgb2JqZWN0IGNvZGUgYnkgb2ZmZXJpbmcgYWNjZXNzIGZyb20gYSBkZXNpZ25hdGVkCiAgICBwbGFjZSAoZ3JhdGlzIG9yIGZvciBhIGNoYXJnZSksIGFuZCBvZmZlciBlcXVpdmFsZW50IGFjY2VzcyB0byB0aGUKICAgIENvcnJlc3BvbmRpbmcgU291cmNlIGluIHRoZSBzYW1lIHdheSB0aHJvdWdoIHRoZSBzYW1lIHBsYWNlIGF0IG5vCiAgICBmdXJ0aGVyIGNoYXJnZS4gIFlvdSBuZWVkIG5vdCByZXF1aXJlIHJlY2lwaWVudHMgdG8gY29weSB0aGUKICAgIENvcnJlc3BvbmRpbmcgU291cmNlIGFsb25nIHdpdGggdGhlIG9iamVjdCBjb2RlLiAgSWYgdGhlIHBsYWNlIHRvCiAgICBjb3B5IHRoZSBvYmplY3QgY29kZSBpcyBhIG5ldHdvcmsgc2VydmVyLCB0aGUgQ29ycmVzcG9uZGluZyBTb3VyY2UKICAgIG1heSBiZSBvbiBhIGRpZmZlcmVudCBzZXJ2ZXIgKG9wZXJhdGVkIGJ5IHlvdSBvciBhIHRoaXJkIHBhcnR5KQogICAgdGhhdCBzdXBwb3J0cyBlcXVpdmFsZW50IGNvcHlpbmcgZmFjaWxpdGllcywgcHJvdmlkZWQgeW91IG1haW50YWluCiAgICBjbGVhciBkaXJlY3Rpb25zIG5leHQgdG8gdGhlIG9iamVjdCBjb2RlIHNheWluZyB3aGVyZSB0byBmaW5kIHRoZQogICAgQ29ycmVzcG9uZGluZyBTb3VyY2UuICBSZWdhcmRsZXNzIG9mIHdoYXQgc2VydmVyIGhvc3RzIHRoZQogICAgQ29ycmVzcG9uZGluZyBTb3VyY2UsIHlvdSByZW1haW4gb2JsaWdhdGVkIHRvIGVuc3VyZSB0aGF0IGl0IGlzCiAgICBhdmFpbGFibGUgZm9yIGFzIGxvbmcgYXMgbmVlZGVkIHRvIHNhdGlzZnkgdGhlc2UgcmVxdWlyZW1lbnRzLgoKICAgIGUpIENvbnZleSB0aGUgb2JqZWN0IGNvZGUgdXNpbmcgcGVlci10by1wZWVyIHRyYW5zbWlzc2lvbiwgcHJvdmlkZWQKICAgIHlvdSBpbmZvcm0gb3RoZXIgcGVlcnMgd2hlcmUgdGhlIG9iamVjdCBjb2RlIGFuZCBDb3JyZXNwb25kaW5nCiAgICBTb3VyY2Ugb2YgdGhlIHdvcmsgYXJlIGJlaW5nIG9mZmVyZWQgdG8gdGhlIGdlbmVyYWwgcHVibGljIGF0IG5vCiAgICBjaGFyZ2UgdW5kZXIgc3Vic2VjdGlvbiA2ZC4KCiAgQSBzZXBhcmFibGUgcG9ydGlvbiBvZiB0aGUgb2JqZWN0IGNvZGUsIHdob3NlIHNvdXJjZSBjb2RlIGlzIGV4Y2x1ZGVkCmZyb20gdGhlIENvcnJlc3BvbmRpbmcgU291cmNlIGFzIGEgU3lzdGVtIExpYnJhcnksIG5lZWQgbm90IGJlCmluY2x1ZGVkIGluIGNvbnZleWluZyB0aGUgb2JqZWN0IGNvZGUgd29yay4KCiAgQSAiVXNlciBQcm9kdWN0IiBpcyBlaXRoZXIgKDEpIGEgImNvbnN1bWVyIHByb2R1Y3QiLCB3aGljaCBtZWFucyBhbnkKdGFuZ2libGUgcGVyc29uYWwgcHJvcGVydHkgd2hpY2ggaXMgbm9ybWFsbHkgdXNlZCBmb3IgcGVyc29uYWwsIGZhbWlseSwKb3IgaG91c2Vob2xkIHB1cnBvc2VzLCBvciAoMikgYW55dGhpbmcgZGVzaWduZWQgb3Igc29sZCBmb3IgaW5jb3Jwb3JhdGlvbgppbnRvIGEgZHdlbGxpbmcuICBJbiBkZXRlcm1pbmluZyB3aGV0aGVyIGEgcHJvZHVjdCBpcyBhIGNvbnN1bWVyIHByb2R1Y3QsCmRvdWJ0ZnVsIGNhc2VzIHNoYWxsIGJlIHJlc29sdmVkIGluIGZhdm9yIG9mIGNvdmVyYWdlLiAgRm9yIGEgcGFydGljdWxhcgpwcm9kdWN0IHJlY2VpdmVkIGJ5IGEgcGFydGljdWxhciB1c2VyLCAibm9ybWFsbHkgdXNlZCIgcmVmZXJzIHRvIGEKdHlwaWNhbCBvciBjb21tb24gdXNlIG9mIHRoYXQgY2xhc3Mgb2YgcHJvZHVjdCwgcmVnYXJkbGVzcyBvZiB0aGUgc3RhdHVzCm9mIHRoZSBwYXJ0aWN1bGFyIHVzZXIgb3Igb2YgdGhlIHdheSBpbiB3aGljaCB0aGUgcGFydGljdWxhciB1c2VyCmFjdHVhbGx5IHVzZXMsIG9yIGV4cGVjdHMgb3IgaXMgZXhwZWN0ZWQgdG8gdXNlLCB0aGUgcHJvZHVjdC4gIEEgcHJvZHVjdAppcyBhIGNvbnN1bWVyIHByb2R1Y3QgcmVnYXJkbGVzcyBvZiB3aGV0aGVyIHRoZSBwcm9kdWN0IGhhcyBzdWJzdGFudGlhbApjb21tZXJjaWFsLCBpbmR1c3RyaWFsIG9yIG5vbi1jb25zdW1lciB1c2VzLCB1bmxlc3Mgc3VjaCB1c2VzIHJlcHJlc2VudAp0aGUgb25seSBzaWduaWZpY2FudCBtb2RlIG9mIHVzZSBvZiB0aGUgcHJvZHVjdC4KCiAgIkluc3RhbGxhdGlvbiBJbmZvcm1hdGlvbiIgZm9yIGEgVXNlciBQcm9kdWN0IG1lYW5zIGFueSBtZXRob2RzLApwcm9jZWR1cmVzLCBhdXRob3JpemF0aW9uIGtleXMsIG9yIG90aGVyIGluZm9ybWF0aW9uIHJlcXVpcmVkIHRvIGluc3RhbGwKYW5kIGV4ZWN1dGUgbW9kaWZpZWQgdmVyc2lvbnMgb2YgYSBjb3ZlcmVkIHdvcmsgaW4gdGhhdCBVc2VyIFByb2R1Y3QgZnJvbQphIG1vZGlmaWVkIHZlcnNpb24gb2YgaXRzIENvcnJlc3BvbmRpbmcgU291cmNlLiAgVGhlIGluZm9ybWF0aW9uIG11c3QKc3VmZmljZSB0byBlbnN1cmUgdGhhdCB0aGUgY29udGludWVkIGZ1bmN0aW9uaW5nIG9mIHRoZSBtb2RpZmllZCBvYmplY3QKY29kZSBpcyBpbiBubyBjYXNlIHByZXZlbnRlZCBvciBpbnRlcmZlcmVkIHdpdGggc29sZWx5IGJlY2F1c2UKbW9kaWZpY2F0aW9uIGhhcyBiZWVuIG1hZGUuCgogIElmIHlvdSBjb252ZXkgYW4gb2JqZWN0IGNvZGUgd29yayB1bmRlciB0aGlzIHNlY3Rpb24gaW4sIG9yIHdpdGgsIG9yCnNwZWNpZmljYWxseSBmb3IgdXNlIGluLCBhIFVzZXIgUHJvZHVjdCwgYW5kIHRoZSBjb252ZXlpbmcgb2NjdXJzIGFzCnBhcnQgb2YgYSB0cmFuc2FjdGlvbiBpbiB3aGljaCB0aGUgcmlnaHQgb2YgcG9zc2Vzc2lvbiBhbmQgdXNlIG9mIHRoZQpVc2VyIFByb2R1Y3QgaXMgdHJhbnNmZXJyZWQgdG8gdGhlIHJlY2lwaWVudCBpbiBwZXJwZXR1aXR5IG9yIGZvciBhCmZpeGVkIHRlcm0gKHJlZ2FyZGxlc3Mgb2YgaG93IHRoZSB0cmFuc2FjdGlvbiBpcyBjaGFyYWN0ZXJpemVkKSwgdGhlCkNvcnJlc3BvbmRpbmcgU291cmNlIGNvbnZleWVkIHVuZGVyIHRoaXMgc2VjdGlvbiBtdXN0IGJlIGFjY29tcGFuaWVkCmJ5IHRoZSBJbnN0YWxsYXRpb24gSW5mb3JtYXRpb24uICBCdXQgdGhpcyByZXF1aXJlbWVudCBkb2VzIG5vdCBhcHBseQppZiBuZWl0aGVyIHlvdSBub3IgYW55IHRoaXJkIHBhcnR5IHJldGFpbnMgdGhlIGFiaWxpdHkgdG8gaW5zdGFsbAptb2RpZmllZCBvYmplY3QgY29kZSBvbiB0aGUgVXNlciBQcm9kdWN0IChmb3IgZXhhbXBsZSwgdGhlIHdvcmsgaGFzCmJlZW4gaW5zdGFsbGVkIGluIFJPTSkuCgogIFRoZSByZXF1aXJlbWVudCB0byBwcm92aWRlIEluc3RhbGxhdGlvbiBJbmZvcm1hdGlvbiBkb2VzIG5vdCBpbmNsdWRlIGEKcmVxdWlyZW1lbnQgdG8gY29udGludWUgdG8gcHJvdmlkZSBzdXBwb3J0IHNlcnZpY2UsIHdhcnJhbnR5LCBvciB1cGRhdGVzCmZvciBhIHdvcmsgdGhhdCBoYXMgYmVlbiBtb2RpZmllZCBvciBpbnN0YWxsZWQgYnkgdGhlIHJlY2lwaWVudCwgb3IgZm9yCnRoZSBVc2VyIFByb2R1Y3QgaW4gd2hpY2ggaXQgaGFzIGJlZW4gbW9kaWZpZWQgb3IgaW5zdGFsbGVkLiAgQWNjZXNzIHRvIGEKbmV0d29yayBtYXkgYmUgZGVuaWVkIHdoZW4gdGhlIG1vZGlmaWNhdGlvbiBpdHNlbGYgbWF0ZXJpYWxseSBhbmQKYWR2ZXJzZWx5IGFmZmVjdHMgdGhlIG9wZXJhdGlvbiBvZiB0aGUgbmV0d29yayBvciB2aW9sYXRlcyB0aGUgcnVsZXMgYW5kCnByb3RvY29scyBmb3IgY29tbXVuaWNhdGlvbiBhY3Jvc3MgdGhlIG5ldHdvcmsuCgogIENvcnJlc3BvbmRpbmcgU291cmNlIGNvbnZleWVkLCBhbmQgSW5zdGFsbGF0aW9uIEluZm9ybWF0aW9uIHByb3ZpZGVkLAppbiBhY2NvcmQgd2l0aCB0aGlzIHNlY3Rpb24gbXVzdCBiZSBpbiBhIGZvcm1hdCB0aGF0IGlzIHB1YmxpY2x5CmRvY3VtZW50ZWQgKGFuZCB3aXRoIGFuIGltcGxlbWVudGF0aW9uIGF2YWlsYWJsZSB0byB0aGUgcHVibGljIGluCnNvdXJjZSBjb2RlIGZvcm0pLCBhbmQgbXVzdCByZXF1aXJlIG5vIHNwZWNpYWwgcGFzc3dvcmQgb3Iga2V5IGZvcgp1bnBhY2tpbmcsIHJlYWRpbmcgb3IgY29weWluZy4KCiAgNy4gQWRkaXRpb25hbCBUZXJtcy4KCiAgIkFkZGl0aW9uYWwgcGVybWlzc2lvbnMiIGFyZSB0ZXJtcyB0aGF0IHN1cHBsZW1lbnQgdGhlIHRlcm1zIG9mIHRoaXMKTGljZW5zZSBieSBtYWtpbmcgZXhjZXB0aW9ucyBmcm9tIG9uZSBvciBtb3JlIG9mIGl0cyBjb25kaXRpb25zLgpBZGRpdGlvbmFsIHBlcm1pc3Npb25zIHRoYXQgYXJlIGFwcGxpY2FibGUgdG8gdGhlIGVudGlyZSBQcm9ncmFtIHNoYWxsCmJlIHRyZWF0ZWQgYXMgdGhvdWdoIHRoZXkgd2VyZSBpbmNsdWRlZCBpbiB0aGlzIExpY2Vuc2UsIHRvIHRoZSBleHRlbnQKdGhhdCB0aGV5IGFyZSB2YWxpZCB1bmRlciBhcHBsaWNhYmxlIGxhdy4gIElmIGFkZGl0aW9uYWwgcGVybWlzc2lvbnMKYXBwbHkgb25seSB0byBwYXJ0IG9mIHRoZSBQcm9ncmFtLCB0aGF0IHBhcnQgbWF5IGJlIHVzZWQgc2VwYXJhdGVseQp1bmRlciB0aG9zZSBwZXJtaXNzaW9ucywgYnV0IHRoZSBlbnRpcmUgUHJvZ3JhbSByZW1haW5zIGdvdmVybmVkIGJ5CnRoaXMgTGljZW5zZSB3aXRob3V0IHJlZ2FyZCB0byB0aGUgYWRkaXRpb25hbCBwZXJtaXNzaW9ucy4KCiAgV2hlbiB5b3UgY29udmV5IGEgY29weSBvZiBhIGNvdmVyZWQgd29yaywgeW91IG1heSBhdCB5b3VyIG9wdGlvbgpyZW1vdmUgYW55IGFkZGl0aW9uYWwgcGVybWlzc2lvbnMgZnJvbSB0aGF0IGNvcHksIG9yIGZyb20gYW55IHBhcnQgb2YKaXQuICAoQWRkaXRpb25hbCBwZXJtaXNzaW9ucyBtYXkgYmUgd3JpdHRlbiB0byByZXF1aXJlIHRoZWlyIG93bgpyZW1vdmFsIGluIGNlcnRhaW4gY2FzZXMgd2hlbiB5b3UgbW9kaWZ5IHRoZSB3b3JrLikgIFlvdSBtYXkgcGxhY2UKYWRkaXRpb25hbCBwZXJtaXNzaW9ucyBvbiBtYXRlcmlhbCwgYWRkZWQgYnkgeW91IHRvIGEgY292ZXJlZCB3b3JrLApmb3Igd2hpY2ggeW91IGhhdmUgb3IgY2FuIGdpdmUgYXBwcm9wcmlhdGUgY29weXJpZ2h0IHBlcm1pc3Npb24uCgogIE5vdHdpdGhzdGFuZGluZyBhbnkgb3RoZXIgcHJvdmlzaW9uIG9mIHRoaXMgTGljZW5zZSwgZm9yIG1hdGVyaWFsIHlvdQphZGQgdG8gYSBjb3ZlcmVkIHdvcmssIHlvdSBtYXkgKGlmIGF1dGhvcml6ZWQgYnkgdGhlIGNvcHlyaWdodCBob2xkZXJzIG9mCnRoYXQgbWF0ZXJpYWwpIHN1cHBsZW1lbnQgdGhlIHRlcm1zIG9mIHRoaXMgTGljZW5zZSB3aXRoIHRlcm1zOgoKICAgIGEpIERpc2NsYWltaW5nIHdhcnJhbnR5IG9yIGxpbWl0aW5nIGxpYWJpbGl0eSBkaWZmZXJlbnRseSBmcm9tIHRoZQogICAgdGVybXMgb2Ygc2VjdGlvbnMgMTUgYW5kIDE2IG9mIHRoaXMgTGljZW5zZTsgb3IKCiAgICBiKSBSZXF1aXJpbmcgcHJlc2VydmF0aW9uIG9mIHNwZWNpZmllZCByZWFzb25hYmxlIGxlZ2FsIG5vdGljZXMgb3IKICAgIGF1dGhvciBhdHRyaWJ1dGlvbnMgaW4gdGhhdCBtYXRlcmlhbCBvciBpbiB0aGUgQXBwcm9wcmlhdGUgTGVnYWwKICAgIE5vdGljZXMgZGlzcGxheWVkIGJ5IHdvcmtzIGNvbnRhaW5pbmcgaXQ7IG9yCgogICAgYykgUHJvaGliaXRpbmcgbWlzcmVwcmVzZW50YXRpb24gb2YgdGhlIG9yaWdpbiBvZiB0aGF0IG1hdGVyaWFsLCBvcgogICAgcmVxdWlyaW5nIHRoYXQgbW9kaWZpZWQgdmVyc2lvbnMgb2Ygc3VjaCBtYXRlcmlhbCBiZSBtYXJrZWQgaW4KICAgIHJlYXNvbmFibGUgd2F5cyBhcyBkaWZmZXJlbnQgZnJvbSB0aGUgb3JpZ2luYWwgdmVyc2lvbjsgb3IKCiAgICBkKSBMaW1pdGluZyB0aGUgdXNlIGZvciBwdWJsaWNpdHkgcHVycG9zZXMgb2YgbmFtZXMgb2YgbGljZW5zb3JzIG9yCiAgICBhdXRob3JzIG9mIHRoZSBtYXRlcmlhbDsgb3IKCiAgICBlKSBEZWNsaW5pbmcgdG8gZ3JhbnQgcmlnaHRzIHVuZGVyIHRyYWRlbWFyayBsYXcgZm9yIHVzZSBvZiBzb21lCiAgICB0cmFkZSBuYW1lcywgdHJhZGVtYXJrcywgb3Igc2VydmljZSBtYXJrczsgb3IKCiAgICBmKSBSZXF1aXJpbmcgaW5kZW1uaWZpY2F0aW9uIG9mIGxpY2Vuc29ycyBhbmQgYXV0aG9ycyBvZiB0aGF0CiAgICBtYXRlcmlhbCBieSBhbnlvbmUgd2hvIGNvbnZleXMgdGhlIG1hdGVyaWFsIChvciBtb2RpZmllZCB2ZXJzaW9ucyBvZgogICAgaXQpIHdpdGggY29udHJhY3R1YWwgYXNzdW1wdGlvbnMgb2YgbGlhYmlsaXR5IHRvIHRoZSByZWNpcGllbnQsIGZvcgogICAgYW55IGxpYWJpbGl0eSB0aGF0IHRoZXNlIGNvbnRyYWN0dWFsIGFzc3VtcHRpb25zIGRpcmVjdGx5IGltcG9zZSBvbgogICAgdGhvc2UgbGljZW5zb3JzIGFuZCBhdXRob3JzLgoKICBBbGwgb3RoZXIgbm9uLXBlcm1pc3NpdmUgYWRkaXRpb25hbCB0ZXJtcyBhcmUgY29uc2lkZXJlZCAiZnVydGhlcgpyZXN0cmljdGlvbnMiIHdpdGhpbiB0aGUgbWVhbmluZyBvZiBzZWN0aW9uIDEwLiAgSWYgdGhlIFByb2dyYW0gYXMgeW91CnJlY2VpdmVkIGl0LCBvciBhbnkgcGFydCBvZiBpdCwgY29udGFpbnMgYSBub3RpY2Ugc3RhdGluZyB0aGF0IGl0IGlzCmdvdmVybmVkIGJ5IHRoaXMgTGljZW5zZSBhbG9uZyB3aXRoIGEgdGVybSB0aGF0IGlzIGEgZnVydGhlcgpyZXN0cmljdGlvbiwgeW91IG1heSByZW1vdmUgdGhhdCB0ZXJtLiAgSWYgYSBsaWNlbnNlIGRvY3VtZW50IGNvbnRhaW5zCmEgZnVydGhlciByZXN0cmljdGlvbiBidXQgcGVybWl0cyByZWxpY2Vuc2luZyBvciBjb252ZXlpbmcgdW5kZXIgdGhpcwpMaWNlbnNlLCB5b3UgbWF5IGFkZCB0byBhIGNvdmVyZWQgd29yayBtYXRlcmlhbCBnb3Zlcm5lZCBieSB0aGUgdGVybXMKb2YgdGhhdCBsaWNlbnNlIGRvY3VtZW50LCBwcm92aWRlZCB0aGF0IHRoZSBmdXJ0aGVyIHJlc3RyaWN0aW9uIGRvZXMKbm90IHN1cnZpdmUgc3VjaCByZWxpY2Vuc2luZyBvciBjb252ZXlpbmcuCgogIElmIHlvdSBhZGQgdGVybXMgdG8gYSBjb3ZlcmVkIHdvcmsgaW4gYWNjb3JkIHdpdGggdGhpcyBzZWN0aW9uLCB5b3UKbXVzdCBwbGFjZSwgaW4gdGhlIHJlbGV2YW50IHNvdXJjZSBmaWxlcywgYSBzdGF0ZW1lbnQgb2YgdGhlCmFkZGl0aW9uYWwgdGVybXMgdGhhdCBhcHBseSB0byB0aG9zZSBmaWxlcywgb3IgYSBub3RpY2UgaW5kaWNhdGluZwp3aGVyZSB0byBmaW5kIHRoZSBhcHBsaWNhYmxlIHRlcm1zLgoKICBBZGRpdGlvbmFsIHRlcm1zLCBwZXJtaXNzaXZlIG9yIG5vbi1wZXJtaXNzaXZlLCBtYXkgYmUgc3RhdGVkIGluIHRoZQpmb3JtIG9mIGEgc2VwYXJhdGVseSB3cml0dGVuIGxpY2Vuc2UsIG9yIHN0YXRlZCBhcyBleGNlcHRpb25zOwp0aGUgYWJvdmUgcmVxdWlyZW1lbnRzIGFwcGx5IGVpdGhlciB3YXkuCgogIDguIFRlcm1pbmF0aW9uLgoKICBZb3UgbWF5IG5vdCBwcm9wYWdhdGUgb3IgbW9kaWZ5IGEgY292ZXJlZCB3b3JrIGV4Y2VwdCBhcyBleHByZXNzbHkKcHJvdmlkZWQgdW5kZXIgdGhpcyBMaWNlbnNlLiAgQW55IGF0dGVtcHQgb3RoZXJ3aXNlIHRvIHByb3BhZ2F0ZSBvcgptb2RpZnkgaXQgaXMgdm9pZCwgYW5kIHdpbGwgYXV0b21hdGljYWxseSB0ZXJtaW5hdGUgeW91ciByaWdodHMgdW5kZXIKdGhpcyBMaWNlbnNlIChpbmNsdWRpbmcgYW55IHBhdGVudCBsaWNlbnNlcyBncmFudGVkIHVuZGVyIHRoZSB0aGlyZApwYXJhZ3JhcGggb2Ygc2VjdGlvbiAxMSkuCgogIEhvd2V2ZXIsIGlmIHlvdSBjZWFzZSBhbGwgdmlvbGF0aW9uIG9mIHRoaXMgTGljZW5zZSwgdGhlbiB5b3VyCmxpY2Vuc2UgZnJvbSBhIHBhcnRpY3VsYXIgY29weXJpZ2h0IGhvbGRlciBpcyByZWluc3RhdGVkIChhKQpwcm92aXNpb25hbGx5LCB1bmxlc3MgYW5kIHVudGlsIHRoZSBjb3B5cmlnaHQgaG9sZGVyIGV4cGxpY2l0bHkgYW5kCmZpbmFsbHkgdGVybWluYXRlcyB5b3VyIGxpY2Vuc2UsIGFuZCAoYikgcGVybWFuZW50bHksIGlmIHRoZSBjb3B5cmlnaHQKaG9sZGVyIGZhaWxzIHRvIG5vdGlmeSB5b3Ugb2YgdGhlIHZpb2xhdGlvbiBieSBzb21lIHJlYXNvbmFibGUgbWVhbnMKcHJpb3IgdG8gNjAgZGF5cyBhZnRlciB0aGUgY2Vzc2F0aW9uLgoKICBNb3Jlb3ZlciwgeW91ciBsaWNlbnNlIGZyb20gYSBwYXJ0aWN1bGFyIGNvcHlyaWdodCBob2xkZXIgaXMKcmVpbnN0YXRlZCBwZXJtYW5lbnRseSBpZiB0aGUgY29weXJpZ2h0IGhvbGRlciBub3RpZmllcyB5b3Ugb2YgdGhlCnZpb2xhdGlvbiBieSBzb21lIHJlYXNvbmFibGUgbWVhbnMsIHRoaXMgaXMgdGhlIGZpcnN0IHRpbWUgeW91IGhhdmUKcmVjZWl2ZWQgbm90aWNlIG9mIHZpb2xhdGlvbiBvZiB0aGlzIExpY2Vuc2UgKGZvciBhbnkgd29yaykgZnJvbSB0aGF0CmNvcHlyaWdodCBob2xkZXIsIGFuZCB5b3UgY3VyZSB0aGUgdmlvbGF0aW9uIHByaW9yIHRvIDMwIGRheXMgYWZ0ZXIKeW91ciByZWNlaXB0IG9mIHRoZSBub3RpY2UuCgogIFRlcm1pbmF0aW9uIG9mIHlvdXIgcmlnaHRzIHVuZGVyIHRoaXMgc2VjdGlvbiBkb2VzIG5vdCB0ZXJtaW5hdGUgdGhlCmxpY2Vuc2VzIG9mIHBhcnRpZXMgd2hvIGhhdmUgcmVjZWl2ZWQgY29waWVzIG9yIHJpZ2h0cyBmcm9tIHlvdSB1bmRlcgp0aGlzIExpY2Vuc2UuICBJZiB5b3VyIHJpZ2h0cyBoYXZlIGJlZW4gdGVybWluYXRlZCBhbmQgbm90IHBlcm1hbmVudGx5CnJlaW5zdGF0ZWQsIHlvdSBkbyBub3QgcXVhbGlmeSB0byByZWNlaXZlIG5ldyBsaWNlbnNlcyBmb3IgdGhlIHNhbWUKbWF0ZXJpYWwgdW5kZXIgc2VjdGlvbiAxMC4KCiAgOS4gQWNjZXB0YW5jZSBOb3QgUmVxdWlyZWQgZm9yIEhhdmluZyBDb3BpZXMuCgogIFlvdSBhcmUgbm90IHJlcXVpcmVkIHRvIGFjY2VwdCB0aGlzIExpY2Vuc2UgaW4gb3JkZXIgdG8gcmVjZWl2ZSBvcgpydW4gYSBjb3B5IG9mIHRoZSBQcm9ncmFtLiAgQW5jaWxsYXJ5IHByb3BhZ2F0aW9uIG9mIGEgY292ZXJlZCB3b3JrCm9jY3VycmluZyBzb2xlbHkgYXMgYSBjb25zZXF1ZW5jZSBvZiB1c2luZyBwZWVyLXRvLXBlZXIgdHJhbnNtaXNzaW9uCnRvIHJlY2VpdmUgYSBjb3B5IGxpa2V3aXNlIGRvZXMgbm90IHJlcXVpcmUgYWNjZXB0YW5jZS4gIEhvd2V2ZXIsCm5vdGhpbmcgb3RoZXIgdGhhbiB0aGlzIExpY2Vuc2UgZ3JhbnRzIHlvdSBwZXJtaXNzaW9uIHRvIHByb3BhZ2F0ZSBvcgptb2RpZnkgYW55IGNvdmVyZWQgd29yay4gIFRoZXNlIGFjdGlvbnMgaW5mcmluZ2UgY29weXJpZ2h0IGlmIHlvdSBkbwpub3QgYWNjZXB0IHRoaXMgTGljZW5zZS4gIFRoZXJlZm9yZSwgYnkgbW9kaWZ5aW5nIG9yIHByb3BhZ2F0aW5nIGEKY292ZXJlZCB3b3JrLCB5b3UgaW5kaWNhdGUgeW91ciBhY2NlcHRhbmNlIG9mIHRoaXMgTGljZW5zZSB0byBkbyBzby4KCiAgMTAuIEF1dG9tYXRpYyBMaWNlbnNpbmcgb2YgRG93bnN0cmVhbSBSZWNpcGllbnRzLgoKICBFYWNoIHRpbWUgeW91IGNvbnZleSBhIGNvdmVyZWQgd29yaywgdGhlIHJlY2lwaWVudCBhdXRvbWF0aWNhbGx5CnJlY2VpdmVzIGEgbGljZW5zZSBmcm9tIHRoZSBvcmlnaW5hbCBsaWNlbnNvcnMsIHRvIHJ1biwgbW9kaWZ5IGFuZApwcm9wYWdhdGUgdGhhdCB3b3JrLCBzdWJqZWN0IHRvIHRoaXMgTGljZW5zZS4gIFlvdSBhcmUgbm90IHJlc3BvbnNpYmxlCmZvciBlbmZvcmNpbmcgY29tcGxpYW5jZSBieSB0aGlyZCBwYXJ0aWVzIHdpdGggdGhpcyBMaWNlbnNlLgoKICBBbiAiZW50aXR5IHRyYW5zYWN0aW9uIiBpcyBhIHRyYW5zYWN0aW9uIHRyYW5zZmVycmluZyBjb250cm9sIG9mIGFuCm9yZ2FuaXphdGlvbiwgb3Igc3Vic3RhbnRpYWxseSBhbGwgYXNzZXRzIG9mIG9uZSwgb3Igc3ViZGl2aWRpbmcgYW4Kb3JnYW5pemF0aW9uLCBvciBtZXJnaW5nIG9yZ2FuaXphdGlvbnMuICBJZiBwcm9wYWdhdGlvbiBvZiBhIGNvdmVyZWQKd29yayByZXN1bHRzIGZyb20gYW4gZW50aXR5IHRyYW5zYWN0aW9uLCBlYWNoIHBhcnR5IHRvIHRoYXQKdHJhbnNhY3Rpb24gd2hvIHJlY2VpdmVzIGEgY29weSBvZiB0aGUgd29yayBhbHNvIHJlY2VpdmVzIHdoYXRldmVyCmxpY2Vuc2VzIHRvIHRoZSB3b3JrIHRoZSBwYXJ0eSdzIHByZWRlY2Vzc29yIGluIGludGVyZXN0IGhhZCBvciBjb3VsZApnaXZlIHVuZGVyIHRoZSBwcmV2aW91cyBwYXJhZ3JhcGgsIHBsdXMgYSByaWdodCB0byBwb3NzZXNzaW9uIG9mIHRoZQpDb3JyZXNwb25kaW5nIFNvdXJjZSBvZiB0aGUgd29yayBmcm9tIHRoZSBwcmVkZWNlc3NvciBpbiBpbnRlcmVzdCwgaWYKdGhlIHByZWRlY2Vzc29yIGhhcyBpdCBvciBjYW4gZ2V0IGl0IHdpdGggcmVhc29uYWJsZSBlZmZvcnRzLgoKICBZb3UgbWF5IG5vdCBpbXBvc2UgYW55IGZ1cnRoZXIgcmVzdHJpY3Rpb25zIG9uIHRoZSBleGVyY2lzZSBvZiB0aGUKcmlnaHRzIGdyYW50ZWQgb3IgYWZmaXJtZWQgdW5kZXIgdGhpcyBMaWNlbnNlLiAgRm9yIGV4YW1wbGUsIHlvdSBtYXkKbm90IGltcG9zZSBhIGxpY2Vuc2UgZmVlLCByb3lhbHR5LCBvciBvdGhlciBjaGFyZ2UgZm9yIGV4ZXJjaXNlIG9mCnJpZ2h0cyBncmFudGVkIHVuZGVyIHRoaXMgTGljZW5zZSwgYW5kIHlvdSBtYXkgbm90IGluaXRpYXRlIGxpdGlnYXRpb24KKGluY2x1ZGluZyBhIGNyb3NzLWNsYWltIG9yIGNvdW50ZXJjbGFpbSBpbiBhIGxhd3N1aXQpIGFsbGVnaW5nIHRoYXQKYW55IHBhdGVudCBjbGFpbSBpcyBpbmZyaW5nZWQgYnkgbWFraW5nLCB1c2luZywgc2VsbGluZywgb2ZmZXJpbmcgZm9yCnNhbGUsIG9yIGltcG9ydGluZyB0aGUgUHJvZ3JhbSBvciBhbnkgcG9ydGlvbiBvZiBpdC4KCiAgMTEuIFBhdGVudHMuCgogIEEgImNvbnRyaWJ1dG9yIiBpcyBhIGNvcHlyaWdodCBob2xkZXIgd2hvIGF1dGhvcml6ZXMgdXNlIHVuZGVyIHRoaXMKTGljZW5zZSBvZiB0aGUgUHJvZ3JhbSBvciBhIHdvcmsgb24gd2hpY2ggdGhlIFByb2dyYW0gaXMgYmFzZWQuICBUaGUKd29yayB0aHVzIGxpY2Vuc2VkIGlzIGNhbGxlZCB0aGUgY29udHJpYnV0b3IncyAiY29udHJpYnV0b3IgdmVyc2lvbiIuCgogIEEgY29udHJpYnV0b3IncyAiZXNzZW50aWFsIHBhdGVudCBjbGFpbXMiIGFyZSBhbGwgcGF0ZW50IGNsYWltcwpvd25lZCBvciBjb250cm9sbGVkIGJ5IHRoZSBjb250cmlidXRvciwgd2hldGhlciBhbHJlYWR5IGFjcXVpcmVkIG9yCmhlcmVhZnRlciBhY3F1aXJlZCwgdGhhdCB3b3VsZCBiZSBpbmZyaW5nZWQgYnkgc29tZSBtYW5uZXIsIHBlcm1pdHRlZApieSB0aGlzIExpY2Vuc2UsIG9mIG1ha2luZywgdXNpbmcsIG9yIHNlbGxpbmcgaXRzIGNvbnRyaWJ1dG9yIHZlcnNpb24sCmJ1dCBkbyBub3QgaW5jbHVkZSBjbGFpbXMgdGhhdCB3b3VsZCBiZSBpbmZyaW5nZWQgb25seSBhcyBhCmNvbnNlcXVlbmNlIG9mIGZ1cnRoZXIgbW9kaWZpY2F0aW9uIG9mIHRoZSBjb250cmlidXRvciB2ZXJzaW9uLiAgRm9yCnB1cnBvc2VzIG9mIHRoaXMgZGVmaW5pdGlvbiwgImNvbnRyb2wiIGluY2x1ZGVzIHRoZSByaWdodCB0byBncmFudApwYXRlbnQgc3VibGljZW5zZXMgaW4gYSBtYW5uZXIgY29uc2lzdGVudCB3aXRoIHRoZSByZXF1aXJlbWVudHMgb2YKdGhpcyBMaWNlbnNlLgoKICBFYWNoIGNvbnRyaWJ1dG9yIGdyYW50cyB5b3UgYSBub24tZXhjbHVzaXZlLCB3b3JsZHdpZGUsIHJveWFsdHktZnJlZQpwYXRlbnQgbGljZW5zZSB1bmRlciB0aGUgY29udHJpYnV0b3IncyBlc3NlbnRpYWwgcGF0ZW50IGNsYWltcywgdG8KbWFrZSwgdXNlLCBzZWxsLCBvZmZlciBmb3Igc2FsZSwgaW1wb3J0IGFuZCBvdGhlcndpc2UgcnVuLCBtb2RpZnkgYW5kCnByb3BhZ2F0ZSB0aGUgY29udGVudHMgb2YgaXRzIGNvbnRyaWJ1dG9yIHZlcnNpb24uCgogIEluIHRoZSBmb2xsb3dpbmcgdGhyZWUgcGFyYWdyYXBocywgYSAicGF0ZW50IGxpY2Vuc2UiIGlzIGFueSBleHByZXNzCmFncmVlbWVudCBvciBjb21taXRtZW50LCBob3dldmVyIGRlbm9taW5hdGVkLCBub3QgdG8gZW5mb3JjZSBhIHBhdGVudAooc3VjaCBhcyBhbiBleHByZXNzIHBlcm1pc3Npb24gdG8gcHJhY3RpY2UgYSBwYXRlbnQgb3IgY292ZW5hbnQgbm90IHRvCnN1ZSBmb3IgcGF0ZW50IGluZnJpbmdlbWVudCkuICBUbyAiZ3JhbnQiIHN1Y2ggYSBwYXRlbnQgbGljZW5zZSB0byBhCnBhcnR5IG1lYW5zIHRvIG1ha2Ugc3VjaCBhbiBhZ3JlZW1lbnQgb3IgY29tbWl0bWVudCBub3QgdG8gZW5mb3JjZSBhCnBhdGVudCBhZ2FpbnN0IHRoZSBwYXJ0eS4KCiAgSWYgeW91IGNvbnZleSBhIGNvdmVyZWQgd29yaywga25vd2luZ2x5IHJlbHlpbmcgb24gYSBwYXRlbnQgbGljZW5zZSwKYW5kIHRoZSBDb3JyZXNwb25kaW5nIFNvdXJjZSBvZiB0aGUgd29yayBpcyBub3QgYXZhaWxhYmxlIGZvciBhbnlvbmUKdG8gY29weSwgZnJlZSBvZiBjaGFyZ2UgYW5kIHVuZGVyIHRoZSB0ZXJtcyBvZiB0aGlzIExpY2Vuc2UsIHRocm91Z2ggYQpwdWJsaWNseSBhdmFpbGFibGUgbmV0d29yayBzZXJ2ZXIgb3Igb3RoZXIgcmVhZGlseSBhY2Nlc3NpYmxlIG1lYW5zLAp0aGVuIHlvdSBtdXN0IGVpdGhlciAoMSkgY2F1c2UgdGhlIENvcnJlc3BvbmRpbmcgU291cmNlIHRvIGJlIHNvCmF2YWlsYWJsZSwgb3IgKDIpIGFycmFuZ2UgdG8gZGVwcml2ZSB5b3Vyc2VsZiBvZiB0aGUgYmVuZWZpdCBvZiB0aGUKcGF0ZW50IGxpY2Vuc2UgZm9yIHRoaXMgcGFydGljdWxhciB3b3JrLCBvciAoMykgYXJyYW5nZSwgaW4gYSBtYW5uZXIKY29uc2lzdGVudCB3aXRoIHRoZSByZXF1aXJlbWVudHMgb2YgdGhpcyBMaWNlbnNlLCB0byBleHRlbmQgdGhlIHBhdGVudApsaWNlbnNlIHRvIGRvd25zdHJlYW0gcmVjaXBpZW50cy4gICJLbm93aW5nbHkgcmVseWluZyIgbWVhbnMgeW91IGhhdmUKYWN0dWFsIGtub3dsZWRnZSB0aGF0LCBidXQgZm9yIHRoZSBwYXRlbnQgbGljZW5zZSwgeW91ciBjb252ZXlpbmcgdGhlCmNvdmVyZWQgd29yayBpbiBhIGNvdW50cnksIG9yIHlvdXIgcmVjaXBpZW50J3MgdXNlIG9mIHRoZSBjb3ZlcmVkIHdvcmsKaW4gYSBjb3VudHJ5LCB3b3VsZCBpbmZyaW5nZSBvbmUgb3IgbW9yZSBpZGVudGlmaWFibGUgcGF0ZW50cyBpbiB0aGF0CmNvdW50cnkgdGhhdCB5b3UgaGF2ZSByZWFzb24gdG8gYmVsaWV2ZSBhcmUgdmFsaWQuCgogIElmLCBwdXJzdWFudCB0byBvciBpbiBjb25uZWN0aW9uIHdpdGggYSBzaW5nbGUgdHJhbnNhY3Rpb24gb3IKYXJyYW5nZW1lbnQsIHlvdSBjb252ZXksIG9yIHByb3BhZ2F0ZSBieSBwcm9jdXJpbmcgY29udmV5YW5jZSBvZiwgYQpjb3ZlcmVkIHdvcmssIGFuZCBncmFudCBhIHBhdGVudCBsaWNlbnNlIHRvIHNvbWUgb2YgdGhlIHBhcnRpZXMKcmVjZWl2aW5nIHRoZSBjb3ZlcmVkIHdvcmsgYXV0aG9yaXppbmcgdGhlbSB0byB1c2UsIHByb3BhZ2F0ZSwgbW9kaWZ5Cm9yIGNvbnZleSBhIHNwZWNpZmljIGNvcHkgb2YgdGhlIGNvdmVyZWQgd29yaywgdGhlbiB0aGUgcGF0ZW50IGxpY2Vuc2UKeW91IGdyYW50IGlzIGF1dG9tYXRpY2FsbHkgZXh0ZW5kZWQgdG8gYWxsIHJlY2lwaWVudHMgb2YgdGhlIGNvdmVyZWQKd29yayBhbmQgd29ya3MgYmFzZWQgb24gaXQuCgogIEEgcGF0ZW50IGxpY2Vuc2UgaXMgImRpc2NyaW1pbmF0b3J5IiBpZiBpdCBkb2VzIG5vdCBpbmNsdWRlIHdpdGhpbgp0aGUgc2NvcGUgb2YgaXRzIGNvdmVyYWdlLCBwcm9oaWJpdHMgdGhlIGV4ZXJjaXNlIG9mLCBvciBpcwpjb25kaXRpb25lZCBvbiB0aGUgbm9uLWV4ZXJjaXNlIG9mIG9uZSBvciBtb3JlIG9mIHRoZSByaWdodHMgdGhhdCBhcmUKc3BlY2lmaWNhbGx5IGdyYW50ZWQgdW5kZXIgdGhpcyBMaWNlbnNlLiAgWW91IG1heSBub3QgY29udmV5IGEgY292ZXJlZAp3b3JrIGlmIHlvdSBhcmUgYSBwYXJ0eSB0byBhbiBhcnJhbmdlbWVudCB3aXRoIGEgdGhpcmQgcGFydHkgdGhhdCBpcwppbiB0aGUgYnVzaW5lc3Mgb2YgZGlzdHJpYnV0aW5nIHNvZnR3YXJlLCB1bmRlciB3aGljaCB5b3UgbWFrZSBwYXltZW50CnRvIHRoZSB0aGlyZCBwYXJ0eSBiYXNlZCBvbiB0aGUgZXh0ZW50IG9mIHlvdXIgYWN0aXZpdHkgb2YgY29udmV5aW5nCnRoZSB3b3JrLCBhbmQgdW5kZXIgd2hpY2ggdGhlIHRoaXJkIHBhcnR5IGdyYW50cywgdG8gYW55IG9mIHRoZQpwYXJ0aWVzIHdobyB3b3VsZCByZWNlaXZlIHRoZSBjb3ZlcmVkIHdvcmsgZnJvbSB5b3UsIGEgZGlzY3JpbWluYXRvcnkKcGF0ZW50IGxpY2Vuc2UgKGEpIGluIGNvbm5lY3Rpb24gd2l0aCBjb3BpZXMgb2YgdGhlIGNvdmVyZWQgd29yawpjb252ZXllZCBieSB5b3UgKG9yIGNvcGllcyBtYWRlIGZyb20gdGhvc2UgY29waWVzKSwgb3IgKGIpIHByaW1hcmlseQpmb3IgYW5kIGluIGNvbm5lY3Rpb24gd2l0aCBzcGVjaWZpYyBwcm9kdWN0cyBvciBjb21waWxhdGlvbnMgdGhhdApjb250YWluIHRoZSBjb3ZlcmVkIHdvcmssIHVubGVzcyB5b3UgZW50ZXJlZCBpbnRvIHRoYXQgYXJyYW5nZW1lbnQsCm9yIHRoYXQgcGF0ZW50IGxpY2Vuc2Ugd2FzIGdyYW50ZWQsIHByaW9yIHRvIDI4IE1hcmNoIDIwMDcuCgogIE5vdGhpbmcgaW4gdGhpcyBMaWNlbnNlIHNoYWxsIGJlIGNvbnN0cnVlZCBhcyBleGNsdWRpbmcgb3IgbGltaXRpbmcKYW55IGltcGxpZWQgbGljZW5zZSBvciBvdGhlciBkZWZlbnNlcyB0byBpbmZyaW5nZW1lbnQgdGhhdCBtYXkKb3RoZXJ3aXNlIGJlIGF2YWlsYWJsZSB0byB5b3UgdW5kZXIgYXBwbGljYWJsZSBwYXRlbnQgbGF3LgoKICAxMi4gTm8gU3VycmVuZGVyIG9mIE90aGVycycgRnJlZWRvbS4KCiAgSWYgY29uZGl0aW9ucyBhcmUgaW1wb3NlZCBvbiB5b3UgKHdoZXRoZXIgYnkgY291cnQgb3JkZXIsIGFncmVlbWVudCBvcgpvdGhlcndpc2UpIHRoYXQgY29udHJhZGljdCB0aGUgY29uZGl0aW9ucyBvZiB0aGlzIExpY2Vuc2UsIHRoZXkgZG8gbm90CmV4Y3VzZSB5b3UgZnJvbSB0aGUgY29uZGl0aW9ucyBvZiB0aGlzIExpY2Vuc2UuICBJZiB5b3UgY2Fubm90IGNvbnZleSBhCmNvdmVyZWQgd29yayBzbyBhcyB0byBzYXRpc2Z5IHNpbXVsdGFuZW91c2x5IHlvdXIgb2JsaWdhdGlvbnMgdW5kZXIgdGhpcwpMaWNlbnNlIGFuZCBhbnkgb3RoZXIgcGVydGluZW50IG9ibGlnYXRpb25zLCB0aGVuIGFzIGEgY29uc2VxdWVuY2UgeW91IG1heQpub3QgY29udmV5IGl0IGF0IGFsbC4gIEZvciBleGFtcGxlLCBpZiB5b3UgYWdyZWUgdG8gdGVybXMgdGhhdCBvYmxpZ2F0ZSB5b3UKdG8gY29sbGVjdCBhIHJveWFsdHkgZm9yIGZ1cnRoZXIgY29udmV5aW5nIGZyb20gdGhvc2UgdG8gd2hvbSB5b3UgY29udmV5CnRoZSBQcm9ncmFtLCB0aGUgb25seSB3YXkgeW91IGNvdWxkIHNhdGlzZnkgYm90aCB0aG9zZSB0ZXJtcyBhbmQgdGhpcwpMaWNlbnNlIHdvdWxkIGJlIHRvIHJlZnJhaW4gZW50aXJlbHkgZnJvbSBjb252ZXlpbmcgdGhlIFByb2dyYW0uCgogIDEzLiBVc2Ugd2l0aCB0aGUgR05VIEFmZmVybyBHZW5lcmFsIFB1YmxpYyBMaWNlbnNlLgoKICBOb3R3aXRoc3RhbmRpbmcgYW55IG90aGVyIHByb3Zpc2lvbiBvZiB0aGlzIExpY2Vuc2UsIHlvdSBoYXZlCnBlcm1pc3Npb24gdG8gbGluayBvciBjb21iaW5lIGFueSBjb3ZlcmVkIHdvcmsgd2l0aCBhIHdvcmsgbGljZW5zZWQKdW5kZXIgdmVyc2lvbiAzIG9mIHRoZSBHTlUgQWZmZXJvIEdlbmVyYWwgUHVibGljIExpY2Vuc2UgaW50byBhIHNpbmdsZQpjb21iaW5lZCB3b3JrLCBhbmQgdG8gY29udmV5IHRoZSByZXN1bHRpbmcgd29yay4gIFRoZSB0ZXJtcyBvZiB0aGlzCkxpY2Vuc2Ugd2lsbCBjb250aW51ZSB0byBhcHBseSB0byB0aGUgcGFydCB3aGljaCBpcyB0aGUgY292ZXJlZCB3b3JrLApidXQgdGhlIHNwZWNpYWwgcmVxdWlyZW1lbnRzIG9mIHRoZSBHTlUgQWZmZXJvIEdlbmVyYWwgUHVibGljIExpY2Vuc2UsCnNlY3Rpb24gMTMsIGNvbmNlcm5pbmcgaW50ZXJhY3Rpb24gdGhyb3VnaCBhIG5ldHdvcmsgd2lsbCBhcHBseSB0byB0aGUKY29tYmluYXRpb24gYXMgc3VjaC4KCiAgMTQuIFJldmlzZWQgVmVyc2lvbnMgb2YgdGhpcyBMaWNlbnNlLgoKICBUaGUgRnJlZSBTb2Z0d2FyZSBGb3VuZGF0aW9uIG1heSBwdWJsaXNoIHJldmlzZWQgYW5kL29yIG5ldyB2ZXJzaW9ucyBvZgp0aGUgR05VIEdlbmVyYWwgUHVibGljIExpY2Vuc2UgZnJvbSB0aW1lIHRvIHRpbWUuICBTdWNoIG5ldyB2ZXJzaW9ucyB3aWxsCmJlIHNpbWlsYXIgaW4gc3Bpcml0IHRvIHRoZSBwcmVzZW50IHZlcnNpb24sIGJ1dCBtYXkgZGlmZmVyIGluIGRldGFpbCB0bwphZGRyZXNzIG5ldyBwcm9ibGVtcyBvciBjb25jZXJucy4KCiAgRWFjaCB2ZXJzaW9uIGlzIGdpdmVuIGEgZGlzdGluZ3Vpc2hpbmcgdmVyc2lvbiBudW1iZXIuICBJZiB0aGUKUHJvZ3JhbSBzcGVjaWZpZXMgdGhhdCBhIGNlcnRhaW4gbnVtYmVyZWQgdmVyc2lvbiBvZiB0aGUgR05VIEdlbmVyYWwKUHVibGljIExpY2Vuc2UgIm9yIGFueSBsYXRlciB2ZXJzaW9uIiBhcHBsaWVzIHRvIGl0LCB5b3UgaGF2ZSB0aGUKb3B0aW9uIG9mIGZvbGxvd2luZyB0aGUgdGVybXMgYW5kIGNvbmRpdGlvbnMgZWl0aGVyIG9mIHRoYXQgbnVtYmVyZWQKdmVyc2lvbiBvciBvZiBhbnkgbGF0ZXIgdmVyc2lvbiBwdWJsaXNoZWQgYnkgdGhlIEZyZWUgU29mdHdhcmUKRm91bmRhdGlvbi4gIElmIHRoZSBQcm9ncmFtIGRvZXMgbm90IHNwZWNpZnkgYSB2ZXJzaW9uIG51bWJlciBvZiB0aGUKR05VIEdlbmVyYWwgUHVibGljIExpY2Vuc2UsIHlvdSBtYXkgY2hvb3NlIGFueSB2ZXJzaW9uIGV2ZXIgcHVibGlzaGVkCmJ5IHRoZSBGcmVlIFNvZnR3YXJlIEZvdW5kYXRpb24uCgogIElmIHRoZSBQcm9ncmFtIHNwZWNpZmllcyB0aGF0IGEgcHJveHkgY2FuIGRlY2lkZSB3aGljaCBmdXR1cmUKdmVyc2lvbnMgb2YgdGhlIEdOVSBHZW5lcmFsIFB1YmxpYyBMaWNlbnNlIGNhbiBiZSB1c2VkLCB0aGF0IHByb3h5J3MKcHVibGljIHN0YXRlbWVudCBvZiBhY2NlcHRhbmNlIG9mIGEgdmVyc2lvbiBwZXJtYW5lbnRseSBhdXRob3JpemVzIHlvdQp0byBjaG9vc2UgdGhhdCB2ZXJzaW9uIGZvciB0aGUgUHJvZ3JhbS4KCiAgTGF0ZXIgbGljZW5zZSB2ZXJzaW9ucyBtYXkgZ2l2ZSB5b3UgYWRkaXRpb25hbCBvciBkaWZmZXJlbnQKcGVybWlzc2lvbnMuICBIb3dldmVyLCBubyBhZGRpdGlvbmFsIG9ibGlnYXRpb25zIGFyZSBpbXBvc2VkIG9uIGFueQphdXRob3Igb3IgY29weXJpZ2h0IGhvbGRlciBhcyBhIHJlc3VsdCBvZiB5b3VyIGNob29zaW5nIHRvIGZvbGxvdyBhCmxhdGVyIHZlcnNpb24uCgogIDE1LiBEaXNjbGFpbWVyIG9mIFdhcnJhbnR5LgoKICBUSEVSRSBJUyBOTyBXQVJSQU5UWSBGT1IgVEhFIFBST0dSQU0sIFRPIFRIRSBFWFRFTlQgUEVSTUlUVEVEIEJZCkFQUExJQ0FCTEUgTEFXLiAgRVhDRVBUIFdIRU4gT1RIRVJXSVNFIFNUQVRFRCBJTiBXUklUSU5HIFRIRSBDT1BZUklHSFQKSE9MREVSUyBBTkQvT1IgT1RIRVIgUEFSVElFUyBQUk9WSURFIFRIRSBQUk9HUkFNICJBUyBJUyIgV0lUSE9VVCBXQVJSQU5UWQpPRiBBTlkgS0lORCwgRUlUSEVSIEVYUFJFU1NFRCBPUiBJTVBMSUVELCBJTkNMVURJTkcsIEJVVCBOT1QgTElNSVRFRCBUTywKVEhFIElNUExJRUQgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFkgQU5EIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUgpQVVJQT1NFLiAgVEhFIEVOVElSRSBSSVNLIEFTIFRPIFRIRSBRVUFMSVRZIEFORCBQRVJGT1JNQU5DRSBPRiBUSEUgUFJPR1JBTQpJUyBXSVRIIFlPVS4gIFNIT1VMRCBUSEUgUFJPR1JBTSBQUk9WRSBERUZFQ1RJVkUsIFlPVSBBU1NVTUUgVEhFIENPU1QgT0YKQUxMIE5FQ0VTU0FSWSBTRVJWSUNJTkcsIFJFUEFJUiBPUiBDT1JSRUNUSU9OLgoKICAxNi4gTGltaXRhdGlvbiBvZiBMaWFiaWxpdHkuCgogIElOIE5PIEVWRU5UIFVOTEVTUyBSRVFVSVJFRCBCWSBBUFBMSUNBQkxFIExBVyBPUiBBR1JFRUQgVE8gSU4gV1JJVElORwpXSUxMIEFOWSBDT1BZUklHSFQgSE9MREVSLCBPUiBBTlkgT1RIRVIgUEFSVFkgV0hPIE1PRElGSUVTIEFORC9PUiBDT05WRVlTClRIRSBQUk9HUkFNIEFTIFBFUk1JVFRFRCBBQk9WRSwgQkUgTElBQkxFIFRPIFlPVSBGT1IgREFNQUdFUywgSU5DTFVESU5HIEFOWQpHRU5FUkFMLCBTUEVDSUFMLCBJTkNJREVOVEFMIE9SIENPTlNFUVVFTlRJQUwgREFNQUdFUyBBUklTSU5HIE9VVCBPRiBUSEUKVVNFIE9SIElOQUJJTElUWSBUTyBVU0UgVEhFIFBST0dSQU0gKElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gTE9TUyBPRgpEQVRBIE9SIERBVEEgQkVJTkcgUkVOREVSRUQgSU5BQ0NVUkFURSBPUiBMT1NTRVMgU1VTVEFJTkVEIEJZIFlPVSBPUiBUSElSRApQQVJUSUVTIE9SIEEgRkFJTFVSRSBPRiBUSEUgUFJPR1JBTSBUTyBPUEVSQVRFIFdJVEggQU5ZIE9USEVSIFBST0dSQU1TKSwKRVZFTiBJRiBTVUNIIEhPTERFUiBPUiBPVEhFUiBQQVJUWSBIQVMgQkVFTiBBRFZJU0VEIE9GIFRIRSBQT1NTSUJJTElUWSBPRgpTVUNIIERBTUFHRVMuCgogIDE3LiBJbnRlcnByZXRhdGlvbiBvZiBTZWN0aW9ucyAxNSBhbmQgMTYuCgogIElmIHRoZSBkaXNjbGFpbWVyIG9mIHdhcnJhbnR5IGFuZCBsaW1pdGF0aW9uIG9mIGxpYWJpbGl0eSBwcm92aWRlZAphYm92ZSBjYW5ub3QgYmUgZ2l2ZW4gbG9jYWwgbGVnYWwgZWZmZWN0IGFjY29yZGluZyB0byB0aGVpciB0ZXJtcywKcmV2aWV3aW5nIGNvdXJ0cyBzaGFsbCBhcHBseSBsb2NhbCBsYXcgdGhhdCBtb3N0IGNsb3NlbHkgYXBwcm94aW1hdGVzCmFuIGFic29sdXRlIHdhaXZlciBvZiBhbGwgY2l2aWwgbGlhYmlsaXR5IGluIGNvbm5lY3Rpb24gd2l0aCB0aGUKUHJvZ3JhbSwgdW5sZXNzIGEgd2FycmFudHkgb3IgYXNzdW1wdGlvbiBvZiBsaWFiaWxpdHkgYWNjb21wYW5pZXMgYQpjb3B5IG9mIHRoZSBQcm9ncmFtIGluIHJldHVybiBmb3IgYSBmZWUuCgogICAgICAgICAgICAgICAgICAgICBFTkQgT0YgVEVSTVMgQU5EIENPTkRJVElPTlMKCiAgICAgICAgICAgIEhvdyB0byBBcHBseSBUaGVzZSBUZXJtcyB0byBZb3VyIE5ldyBQcm9ncmFtcwoKICBJZiB5b3UgZGV2ZWxvcCBhIG5ldyBwcm9ncmFtLCBhbmQgeW91IHdhbnQgaXQgdG8gYmUgb2YgdGhlIGdyZWF0ZXN0CnBvc3NpYmxlIHVzZSB0byB0aGUgcHVibGljLCB0aGUgYmVzdCB3YXkgdG8gYWNoaWV2ZSB0aGlzIGlzIHRvIG1ha2UgaXQKZnJlZSBzb2Z0d2FyZSB3aGljaCBldmVyeW9uZSBjYW4gcmVkaXN0cmlidXRlIGFuZCBjaGFuZ2UgdW5kZXIgdGhlc2UgdGVybXMuCgogIFRvIGRvIHNvLCBhdHRhY2ggdGhlIGZvbGxvd2luZyBub3RpY2VzIHRvIHRoZSBwcm9ncmFtLiAgSXQgaXMgc2FmZXN0CnRvIGF0dGFjaCB0aGVtIHRvIHRoZSBzdGFydCBvZiBlYWNoIHNvdXJjZSBmaWxlIHRvIG1vc3QgZWZmZWN0aXZlbHkKc3RhdGUgdGhlIGV4Y2x1c2lvbiBvZiB3YXJyYW50eTsgYW5kIGVhY2ggZmlsZSBzaG91bGQgaGF2ZSBhdCBsZWFzdAp0aGUgImNvcHlyaWdodCIgbGluZSBhbmQgYSBwb2ludGVyIHRvIHdoZXJlIHRoZSBmdWxsIG5vdGljZSBpcyBmb3VuZC4KCiAgICA8b25lIGxpbmUgdG8gZ2l2ZSB0aGUgcHJvZ3JhbSdzIG5hbWUgYW5kIGEgYnJpZWYgaWRlYSBvZiB3aGF0IGl0IGRvZXMuPgogICAgQ29weXJpZ2h0IChDKSA8eWVhcj4gIDxuYW1lIG9mIGF1dGhvcj4KCiAgICBUaGlzIHByb2dyYW0gaXMgZnJlZSBzb2Z0d2FyZTogeW91IGNhbiByZWRpc3RyaWJ1dGUgaXQgYW5kL29yIG1vZGlmeQogICAgaXQgdW5kZXIgdGhlIHRlcm1zIG9mIHRoZSBHTlUgR2VuZXJhbCBQdWJsaWMgTGljZW5zZSBhcyBwdWJsaXNoZWQgYnkKICAgIHRoZSBGcmVlIFNvZnR3YXJlIEZvdW5kYXRpb24sIGVpdGhlciB2ZXJzaW9uIDMgb2YgdGhlIExpY2Vuc2UsIG9yCiAgICAoYXQgeW91ciBvcHRpb24pIGFueSBsYXRlciB2ZXJzaW9uLgoKICAgIFRoaXMgcHJvZ3JhbSBpcyBkaXN0cmlidXRlZCBpbiB0aGUgaG9wZSB0aGF0IGl0IHdpbGwgYmUgdXNlZnVsLAogICAgYnV0IFdJVEhPVVQgQU5ZIFdBUlJBTlRZOyB3aXRob3V0IGV2ZW4gdGhlIGltcGxpZWQgd2FycmFudHkgb2YKICAgIE1FUkNIQU5UQUJJTElUWSBvciBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRS4gIFNlZSB0aGUKICAgIEdOVSBHZW5lcmFsIFB1YmxpYyBMaWNlbnNlIGZvciBtb3JlIGRldGFpbHMuCgogICAgWW91IHNob3VsZCBoYXZlIHJlY2VpdmVkIGEgY29weSBvZiB0aGUgR05VIEdlbmVyYWwgUHVibGljIExpY2Vuc2UKICAgIGFsb25nIHdpdGggdGhpcyBwcm9ncmFtLiAgSWYgbm90LCBzZWUgPGh0dHBzOi8vd3d3LmdudS5vcmcvbGljZW5zZXMvPi4KCkFsc28gYWRkIGluZm9ybWF0aW9uIG9uIGhvdyB0byBjb250YWN0IHlvdSBieSBlbGVjdHJvbmljIGFuZCBwYXBlciBtYWlsLgoKICBJZiB0aGUgcHJvZ3JhbSBkb2VzIHRlcm1pbmFsIGludGVyYWN0aW9uLCBtYWtlIGl0IG91dHB1dCBhIHNob3J0Cm5vdGljZSBsaWtlIHRoaXMgd2hlbiBpdCBzdGFydHMgaW4gYW4gaW50ZXJhY3RpdmUgbW9kZToKCiAgICA8cHJvZ3JhbT4gIENvcHlyaWdodCAoQykgPHllYXI+ICA8bmFtZSBvZiBhdXRob3I+CiAgICBUaGlzIHByb2dyYW0gY29tZXMgd2l0aCBBQlNPTFVURUxZIE5PIFdBUlJBTlRZOyBmb3IgZGV0YWlscyB0eXBlIGBzaG93IHcnLgogICAgVGhpcyBpcyBmcmVlIHNvZnR3YXJlLCBhbmQgeW91IGFyZSB3ZWxjb21lIHRvIHJlZGlzdHJpYnV0ZSBpdAogICAgdW5kZXIgY2VydGFpbiBjb25kaXRpb25zOyB0eXBlIGBzaG93IGMnIGZvciBkZXRhaWxzLgoKVGhlIGh5cG90aGV0aWNhbCBjb21tYW5kcyBgc2hvdyB3JyBhbmQgYHNob3cgYycgc2hvdWxkIHNob3cgdGhlIGFwcHJvcHJpYXRlCnBhcnRzIG9mIHRoZSBHZW5lcmFsIFB1YmxpYyBMaWNlbnNlLiAgT2YgY291cnNlLCB5b3VyIHByb2dyYW0ncyBjb21tYW5kcwptaWdodCBiZSBkaWZmZXJlbnQ7IGZvciBhIEdVSSBpbnRlcmZhY2UsIHlvdSB3b3VsZCB1c2UgYW4gImFib3V0IGJveCIuCgogIFlvdSBzaG91bGQgYWxzbyBnZXQgeW91ciBlbXBsb3llciAoaWYgeW91IHdvcmsgYXMgYSBwcm9ncmFtbWVyKSBvciBzY2hvb2wsCmlmIGFueSwgdG8gc2lnbiBhICJjb3B5cmlnaHQgZGlzY2xhaW1lciIgZm9yIHRoZSBwcm9ncmFtLCBpZiBuZWNlc3NhcnkuCkZvciBtb3JlIGluZm9ybWF0aW9uIG9uIHRoaXMsIGFuZCBob3cgdG8gYXBwbHkgYW5kIGZvbGxvdyB0aGUgR05VIEdQTCwgc2VlCjxodHRwczovL3d3dy5nbnUub3JnL2xpY2Vuc2VzLz4uCgogIFRoZSBHTlUgR2VuZXJhbCBQdWJsaWMgTGljZW5zZSBkb2VzIG5vdCBwZXJtaXQgaW5jb3Jwb3JhdGluZyB5b3VyIHByb2dyYW0KaW50byBwcm9wcmlldGFyeSBwcm9ncmFtcy4gIElmIHlvdXIgcHJvZ3JhbSBpcyBhIHN1YnJvdXRpbmUgbGlicmFyeSwgeW91Cm1heSBjb25zaWRlciBpdCBtb3JlIHVzZWZ1bCB0byBwZXJtaXQgbGlua2luZyBwcm9wcmlldGFyeSBhcHBsaWNhdGlvbnMgd2l0aAp0aGUgbGlicmFyeS4gIElmIHRoaXMgaXMgd2hhdCB5b3Ugd2FudCB0byBkbywgdXNlIHRoZSBHTlUgTGVzc2VyIEdlbmVyYWwKUHVibGljIExpY2Vuc2UgaW5zdGVhZCBvZiB0aGlzIExpY2Vuc2UuICBCdXQgZmlyc3QsIHBsZWFzZSByZWFkCjxodHRwczovL3d3dy5nbnUub3JnL2xpY2Vuc2VzL3doeS1ub3QtbGdwbC5odG1sPi4K" target="_blank" rel="noopener">Font license</a> · <a href="https://freetengwar.sourceforge.net/" target="_blank" rel="noopener">Font project</a></p></dialog>
+  <script>/* The Twelve Lights — original game logic. */
+function evaluate(tokens) {
+  let pos = 0;
+  function factor() {
+    let value;
+    const token = tokens[pos++];
+    if (typeof token === 'number') value = token;
+    else if (token === '(') { value = sum(); if (tokens[pos++] !== ')') throw new Error('Close the parentheses.'); }
+    else throw new Error('Place a stone or an opening parenthesis here.');
+    return value;
+    // Code by Daniel using ChatGPT — October 2, 2026
+  }
+  function term() {
+    let value = factor();
+    while (tokens[pos] === '*' || tokens[pos] === '/') {
+      const op = tokens[pos++], right = factor();
+      if (op === '/' && Math.abs(right) < 1e-10) throw new Error('You cannot divide by zero.');
+      value = op === '*' ? value * right : value / right;
+    }
+    return value;
+    // Code by Daniel using ChatGPT — October 2, 2026
+  }
+  function sum() {
+    let value = term();
+    while (tokens[pos] === '+' || tokens[pos] === '-') { const op = tokens[pos++], right = term(); value = op === '+' ? value + right : value - right; }
+    return value;
+    // Code by Daniel using ChatGPT — October 2, 2026
+  }
+  if (!tokens.length) throw new Error('Choose a stone to begin.');
+  const value = sum();
+  if (pos !== tokens.length) throw new Error('Add an operation between stones, and check the parentheses.');
+  if (!Number.isFinite(value)) throw new Error('That expression is too large.');
+  return value;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function randomInt(n) {
+  return Math.floor(Math.random() * n);
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function shuffle(items) {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) { const j = randomInt(i + 1); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function solveArithmetic(numbers, target) {
+  const initial = [];
+  for (const n of numbers) initial.push({ v: n, text: String(n) });
+  function search(items) {
+    if (items.length === 1) return Math.abs(items[0].v - target) < 1e-8 ? items[0].text : null;
+    for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
+      const a = items[i], b = items[j], rest = [];
+      for (let k = 0; k < items.length; k++) if (k !== i && k !== j) rest.push(items[k]);
+      const pairs = [[a.v + b.v, `(${a.text}+${b.text})`], [a.v - b.v, `(${a.text}-${b.text})`], [b.v - a.v, `(${b.text}-${a.text})`], [a.v * b.v, `(${a.text}*${b.text})`]];
+      if (Math.abs(b.v) > 1e-10) pairs.push([a.v / b.v, `(${a.text}/${b.text})`]);
+      if (Math.abs(a.v) > 1e-10) pairs.push([b.v / a.v, `(${b.text}/${a.text})`]);
+      for (const [v, text] of pairs) { const result = search([...rest, { v, text }]); if (result) return result; }
+    }
+    return null;
+    // Code by Daniel using ChatGPT — October 2, 2026
+  }
+  return search(initial);
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+const EASY = [[2,3,4,6],[1,2,3,6],[2,2,4,8],[1,3,4,5],[3,3,4,4],[1,2,5,6],[2,3,5,8],[1,4,6,8],[2,4,4,6],[3,4,6,9],[1,2,4,7],[1,3,6,9],[2,2,3,9],[2,3,4,5],[1,5,6,8],[3,3,6,8],[2,4,6,8],[1,4,5,8],[2,5,7,8],[3,5,6,9]];
+function arithmeticPuzzle(mode, level, index) {
+  let numbers, target, solution;
+  if (mode === 'lights') {
+    numbers = EASY[index % EASY.length]; target = 12; solution = solveArithmetic(numbers, target);
+  } else if (level === 'adept') {
+    const a = 2 + randomInt(7), b = 2 + randomInt(7), c = 1 + randomInt(6), d = 2 + randomInt(3), e = 1 + randomInt(6);
+    numbers = [a,b,c,d,e]; target = (a*b+c)*d-e; solution = `((${a}*${b}+${c})*${d}-${e})`;
+  } else {
+    const a = 2 + randomInt(5), b = 2 + randomInt(5), c = 2 + randomInt(5), d = 2 + randomInt(5), f = 1 + randomInt(5), e = f+1+randomInt(2);
+    numbers = [a,b,c,d,e,f]; target = (a*b+c*d)*(e-f); solution = `((${a}*${b}+${c}*${d})*(${e}-${f}))`;
+  }
+  return { numbers: mode === 'lights' && index === 0 ? [...numbers] : shuffle(numbers), target, solution };
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+const GEARS = [[3,1],[1,4],[5,3]];
+function moonPath(start, goal) {
+  const queue = [{ pair: start, path: [] }], seen = new Set([start.join(',')]);
+  for (let i = 0; i < queue.length; i++) {
+    const entry = queue[i];
+    if (entry.pair[0] === goal[0] && entry.pair[1] === goal[1]) return entry.path;
+    for (let gear = 0; gear < GEARS.length; gear++) {
+      const pair = [(entry.pair[0]+GEARS[gear][0])%12,(entry.pair[1]+GEARS[gear][1])%12], key = pair.join(',');
+      if (!seen.has(key)) { seen.add(key); queue.push({ pair, path: [...entry.path, gear] }); }
+    }
+  }
+  return null;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function moonPuzzle(level) {
+  const min = level === 'adept' ? 3 : 5, max = level === 'adept' ? 5 : 8, possible = [];
+  for (let a = 0; a < 12; a++) for (let b = 0; b < 12; b++) { const path = moonPath([0,0],[a,b]); if (path && path.length >= min && path.length <= max) possible.push({ goal: [a,b], budget: path.length, path }); }
+  return possible[randomInt(possible.length)];
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function sudokuRegion(index) {
+  return Math.floor(Math.floor(index/12)/3)*3+Math.floor((index%12)/4);
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function sudokuCandidates(board, index) {
+  const r = Math.floor(index/12), c = index%12, box = sudokuRegion(index); let mask = 4095;
+  for (let i = 0; i < 144; i++) if (board[i] && (Math.floor(i/12) === r || i%12 === c || sudokuRegion(i) === box)) mask &= ~(1 << (board[i]-1));
+  return mask;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function countSudokuSolutions(input, nodeLimit = 20000) {
+  const board = [...input]; let count = 0, nodes = 0, aborted = false;
+  function search() {
+    if (count >= 2 || aborted) return;
+    if (++nodes > nodeLimit) { aborted = true; return; }
+    let best = -1, mask = 0, size = 13;
+    for (let i = 0; i < 144; i++) if (!board[i]) {
+      const m = sudokuCandidates(board,i); let bits = 0;
+      for (let n = m; n; n &= n-1) bits++;
+      if (!bits) return;
+      if (bits < size) { best = i; mask = m; size = bits; if (size === 1) break; }
+    }
+    if (best === -1) { count++; return; }
+    for (let n = 1; n <= 12; n++) if (mask & (1 << (n-1))) { board[best] = n; search(); board[best] = 0; if (count >= 2 || aborted) break; }
+    // Code by Daniel using ChatGPT — October 2, 2026
+  }
+  search();
+  return aborted ? 2 : count;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function sudokuPuzzle(level) {
+  const digits = shuffle([1,2,3,4,5,6,7,8,9,10,11,12]), rows = [], cols = [];
+  for (const group of shuffle([0,1,2,3])) for (const r of shuffle([0,1,2])) rows.push(group*3+r);
+  for (const group of shuffle([0,1,2])) for (const c of shuffle([0,1,2,3])) cols.push(group*4+c);
+  const solution = [];
+  for (const r of rows) for (const c of cols) solution.push(digits[((r%3)*4+Math.floor(r/3)+c)%12]);
+  const board = [...solution], holes = level === 'adept' ? 66 : 88; let removed = 0;
+  for (const i of shuffle(Array.from({length:144}).keys())) {
+    const keep = board[i]; board[i] = 0;
+    if (countSudokuSolutions(board,5000) === 1) removed++; else board[i] = keep;
+    if (removed >= holes) break;
+  }
+  return { board, solution, givens: [...board] };
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+
+const GAME_SCRIPTURE={
+  "delving": {"ref":"Job 28","translation":"CSB","verses":[],"source":"https://www.biblegateway.com/passage/?search=Job+28&version=CSB"},
+  "lights": {
+    "aliases": [
+      "Colossians 1:15–17"
+    ],
+    "ref": "Colossians 1:16–17",
+    "translation": "CSB",
+    "highlight": 16,
+    "verses": [
+      {
+        "number": 16,
+        "text": "For everything was created by him, in heaven and on earth, the visible and the invisible, whether thrones or dominions or rulers or authorities— all things have been created through him and for him."
+      },
+      {
+        "number": 17,
+        "text": "He is before all things, and by him all things hold together."
+      }
+    ],
+    "source": "https://www.biblegateway.com/passage/?search=Colossians+1%3A15-17&version=CSB"
+  },
+  "weaver": {
+    "aliases": [
+      "John 1:1–3"
+    ],
+    "ref": "John 1:1–3",
+    "translation": "CSB",
+    "highlight": 3,
+    "verses": [
+      {
+        "number": 1,
+        "text": "1 In the beginning was the Word, and the Word was with God, and the Word was God."
+      },
+      {
+        "number": 2,
+        "text": "He was with God in the beginning."
+      },
+      {
+        "number": 3,
+        "text": "All things were created through him, and apart from him not one thing was created that has been created."
+      }
+    ],
+    "source": "https://www.biblegateway.com/passage/?search=John+1%3A1-3&version=CSB"
+  },
+  "moon": {
+    "aliases": [
+      "Psalm 19:1–2"
+    ],
+    "ref": "Psalm 19:1–2",
+    "translation": "CSB",
+    "highlight": 1,
+    "verses": [
+      {
+        "number": 1,
+        "text": "The heavens declare the glory of God, and the expanse proclaims the work of his hands."
+      },
+      {
+        "number": 2,
+        "text": "Day after day they pour out speech; night after night they communicate knowledge."
+      }
+    ],
+    "source": "https://www.biblegateway.com/passage/?search=Psalm+19%3A1-2&version=CSB"
+  },
+  "sudoku": {
+    "aliases": [
+      "Colossians 2:2–3"
+    ],
+    "ref": "Colossians 2:2–3",
+    "translation": "CSB",
+    "highlight": 3,
+    "verses": [
+      {
+        "number": 2,
+        "text": "I want their hearts to be encouraged and joined together in love, so that they may have all the riches of complete understanding and have the knowledge of God’s mystery —Christ."
+      },
+      {
+        "number": 3,
+        "text": "In him are hidden all the treasures of wisdom and knowledge."
+      }
+    ],
+    "source": "https://www.biblegateway.com/passage/?search=Colossians+2%3A2-3&version=CSB"
+  }
+};
+
+
+const $ = document.querySelector.bind(document);
+const content = $('#game-content');
+const RING_MODES = ['lights','weaver','moon'];
+const state = { game:'lights', ringMode:'lights', elvish:false, levels:{weaver:'adept',moon:'adept',sudoku:'adept'}, sessions:{}, counts:{lights:0,weaver:0,moon:0}, notesMode:false };
+const titles = { lights:'The Twelve Lights',weaver:'Starweaver',moon:'Moonwheel',sudoku:'Twelvefold Sudoku',delving:'The Delving' };
+const chapters = { lights:'I · THE FIRST RECKONING',weaver:'II · THE ART OF NUMBER',moon:'III · THE TURNING SKY',sudoku:'IV · THE TWELVEFOLD PATTERN',delving:'V · THE FORTY DOORS' };
+const descriptions = { lights:'Use every stone once. Weave an expression that makes twelve.',weaver:'Use every stone once to reach the target. Multiplication and division come before addition and subtraction.',moon:'Turn the linked rings to reach both targets. Every turn advances both rings, wrapping at twelve.',sudoku:'Place 1–12 once in every row, column, and 3-row × 4-column region.',delving:'Descend with the stone-elves through forty doors. Count truly, read carefully, and open the chambers of their mine.' };
+const symbols = {'+':'+','-':'−','*':'×','/':'÷','(':'(',')':')'};
+
+// Unaltered Tengwar glyph outlines from FreeMonoTengwar; see FONT-LICENSE.txt.
+const TENGWAR_PATHS = ["M103 107Q112 107 127.0 94.0Q142 81 159.5 66.0Q177 51 216.5 38.0Q256 25 308 25Q390 25 442.0 75.5Q494 126 494 205Q494 287 442.5 338.5Q391 390 308 390Q245 390 198.5 362.5Q152 335 149 295Q146 271 128 271Q108 271 108 298V389Q108 417 128 417Q149 417 149 389V376Q212 431 305 431Q405 431 470.0 367.0Q535 303 535 204Q535 108 471.5 46.0Q408 -16 310 -16Q270 -16 232.5 -7.0Q195 2 169.0 15.0Q143 28 123.0 42.5Q103 57 93.5 69.0Q84 81 84 88Q84 96 90.0 101.5Q96 107 103 107Z", "M356 417Q383 417 383 397Q383 376 356 376H255V111Q255 24 323 24Q349 24 369.5 32.5Q390 41 400.0 51.5Q410 62 419.5 70.5Q429 79 435 79Q438 79 442.5 77.5Q447 76 451.0 71.0Q455 66 455 59Q455 50 440.0 33.0Q425 16 392.5 -0.5Q360 -17 323 -17Q273 -17 243.5 18.5Q214 54 214 111V376H173Q146 376 146 397Q146 417 173 417Z", "M299 30Q278 63 278 111V376H191V111Q191 24 259 24Q282 24 299 30ZM329 -1Q295 -17 259 -17Q209 -17 179.5 18.5Q150 54 150 111V376H109Q82 376 82 397Q82 417 109 417H420Q447 417 447 397Q447 376 420 376H319V111Q319 24 387 24Q413 24 433.5 32.5Q454 41 464.0 51.5Q474 62 483.5 70.5Q493 79 499 79Q502 79 506.5 77.5Q511 76 515.0 71.0Q519 66 519 59Q519 50 504.0 33.0Q489 16 456.5 -0.5Q424 -17 387 -17Q355 -17 329 -1Z", "M356 28Q341 58 341 111V376H254V111Q254 24 322 24Q336 24 356 28ZM264 -1Q230 -17 194 -17Q144 -17 114.5 18.5Q85 54 85 111V376H44Q17 376 17 397Q17 417 44 417H483Q510 417 510 397Q510 376 483 376H382V111Q382 24 450 24Q476 24 496.5 32.5Q517 41 527.0 51.5Q537 62 546.5 70.5Q556 79 562 79Q565 79 569.5 77.5Q574 76 578.0 71.0Q582 66 582 59Q582 50 562.0 32.5Q542 15 505.0 -1.0Q468 -17 431 -17Q402 -17 384 -5Q353 -17 322 -17Q290 -17 264 -1ZM234 30Q213 63 213 111V376H126V111Q126 24 194 24Q218 24 234 30Z", "M251 567V64Q251 13 280.5 -19.5Q310 -52 356 -52Q378 -52 400.0 -45.5Q422 -39 426 -39Q433 -39 438.5 -45.0Q444 -51 444 -59Q444 -77 413.0 -85.0Q382 -93 357 -93Q296 -93 253.0 -49.0Q210 -5 210 58V608H286Q313 608 313 587Q313 567 286 567Z", "M164 376V64Q164 13 193.5 -19.5Q223 -52 269 -52Q290 -52 313.0 -45.5Q336 -39 339 -39Q346 -39 351.5 -45.0Q357 -51 357 -59Q357 -77 326.0 -85.0Q295 -93 270 -93Q209 -93 166.0 -49.0Q123 -5 123 58V608H199Q226 608 226 587Q226 567 199 567H164V417H393Q420 417 420 397Q420 376 393 376H292V111Q292 24 360 24Q386 24 406.5 32.5Q427 41 437.0 51.5Q447 62 456.5 70.5Q466 79 472 79Q475 79 479.5 77.5Q484 76 488.0 71.0Q492 66 492 59Q492 50 477.0 33.0Q462 16 429.5 -0.5Q397 -17 360 -17Q310 -17 280.5 18.5Q251 54 251 111V376Z", "M342 30Q321 63 321 111V376H234V111Q234 24 302 24Q326 24 342 30ZM372 -1Q338 -17 302 -17Q252 -17 222.5 18.5Q193 54 193 111V376H106V64Q106 13 135.5 -19.5Q165 -52 211 -52Q232 -52 255.0 -45.5Q278 -39 281 -39Q288 -39 293.5 -45.0Q299 -51 299 -59Q299 -77 268.0 -85.0Q237 -93 212 -93Q151 -93 108.0 -49.0Q65 -5 65 58V608H141Q168 608 168 587Q168 567 141 567H106V417H463Q490 417 490 397Q490 376 463 376H362V111Q362 24 430 24Q456 24 476.5 32.5Q497 41 507.0 51.5Q517 62 526.5 70.5Q536 79 542 79Q545 79 549.5 77.5Q554 76 558.0 71.0Q562 66 562 59Q562 50 547.0 33.0Q532 16 499.5 -0.5Q467 -17 430 -17Q398 -17 372 -1Z", "M351 567V58Q351 -5 308.0 -49.0Q265 -93 204 -93Q179 -93 148.0 -85.0Q117 -77 117 -59Q117 -51 122.5 -45.0Q128 -39 135 -39Q138 -39 161.0 -45.5Q184 -52 205 -52Q251 -52 280.5 -19.5Q310 13 310 64V608H386Q413 608 413 587Q413 567 386 567Z", "M251 41H383Q420 86 420 194Q420 272 397.0 331.0Q374 390 345 390Q322 390 302.0 370.5Q282 351 251 306ZM240 0Q223 -42 186.5 -67.5Q150 -93 104 -93Q79 -93 48.0 -85.0Q17 -77 17 -59Q17 -51 22.5 -45.0Q28 -39 35 -39Q38 -39 61.0 -45.5Q84 -52 105 -52Q151 -52 180.5 -19.5Q210 13 210 64V608H286Q313 608 313 587Q313 567 286 567H251V375Q274 399 282.5 407.5Q291 416 307.5 423.5Q324 431 344 431Q376 431 400.0 408.5Q424 386 436.5 349.0Q449 312 455.0 273.0Q461 234 461 194Q461 97 433 41H452Q479 41 479 21Q479 0 452 0Z", "M44 -93Q17 -93 17 -72Q17 -52 44 -52Q85 -52 95.5 -28.0Q106 -4 106 52V608H182Q209 608 209 587Q209 567 182 567H147V375Q176 405 195.5 418.0Q215 431 240 431Q300 431 333 360Q390 431 447 431Q506 431 535.5 360.0Q565 289 565 194Q565 97 537 41H556Q583 41 583 21Q583 0 556 0H145Q141 -43 115.5 -68.0Q90 -93 44 -93ZM329 41H487Q524 84 524 194Q524 272 501.0 331.0Q478 390 449 390Q398 390 345 306Q357 276 357 194Q357 97 329 41ZM147 41H279Q316 86 316 194Q316 272 293.0 331.0Q270 390 241 390Q218 390 198.0 370.5Q178 351 147 306Z", "M73 246H168Q195 246 195 226Q195 205 168 205H114Q114 130 168.5 77.5Q223 25 301.0 25.0Q379 25 433.5 78.5Q488 132 488 208Q488 316 325 411L177 497Q167 503 167 516Q167 535 188 535Q194 535 197 533L345 447Q382 426 405.0 409.5Q428 393 461.0 362.5Q494 332 511.0 293.0Q528 254 528 208Q528 114 462.0 49.0Q396 -16 301.0 -16.0Q206 -16 139.5 48.0Q73 112 73 205Z", "M234 285 369 212Q422 231 438.0 244.5Q454 258 454 293Q454 313 448.5 327.5Q443 342 424.0 357.5Q405 373 392.0 381.0Q379 389 342 411L194 497Q184 503 184 516Q184 535 205 535Q211 535 214 533L362 447Q366 445 374 440Q406 421 421.5 411.0Q437 401 457.0 382.5Q477 364 485.5 342.5Q494 321 494 293Q494 219 417 186L427 180Q447 169 460.0 146.5Q473 124 473 101Q473 52 424.5 20.0Q376 -12 302 -12Q217 -12 165 34V30Q165 2 144 2Q124 2 124 30V99Q124 126 144 126Q162 126 165 103Q169 69 205.0 49.0Q241 29 298 29Q354 29 391.0 50.5Q428 72 428 104Q428 131 396 149L210 251Q197 258 197 270Q197 276 201.5 283.0Q206 290 216.0 290.0Q226 290 234 285Z"];
+function numeralPaths(digits) {
+  let paths = '';
+  for (let i = 0; i < digits.length; i++) paths += `<path d="${TENGWAR_PATHS[digits[i]]}" transform="translate(${i*600},700) scale(1,-1)"/>`;
+  return paths;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function numeralDigits(n) {
+  const digits = [], text = String(n);
+  for (let i = text.length - 1; i >= 0; i--) digits.push(Number(text[i]));
+  return digits;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function vectorNumeral(digits) {
+  return `<svg class="tengwar-number" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${digits.length*600} 900" style="width:${digits.length*0.8}em" aria-hidden="true" focusable="false">${numeralPaths(digits)}</svg>`;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function numberHTML(n, force=false) {
+  return `<span class="number-wrap" title="${n}" aria-label="${n}">${state.elvish || force ? vectorNumeral(numeralDigits(n)) : n}</span>`;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function svgNumber(n, x, y, cls) {
+  let result;
+  if (state.elvish) {
+    const digits = numeralDigits(n), height = cls === 'center-value' ? 78 : 21, width = height*digits.length*600/900;
+    result = `<svg x="${x-width/2}" y="${y-height/2}" width="${width}" height="${height}" viewBox="0 0 ${digits.length*600} 900" class="${cls} numeral-vector" role="img" aria-label="${n}"><title>${n}</title>${numeralPaths(digits)}</svg>`;
+  } else result = `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" class="${cls}" aria-label="${n}"><title>${n}</title>${n}</text>`;
+  return result;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function feedback(message, type='') {
+  $('#feedback').textContent = message;
+  $('#feedback').className = 'feedback' + (type ? ' '+type : '');
+  const session = state.sessions[state.game];
+  if (session) session.feedback = {message,type};
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function current() {
+  return state.sessions[state.game];
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function createSession(game) {
+  let s;
+  if (game === 'lights' || game === 'weaver') s = { puzzle:arithmeticPuzzle(game,state.levels[game],state.counts[game]), tokens:[], solved:false, hint:0 };
+  else if (game === 'moon') s = { puzzle:moonPuzzle(state.levels.moon), pair:[0,0], history:[], solved:false, hint:0 };
+  else {
+    s = { puzzle:sudokuPuzzle(state.levels.sudoku), selected:0, notes:[], history:[], solved:false, hint:0 };
+    for (let i=0;i<144;i++) { s.notes.push([]); if (!s.puzzle.givens[i] && s.selected === 0) s.selected = i; }
+  }
+  state.sessions[game] = s;
+  return s;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function ringSVG(target, illuminated) {
+  let parts = `<svg class="ring" viewBox="0 0 400 400" role="img" aria-label="Twelve lights around a target of ${target}"><circle cx="200" cy="200" r="143" class="orbit"/><circle cx="200" cy="200" r="128" class="orbit fine"/><circle cx="200" cy="200" r="113" class="orbit fine"/><circle cx="200" cy="200" r="87" class="orbit"/><circle cx="200" cy="200" r="79" class="orbit fine"/>`;
+  for (let i=0;i<12;i++) {
+    const angle=(i*30-90)*Math.PI/180, x=200+143*Math.cos(angle), y=200+143*Math.sin(angle);
+    const x2=200+171*Math.cos(angle), y2=200+171*Math.sin(angle);
+    parts += `<line x1="200" y1="200" x2="${x}" y2="${y}" class="ray"/><circle cx="${x}" cy="${y}" r="6" class="lamp ${i<illuminated?'lit':''}"/>`;
+    parts += svgNumber(i+1,x2,y2,'ring-number');
+  }
+  parts += `<text x="200" y="163" text-anchor="middle" class="center-label">YOUR TARGET</text>${svgNumber(target,200,214,'center-value')}<path d="M174 254h52" class="orbit"/><text x="200" y="282" text-anchor="middle" class="center-label">${illuminated===12?'LIGHT RESTORED':'FIND THE HARMONY'}</text></svg>`;
+  return parts;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function expressionHTML(tokens) {
+  let result='';
+  for (let i=0;i<tokens.length;i++) {
+    const t=tokens[i];
+    result += `<button class="token" data-token="${i}" title="Remove ${typeof t.value==='number'?t.value:symbols[t.value]}" aria-label="Remove ${typeof t.value==='number'?t.value:symbols[t.value]}">${typeof t.value==='number'?numberHTML(t.value):symbols[t.value]}</button>`;
+  }
+  return result || '<span class="expression-placeholder">Your expression begins here…</span>';
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function renderArithmetic() {
+  const s=current(); let used=0, stones='';
+  for (let i=0;i<s.puzzle.numbers.length;i++) {
+    let isUsed=false;
+    for (const t of s.tokens) if (t.stone===i) isUsed=true;
+    if (isUsed) used++;
+    stones += `<button class="stone" data-stone="${i}" aria-label="Use stone ${s.puzzle.numbers[i]}" ${isUsed||s.solved?'disabled':''}>${numberHTML(s.puzzle.numbers[i])}</button>`;
+  }
+  let ops=''; for (const op of ['+','-','*','/','(',')']) ops += `<button class="op" data-op="${op}" aria-label="${{'+':'Add','-':'Subtract','*':'Multiply','/':'Divide','(':'Open parentheses',')':'Close parentheses'}[op]}" ${s.solved?'disabled':''}>${symbols[op]}</button>`;
+  content.innerHTML = `<div class="play-layout"><section class="observatory" aria-label="The light circle"><div class="board-top"><span>${state.game==='lights'?'TWELVE LIGHTS':'STARWEAVER'}</span><span>PUZZLE ${state.counts[state.game]+1}</span></div>${ringSVG(s.puzzle.target,s.solved?12:Math.floor(used/s.puzzle.numbers.length*11))}<div class="board-caption">${s.solved?'Every light has found its place.':'A little thought. A little starlight.'}</div></section><section class="workbench" aria-label="Expression builder"><div class="label">YOUR NUMBERED STONES</div><div class="stones">${stones}</div><div class="label">WEAVE AN EXPRESSION</div><div class="expression" aria-label="Current expression">${expressionHTML(s.tokens)}</div><div class="operators">${ops}</div><div class="actions"><button class="primary" data-action="check" ${s.solved?'disabled':''}>Light the circle</button><button class="secondary" data-action="undo" ${!s.tokens.length||s.solved?'disabled':''}>Undo</button><button class="secondary" data-action="clear" ${!s.tokens.length||s.solved?'disabled':''}>Clear</button></div><div class="small-actions"><button class="quiet" data-action="hint">${s.hint?'Show a solution':'A little guidance'}</button></div>${s.hint>=2?`<div class="hint-expression">${formattedSolution(s.puzzle.solution)} = ${numberHTML(s.puzzle.target)}</div>`:''}<div class="puzzle-nav"><span>${state.game==='lights'?'Four stones · one target':state.levels.weaver==='adept'?'Five stones · larger targets':'Six stones · nested expressions'}</span><button class="quiet" data-action="next">Next puzzle</button></div></section></div><div class="help-row"><span aria-hidden="true">✧</span>Use +, −, ×, ÷ and parentheses. Click any expression piece to remove it.</div>`;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function formattedSolution(solution) {
+  const tokens=solution.match(/\d+|[()+*/-]/g); let text='';
+  for (const t of tokens) text += /^\d+$/.test(t)?numberHTML(Number(t)):symbols[t];
+  return text;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function checkArithmetic() {
+  const s=current(); let numberCount=0, tokens=[];
+  for (const t of s.tokens) { tokens.push(t.value); if (typeof t.value==='number') numberCount++; }
+  if (numberCount !== s.puzzle.numbers.length) { feedback('Use every numbered stone exactly once.','error'); return; }
+  try {
+    const value=evaluate(tokens);
+    if (Math.abs(value-s.puzzle.target)<1e-8) { s.solved=true; renderArithmetic(); feedback(`The circle is alight! Your expression makes ${s.puzzle.target}.`,'success'); }
+    else feedback(`Your expression makes ${Number(value.toFixed(6))}. The circle needs ${s.puzzle.target}. Try another arrangement.`,'error');
+  } catch(error) { feedback(error.message,'error'); }
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function moonSVG() {
+  const s=current(); let parts='<svg class="ring" viewBox="0 0 400 400" role="img" aria-label="Two linked rings of twelve positions"><circle cx="200" cy="200" r="144" class="orbit"/><circle cx="200" cy="200" r="104" class="orbit"/><circle cx="200" cy="200" r="65" class="orbit fine"/>';
+  for (let ring=0;ring<2;ring++) {
+    const radius=ring===0?144:104;
+    for (let i=0;i<12;i++) {
+      const angle=(i*30-90)*Math.PI/180,x=200+radius*Math.cos(angle),y=200+radius*Math.sin(angle);
+      parts += `<circle cx="${x}" cy="${y}" r="${s.pair[ring]===i?7:3}" class="lamp ${s.pair[ring]===i?'lit':''}"/>`;
+      if (s.puzzle.goal[ring]===i) parts += `<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="#d2bd82" stroke-dasharray="2 3"/>`;
+      if (ring===0) parts += svgNumber(i,200+173*Math.cos(angle),200+173*Math.sin(angle),'ring-number');
+    }
+    const a=(s.pair[ring]*30-90)*Math.PI/180;
+    parts += `<line x1="200" y1="200" x2="${200+(radius-10)*Math.cos(a)}" y2="${200+(radius-10)*Math.sin(a)}" stroke="${ring===0?'#d2bd82':'#94ceb9'}" opacity=".7"/>`;
+  }
+  parts += '<circle cx="200" cy="200" r="5" fill="#d2bd82"/></svg>';
+  return parts;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function renderMoon() {
+  const s=current(),remaining=s.puzzle.budget-s.history.length; let gears='';
+  for (let i=0;i<3;i++) gears+=`<button class="gear" data-gear="${i}" ${s.solved||remaining===0?'disabled':''}><strong>${['Silver','Jade','Amber'][i]} gear</strong><small>Outer +${numberHTML(GEARS[i][0])} · inner +${numberHTML(GEARS[i][1])}</small></button>`;
+  content.innerHTML=`<div class="play-layout"><section class="observatory"><div class="board-top"><span>THE LINKED RINGS</span><span>PUZZLE ${state.counts.moon+1}</span></div>${moonSVG()}<div class="moon-stats"><span>Outer <strong>${numberHTML(s.pair[0])}</strong></span><span>Inner <strong>${numberHTML(s.pair[1])}</strong></span></div><div class="board-caption">The gold outlines mark your destinations.</div></section><section class="workbench"><div class="label">BRING BOTH RINGS INTO ALIGNMENT</div><p class="moon-target">Target: outer ${numberHTML(s.puzzle.goal[0])}, inner ${numberHTML(s.puzzle.goal[1])}</p><div class="gear-buttons">${gears}</div><div class="actions"><button class="secondary" data-action="undo" ${!s.history.length?'disabled':''}>Undo turn</button><button class="secondary" data-action="clear">Reset rings</button><button class="secondary" data-action="hint">Hint</button></div><div class="puzzle-nav"><span>${remaining} of ${s.puzzle.budget} turns left</span><button class="quiet" data-action="next">Next puzzle</button></div></section></div><div class="help-row"><span aria-hidden="true">☾</span>After position 11 comes 0. A turn of +3 from 10 lands on 1.</div>`;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function turnGear(index) {
+  const s=current();
+  if (s.solved||s.history.length>=s.puzzle.budget) return;
+  s.history.push([...s.pair]);
+  s.pair=[(s.pair[0]+GEARS[index][0])%12,(s.pair[1]+GEARS[index][1])%12];
+  s.solved=s.pair[0]===s.puzzle.goal[0]&&s.pair[1]===s.puzzle.goal[1];
+  renderMoon();
+  if (s.solved) feedback('Both rings are aligned. The sky is in harmony.','success');
+  else if (s.history.length===s.puzzle.budget) feedback('The turns are spent. Undo a turn or reset the rings to try another path.','error');
+  else feedback(`Outer ${s.pair[0]}, inner ${s.pair[1]}. ${s.puzzle.budget-s.history.length} turns remain.`);
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function conflicts(board,index) {
+  if (!board[index]) return false;
+  for (let i=0;i<144;i++) if (i!==index&&board[i]===board[index]&&(Math.floor(i/12)===Math.floor(index/12)||i%12===index%12||sudokuRegion(i)===sudokuRegion(index))) return true;
+  return false;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function renderSudoku() {
+  const s=current(),board=s.puzzle.board; let cells='',filled=0;
+  for (let i=0;i<144;i++) {
+    const r=Math.floor(i/12),c=i%12,v=board[i];if(v) filled++;
+    let cls='cell';
+    if(s.puzzle.givens[i])cls+=' given';else if(v)cls+=' entered';
+    if(r===Math.floor(s.selected/12)||c===s.selected%12||sudokuRegion(i)===sudokuRegion(s.selected))cls+=' related';
+    if(v&&v===board[s.selected])cls+=' same';if(i===s.selected)cls+=' selected';if(conflicts(board,i))cls+=' conflict';
+    if(c===3||c===7)cls+=' box-right';if(r===2||r===5||r===8)cls+=' box-bottom';
+    if(c===0)cells+='<div class="sudoku-row" role="row">';
+    let body=v?numberHTML(v):'';
+    if(!v&&s.notes[i].length) { body='<span class="notes">';for(let n=1;n<=12;n++)body+=`<span>${s.notes[i].includes(n)?numberHTML(n):''}</span>`;body+='</span>'; }
+    cells+=`<button class="${cls}" data-cell="${i}" role="gridcell" aria-rowindex="${r+1}" aria-colindex="${c+1}" aria-selected="${i===s.selected}" aria-label="Row ${r+1}, column ${c+1}, ${v?'value '+v:'empty'}${s.puzzle.givens[i]?', given':''}" tabindex="${i===s.selected?0:-1}" title="Row ${r+1}, column ${c+1}${v?': '+v:''}">${body}</button>`;
+    if(c===11)cells+='</div>';
+  }
+  let pad='';for(let n=1;n<=12;n++)pad+=`<button class="pad" data-number="${n}" aria-label="Enter ${n}">${numberHTML(n)}</button>`;
+  content.innerHTML=`<div class="sudoku-layout"><div><div class="sudoku-board" role="grid" aria-label="Twelvefold Sudoku, 12 rows and 12 columns" aria-rowcount="12" aria-colcount="12">${cells}</div><p class="sudoku-help">Select a cell, then choose a number. Keyboard: <kbd>1–9</kbd>, <kbd>A</kbd> = 10, <kbd>B</kbd> = 11, <kbd>C</kbd> = 12. Arrow keys move; Delete erases.</p></div><section class="sudoku-tools"><div><h2>Your reckoning</h2><p>Each outlined region is 3 rows by 4 columns.</p><div class="label">CHOOSE A NUMBER</div><div class="number-pad">${pad}</div><div class="sudoku-buttons"><button class="secondary notes-button" data-action="notes" aria-pressed="${state.notesMode}">Pencil notes ${state.notesMode?'on':'off'}</button><button class="secondary" data-action="erase">Erase</button><button class="secondary" data-action="undo" ${s.history.length?'':'disabled'}>Undo</button></div></div><div><div class="actions"><button class="primary" data-action="check">Check progress</button><button class="secondary" data-action="hint">Reveal a cell</button><button class="secondary" data-action="next">New puzzle</button></div><div class="sudoku-progress">${filled} / 144 cells filled<div class="progress-track"><div class="progress-fill" style="width:${filled/144*100}%"></div></div></div><p class="sudoku-help">Red cells repeat a number in a row, column, or region. A hint reveals the selected empty cell.</p></div></section></div>`;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function sudokuSnapshot() {
+  const s=current(),notes=[];for(const row of s.notes)notes.push([...row]);
+  s.history.push({board:[...s.puzzle.board],notes,selected:s.selected});
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function enterSudoku(n) {
+  const s=current(),i=s.selected;
+  if(s.puzzle.givens[i]) {feedback('That number is given. Choose an empty cell.');return;}
+  if(s.solved) return;
+  sudokuSnapshot();
+  if(state.notesMode) {
+    if(s.puzzle.board[i]) {s.history.pop();feedback('Erase this entry before adding pencil notes.');return;}
+    if(s.notes[i].includes(n))s.notes[i].splice(s.notes[i].indexOf(n),1);else s.notes[i].push(n);
+  } else {s.puzzle.board[i]=n;s.notes[i]=[];}
+  renderSudoku();
+  if(!state.notesMode&&conflicts(s.puzzle.board,i))feedback('This number repeats in its row, column, or region.','error');
+  else feedback(state.notesMode?'Pencil note updated.':'Number placed.');
+  if(!s.puzzle.board.includes(0)&&!state.notesMode)checkSudoku();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function checkSudoku() {
+  const s=current();let errors=0,empty=0;
+  for(let i=0;i<144;i++){if(!s.puzzle.board[i])empty++;else if(s.puzzle.board[i]!==s.puzzle.solution[i])errors++;}
+  if(errors)feedback(`${errors} ${errors===1?'entry does':'entries do'} not match the solution. Keep looking.`,'error');
+  else if(empty)feedback(`Every entry so far is correct. ${empty} cells remain.`,'success');
+  else {s.solved=true;feedback('The twelvefold pattern is complete. Beautifully reckoned.','success');}
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function renderScripture(){
+  const passage=GAME_SCRIPTURE[state.game];let verses='';
+  if(!passage.verses.length){$('#game-scripture').innerHTML=`<a href="${passage.source}" target="_blank" rel="noopener">${passage.ref} · CSB</a>`;return;}
+  for(const verse of passage.verses)verses+=`<p><sup>${verse.number}</sup> ${verse.text}</p>`;
+  $('#game-scripture').innerHTML=`<blockquote>${verses}</blockquote><a href="${passage.source}" target="_blank" rel="noopener">${passage.ref} · CSB</a>`;
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function render() {
+  renderScripture();
+  for(const button of document.querySelectorAll('[data-game]')){const active=button.dataset.game===state.game||(button.dataset.game==='rings'&&RING_MODES.includes(state.game));button.classList.toggle('active',active);if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');}
+  $('#game-title').textContent=titles[state.game];$('#chapter').textContent=chapters[state.game];$('#instruction').textContent=descriptions[state.game];$('#level-wrap').hidden=state.game==='lights'||state.game==='delving';$('#level').value=state.levels[state.game]||'adept';
+  $('#mode-bar').hidden=!RING_MODES.includes(state.game);for(const b of document.querySelectorAll('[data-mode]'))b.setAttribute('aria-pressed',String(b.dataset.mode===state.game));
+  const delving=state.game==='delving';$('#game-content').hidden=delving;$('#feedback').hidden=delving;$('#delving-root').hidden=!delving;
+  if(delving){renderDelving();return;}
+  if(!current())createSession(state.game);
+  if(state.game==='lights'||state.game==='weaver')renderArithmetic();else if(state.game==='moon')renderMoon();else renderSudoku();
+  if(current().feedback)feedback(current().feedback.message,current().feedback.type);else feedback(state.game==='sudoku'?'Select an empty cell to begin.':state.game==='moon'?'Both rings begin at zero. Choose a gear.':'Choose a numbered stone to begin.');
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function chooseGame(game) {
+  if(game==='rings')game=state.ringMode;
+  if(!(game in titles))return;
+  if(RING_MODES.includes(game))state.ringMode=game;
+  state.game=game;history.replaceState(null,'','#'+game);render();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+// The Delving lives in Twelve-Lights/delving/ and loads the first time its tab opens.
+function loadScript(src) {
+  return new Promise(function load(resolve,reject){const tag=document.createElement('script');tag.src=src;tag.onload=resolve;tag.onerror=reject;document.head.append(tag);});
+}
+function renderDelving() {
+  const root=$('#delving-root');
+  if(window.Delving){window.Delving.mount(root,{elvish:state.elvish});return;}
+  root.innerHTML='<p class="delving-loading">Lighting the lanterns…</p>';
+  const css=document.createElement('link');css.rel='stylesheet';css.href='Twelve-Lights/delving/delving.css';document.head.append(css);
+  loadScript('Twelve-Lights/delving/riddles.js')
+    .then(function art(){return loadScript('Twelve-Lights/delving/art/art.js').catch(function standIns(){});})   // paintings are optional
+    .then(function engine(){return loadScript('Twelve-Lights/delving/delving.js');})
+    .then(function mount(){if(state.game==='delving')window.Delving.mount(root,{elvish:state.elvish});})
+    .catch(function failed(){root.innerHTML='<p class="delving-loading">The mine could not be opened. Please reload the page.</p>';});
+}
+function nextPuzzle() {
+  if(state.game!=='sudoku')state.counts[state.game]++;
+  createSession(state.game);render();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function showHint() {
+  const s=current();s.hint++;
+  if(state.game==='lights'||state.game==='weaver'){
+    if(s.hint===1)feedback(state.game==='lights'?'Try building two small groups with parentheses. You may subtract or divide as well as add and multiply. Click again to see one solution.':'Look for products you can combine, then adjust with the remaining stones. Click again to see one solution.');
+    else{renderArithmetic();feedback('One possible solution is shown. You can still build and submit it yourself.');}
+  }else if(state.game==='moon'){
+    const path=moonPath(s.pair,s.puzzle.goal),remaining=s.puzzle.budget-s.history.length;
+    if(s.solved)feedback('Both rings are already aligned.','success');
+    else if(path&&path.length<=remaining)feedback(`Try the ${['Silver','Jade','Amber'][path[0]]} gear next. A path from here takes ${path.length} turns.`);
+    else feedback('This path needs more turns than remain. Undo or reset, then ask for guidance.');
+  }else{
+    if(s.solved){feedback('Your pattern is already complete.','success');return;}
+    let i=s.selected;
+    if(s.puzzle.givens[i]||s.puzzle.board[i]===s.puzzle.solution[i]){i=-1;for(let j=0;j<144;j++)if(s.puzzle.board[j]!==s.puzzle.solution[j]){i=j;break;}}
+    if(i>=0){sudokuSnapshot();s.selected=i;s.puzzle.board[i]=s.puzzle.solution[i];s.notes[i]=[];renderSudoku();feedback(`Revealed row ${Math.floor(i/12)+1}, column ${i%12+1}: ${s.puzzle.solution[i]}.`);if(!s.puzzle.board.includes(0))checkSudoku();}
+  }
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function undo() {
+  const s=current();
+  if(state.game==='lights'||state.game==='weaver'){if(s.solved)return;s.tokens.pop();renderArithmetic();}
+  else if(state.game==='moon'){if(s.history.length){s.pair=s.history.pop();s.solved=false;}renderMoon();}
+  else if(s.history.length){const previous=s.history.pop();s.puzzle.board=previous.board;s.notes=previous.notes;s.selected=previous.selected;s.solved=false;renderSudoku();}
+  feedback('Last move undone.');
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function action(name) {
+  const s=current();
+  if(name==='next')nextPuzzle();
+  else if(name==='hint')showHint();
+  else if(name==='undo')undo();
+  else if(name==='check'){if(state.game==='sudoku')checkSudoku();else checkArithmetic();}
+  else if(name==='clear'){
+    if(state.game==='moon'){s.pair=[0,0];s.history=[];s.solved=false;renderMoon();}
+    else {s.tokens=[];s.solved=false;renderArithmetic();}
+    feedback('A fresh start.');
+  }else if(name==='notes'){state.notesMode=!state.notesMode;renderSudoku();feedback(state.notesMode?'Pencil notes are on. Choose possible numbers for the selected empty cell.':'Pencil notes are off. Choose a number to place.');}
+  else if(name==='erase'&&state.game==='sudoku'){
+    if(s.puzzle.givens[s.selected]){feedback('Given numbers cannot be erased.');return;}
+    sudokuSnapshot();s.puzzle.board[s.selected]=0;s.notes[s.selected]=[];s.solved=false;renderSudoku();feedback('Cell cleared.');
+  }
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function onContentClick(event) {
+  const button=event.target.closest('button');if(!button||button.disabled)return;const d=button.dataset,s=current();
+  if(d.action)action(d.action);
+  else if(d.stone!==undefined){s.tokens.push({value:s.puzzle.numbers[Number(d.stone)],stone:Number(d.stone)});renderArithmetic();feedback('Choose an operation or add parentheses.');}
+  else if(d.op){s.tokens.push({value:d.op});renderArithmetic();}
+  else if(d.token!==undefined){s.tokens.splice(Number(d.token),1);renderArithmetic();feedback('Expression piece removed.');}
+  else if(d.gear!==undefined)turnGear(Number(d.gear));
+  else if(d.cell!==undefined){s.selected=Number(d.cell);renderSudoku();const selected=$(`[data-cell="${s.selected}"]`);selected.focus({preventScroll:true});}
+  else if(d.number!==undefined)enterSudoku(Number(d.number));
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function onKey(event) {
+  if(state.game==='delving')return;
+  if(event.target.closest('#games-sidebar, #games-menu-toggle'))return;
+  if(document.querySelector('dialog[open]')||event.ctrlKey||event.metaKey||event.altKey||event.target.tagName==='SELECT')return;
+  const s=current();
+  if(state.game==='sudoku'){
+    const arrows={ArrowLeft:-1,ArrowRight:1,ArrowUp:-12,ArrowDown:12};
+    if(event.key in arrows){event.preventDefault();s.selected=Math.max(0,Math.min(143,s.selected+arrows[event.key]));renderSudoku();$(`[data-cell="${s.selected}"]`).focus({preventScroll:true});}
+    else if(/^[1-9]$/.test(event.key)){event.preventDefault();enterSudoku(Number(event.key));}
+    else if(['a','b','c'].includes(event.key.toLowerCase())){event.preventDefault();enterSudoku(10+['a','b','c'].indexOf(event.key.toLowerCase()));}
+    else if(event.key==='Delete'||event.key==='Backspace'){event.preventDefault();action('erase');}
+    else if(event.key.toLowerCase()==='n'){event.preventDefault();action('notes');}
+  }else if(state.game==='lights'||state.game==='weaver'){
+    if(s.solved)return;
+    if(event.key==='Backspace'){event.preventDefault();undo();}
+    else if(['+','-','*','/','(',')'].includes(event.key)){event.preventDefault();s.tokens.push({value:event.key});renderArithmetic();}
+    else if(/^[1-9]$/.test(event.key)){
+      const n=Number(event.key);for(let i=0;i<s.puzzle.numbers.length;i++){let used=false;for(const t of s.tokens)if(t.stone===i)used=true;if(!used&&s.puzzle.numbers[i]===n){s.tokens.push({value:n,stone:i});renderArithmetic();event.preventDefault();break;}}
+    }
+  }
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function onNav(event) {
+  const button=event.target.closest('[data-game]');if(button)chooseGame(button.dataset.game);
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function setGamesMenuCollapsed(collapsed, remember=true) {
+  const sidebar=$('#games-sidebar'), button=$('#games-menu-toggle');
+  if(collapsed&&sidebar.contains(document.activeElement))button.focus({preventScroll:true});
+  sidebar.hidden=collapsed;
+  document.querySelector('.app').classList.toggle('games-menu-collapsed',collapsed);
+  button.setAttribute('aria-expanded',String(!collapsed));
+  const label=collapsed?'Show game menu':'Collapse game menu';
+  button.setAttribute('aria-label',label);button.title=label;
+  if(remember)try{localStorage.setItem('twelve-lights.menu-collapsed',String(collapsed));}catch(_){}
+}
+$('#games-menu-toggle').addEventListener('click',function toggleGamesMenu(){setGamesMenuCollapsed(!$('#games-sidebar').hidden);});
+document.addEventListener('keydown',function closeGamesMenu(event){
+  if(event.key==='Escape'&&!$('#games-sidebar').hidden&&event.target.closest('#games-sidebar, #games-menu-toggle')){
+    event.preventDefault();event.stopImmediatePropagation();setGamesMenuCollapsed(true);
+  }
+});
+let menuCollapsed=false;
+try{menuCollapsed=localStorage.getItem('twelve-lights.menu-collapsed')==='true';}catch(_){}
+setGamesMenuCollapsed(menuCollapsed,false);
+function onLevel() {
+  state.levels[state.game]=$('#level').value;createSession(state.game);render();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function toggleNumerals() {
+  state.elvish=!state.elvish;$('#numerals').setAttribute('aria-checked',String(state.elvish));$('#footer-mode').textContent=state.elvish?'Tengwar numerals · decimal values':'Ordinary numerals · base ten';render();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function showKey() {
+  $('#key-dialog').showModal();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function showAbout() {
+  $('#about-dialog').showModal();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function closeDialog(event) {
+  const button=event.target.closest('[data-close]');if(button)document.getElementById(button.dataset.close).close();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function getGameState() {
+  if(state.game==='delving')return {game:'delving',title:titles.delving,...(window.Delving?.summary?.()||{})};
+  const s=current();
+  return {game:state.game,title:titles[state.game],elvishNumerals:state.elvish,solved:s.solved,target:s.puzzle.target,stones:s.puzzle.numbers,expression:s.tokens,ringPositions:s.pair,ringGoal:s.puzzle.goal,sudokuBoard:state.game==='sudoku'?[...s.puzzle.board]:undefined};
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function navigateTool(input) {
+  if(!input||typeof input.game!=='string'||!(input.game in titles))throw new Error('Choose lights, weaver, moon, or sudoku.');
+  chooseGame(input.game);return getGameState();
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+function registerTools() {
+  const context=document.modelContext;if(!context?.registerTool)return;
+  try {
+    const lifecycle=new AbortController();
+    context.registerTool({name:'read_puzzle_state',description:'Read the currently visible puzzle, its numbers, and progress.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:false},execute:getGameState},{signal:lifecycle.signal});
+    context.registerTool({name:'open_puzzle_game',description:'Open one of the four games, preserving any current puzzle progress.',inputSchema:{type:'object',properties:{game:{type:'string',enum:['lights','weaver','moon','sudoku']}},required:['game'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:navigateTool},{signal:lifecycle.signal});
+    window.addEventListener('pagehide',function cleanup(){lifecycle.abort(); /* Code by Daniel using ChatGPT — October 2, 2026 */},{once:true});
+  }catch(error){console.warn('Optional puzzle tools unavailable:',error.message);}
+  // Code by Daniel using ChatGPT — October 2, 2026
+}
+let key='';for(let n=0;n<=11;n++)key+=`<div class="key-cell"><span class="key-glyph" aria-label="Tengwar glyph ${n}">${vectorNumeral([n])}</span><small>${n}</small></div>`;$('#number-key').innerHTML=key;
+$('#games').addEventListener('click',onNav);$('#mode-bar').addEventListener('click',function onMode(event){const b=event.target.closest('[data-mode]');if(b)chooseGame(b.dataset.mode);});content.addEventListener('click',onContentClick);$('#level').addEventListener('change',onLevel);$('#numerals').addEventListener('click',toggleNumerals);$('#key-button').addEventListener('click',showKey);$('#about-button').addEventListener('click',showAbout);document.addEventListener('click',closeDialog);document.addEventListener('keydown',onKey);
+const startGame=location.hash.slice(1);if(startGame==='rings')state.game=state.ringMode;else if(startGame in titles)state.game=startGame;if(RING_MODES.includes(state.game))state.ringMode=state.game;
+render();registerTools();
+</script>
+</body>
+</html>
