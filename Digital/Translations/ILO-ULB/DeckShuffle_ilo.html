@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="ilo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeckShuffle</title>
+<!--
+  DeckShuffle — Offline PDF card randomizer + steganography
+  Steganography: AES-256-GCM encrypted rich-text JSON hidden in PNG via LSB encoding.
+  Rich text captures: text strings, x/y position, font size, font name, bold/italic, color.
+  Color is extracted by rendering the page to canvas and sampling the darkest pixel
+  in a horizontal strip at each text item's baseline — giving actual rendered color.
+  All processing is 100% local. Nothing leaves your browser.
+-->
+<script src="../../../vendor/pdfjs/pdf.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;--felt:#1a1f2e;--felt2:#141824;
+  --surface:#fffff8;--gold:#c9a96e;--gold2:#a07840;
+  --blue:#3a7bd5;--blue2:#2560b8;
+  --text:#1a1825;--text2:#4a4860;--muted:#8b8aa8;
+  --border-col:#c9a96e;--r:10px;--r-lg:18px;
+  --shadow-card:0 8px 40px rgba(0,0,0,.38);
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column}
+
+#hdr{flex:0 0 auto;background:linear-gradient(135deg,#0f1117 0%,#1a1f2e 100%);border-bottom:1px solid rgba(201,169,110,.18);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;z-index:20}
+#hdr h1{font-size:1.1rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+#hdr h1 em{font-style:normal;color:rgba(201,169,110,.45);font-size:.7em}
+#settingsBtn{background:none;border:1px solid rgba(201,169,110,.3);border-radius:8px;width:36px;height:36px;font-size:1.1rem;cursor:pointer;color:var(--gold);display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s}
+#settingsBtn:hover{border-color:var(--gold);background:rgba(201,169,110,.08)}
+
+#table{flex:1 1 0;overflow-y:auto;overflow-x:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(58,123,213,.06) 0%,transparent 60%),repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.012) 12px,rgba(255,255,255,.012) 13px),linear-gradient(180deg,var(--felt) 0%,var(--felt2) 100%);padding:24px 20px 60px}
+#groups-root{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:12px;color:rgba(201,169,110,.6);text-align:center}
+.empty-state .ikon{font-size:3.5rem;line-height:1}
+.empty-state h2{font-size:1.1rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase}
+.empty-state p{font-family:system-ui,sans-serif;font-size:.85rem;color:var(--muted);max-width:340px}
+.btn-gold{margin-top:8px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#fff;border:none;border-radius:8px;padding:10px 26px;font-family:'Georgia',serif;font-size:.9rem;letter-spacing:.08em;cursor:pointer;box-shadow:0 4px 14px rgba(201,169,110,.3);transition:box-shadow .2s,transform .15s}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,169,110,.45)}
+
+.grp-wrap{background:rgba(255,255,248,.032);border:1px solid rgba(201,169,110,.14);border-radius:16px;padding:16px}
+.grp-label{font-family:system-ui,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,169,110,.55);margin-bottom:12px}
+.cards-wrap{display:flex;flex-direction:column;gap:14px}
+.cards-wrap.overlap-mode{position:relative}
+
+.card{background:var(--surface);position:relative;overflow:hidden;width:100%;cursor:zoom-in}
+.card.c-border{outline:1.5px solid var(--border-col)}
+.card.c-rounded{border-radius:var(--r)}
+.card.c-shadow{box-shadow:var(--shadow-card)}
+.card img{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
+.card-shimmer{width:100%;aspect-ratio:17/22;background:linear-gradient(90deg,#e8e8e0 25%,#deded6 50%,#e8e8e0 75%);background-size:200% 100%;animation:shimmer 1.6s ease-in-out infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+.card-error{width:100%;aspect-ratio:17/22;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;padding:20px;background:#fff8f8;font-family:system-ui,sans-serif;font-size:.8rem;color:#c00;text-align:center}
+.replace-btn{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(8,8,22,.48);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.14);border-radius:30px;padding:5px 22px;font-family:system-ui,sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap;z-index:8;transition:background .15s,transform .1s}
+.replace-btn:hover{background:rgba(8,8,22,.72);transform:translateX(-50%) scale(1.04)}
+.replace-btn:active{transform:translateX(-50%) scale(.97)}
+@keyframes cardIn{from{opacity:0;transform:scale(.94) translateY(-8px)}to{opacity:1;transform:none}}
+.card-anim{animation:cardIn .22s ease-out both}
+
+/* Fullscreen */
+#fsOverlay{display:none;position:fixed;inset:0;z-index:200;background:#000;cursor:zoom-out}
+#fsOverlay.open{display:block}
+#fsImg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;animation:fsIn .18s ease-out both}
+@keyframes fsIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+#fsClose{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:50%;width:38px;height:38px;font-size:1.1rem;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:2}
+#fsClose:hover{background:rgba(255,255,255,.28)}
+#fsHint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-family:system-ui,sans-serif;font-size:.7rem;letter-spacing:.12em;color:rgba(255,255,255,.3);text-transform:uppercase;pointer-events:none;white-space:nowrap;z-index:2}
+
+/* Settings overlay */
+#settingsOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:100;overflow-y:auto;padding:20px}
+#settingsOverlay.open{display:block}
+#sPanel{background:var(--surface);border-radius:var(--r-lg);max-width:700px;margin:0 auto;padding:26px 26px 22px;box-shadow:0 24px 80px rgba(0,0,0,.4);border:1px solid rgba(201,169,110,.18)}
+.sp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sp-head h2{font-size:1.05rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--text)}
+#closeSettingsBtn{background:#f4f4ec;border:none;border-radius:6px;width:28px;height:28px;font-size:.95rem;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center}
+#closeSettingsBtn:hover{background:#e8e8e0}
+.info-banner{background:#f0f4ff;border-left:3px solid var(--blue);border-radius:6px;padding:8px 12px;font-family:system-ui,sans-serif;font-size:.78rem;color:#2040a0;margin-bottom:18px;line-height:1.5}
+.field{margin-bottom:13px}
+.field>label{display:block;font-family:system-ui,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.field>label .hint{font-weight:400;text-transform:none;letter-spacing:0;font-size:.75rem;color:#aab}
+.field input[type=text],.field input[type=number],.field select{width:100%;padding:7px 11px;border:1.5px solid #dde2ee;border-radius:var(--r);font-family:system-ui,sans-serif;font-size:.88rem;color:var(--text);background:#fafbff;outline:none;transition:border-color .15s}
+.field input[type=text]:focus,.field input[type=number]:focus,.field select:focus{border-color:var(--blue)}
+.field input[type=file]{font-family:system-ui,sans-serif;font-size:.82rem;width:100%;padding:5px 0}
+.page-preview{margin-top:4px;font-family:system-ui,sans-serif;font-size:.72rem;color:#aaa;word-break:break-all;line-height:1.5;min-height:1.2em}
+.page-preview.ok{color:#2e7d32}.page-preview.bad{color:#c00}
+.chk-row{display:flex;align-items:center;gap:8px;margin-bottom:9px;font-family:system-ui,sans-serif;font-size:.88rem}
+.chk-row input[type=checkbox]{width:15px;height:15px;accent-color:var(--blue);cursor:pointer}
+.chk-row label{cursor:pointer;color:var(--text)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gscard{background:#fafbff;border:1.5px solid #dde2ee;border-radius:12px;padding:14px;margin-bottom:12px}
+.gscard-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.gscard-title{font-family:system-ui,sans-serif;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue2)}
+.gscard-del{background:none;border:1px solid #f0b0b0;border-radius:6px;padding:3px 10px;font-family:system-ui,sans-serif;font-size:.72rem;color:#c55;cursor:pointer;transition:background .15s}
+.gscard-del:hover{background:#fff0f0}
+.sp-section{border-top:1px solid #eaeaf0;padding-top:16px;margin-top:4px}
+.sp-section-title{font-family:system-ui,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.btn{padding:9px 22px;border-radius:var(--r);font-family:system-ui,sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.04em;cursor:pointer;border:none;transition:opacity .15s,transform .1s}
+.btn:hover{opacity:.87}.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff;box-shadow:0 3px 10px rgba(58,123,213,.3)}
+.btn-ghost{background:none;border:1.5px solid #dde2ee;color:var(--muted)}
+#addGroupBtn{background:linear-gradient(135deg,#e8f0ff,#dce8ff);color:var(--blue2);border:1.5px solid #c0d0ee;border-radius:8px;padding:6px 16px;font-family:system-ui,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:background .15s}
+#addGroupBtn:hover{background:linear-gradient(135deg,#d8e4ff,#ccdaff)}
+.ng-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.sp-foot{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:14px;border-top:1px solid #eaeaf0}
+.remember-row{background:#fffdf0;border:1px solid #e8d890;border-radius:8px;padding:10px 14px;margin-bottom:18px}
+
+/* Advanced/Stego */
+details.advanced-section{border-top:1px solid #eaeaf0;margin-top:4px}
+details.advanced-section summary{font-family:system-ui,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 0 0;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;user-select:none}
+details.advanced-section summary::-webkit-details-marker{display:none}
+details.advanced-section summary::before{content:'▶';font-size:.6rem;transition:transform .2s;display:inline-block}
+details.advanced-section[open] summary::before{transform:rotate(90deg)}
+details.advanced-section summary:hover{color:var(--text2)}
+.stego-box{background:#f8f4ee;border:1.5px solid #e0cfa8;border-radius:12px;padding:16px;margin-top:14px}
+.stego-warn{background:#fff8e1;border:1px solid #f0d060;border-radius:8px;padding:9px 13px;font-family:system-ui,sans-serif;font-size:.78rem;color:#7a5800;line-height:1.55;margin-bottom:14px}
+.stego-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.btn-stego-embed{background:linear-gradient(135deg,#2e7d32,#388e3c);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-family:system-ui,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:opacity .15s,transform .1s}
+.btn-stego-embed:hover{opacity:.88}.btn-stego-embed:active{transform:scale(.97)}
+.btn-stego-extract{background:linear-gradient(135deg,#5b35c0,#7b52e0);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-family:system-ui,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:opacity .15s,transform .1s}
+.btn-stego-extract:hover{opacity:.88}.btn-stego-extract:active{transform:scale(.97)}
+.stego-status{font-family:system-ui,sans-serif;font-size:.78rem;margin-top:10px;padding:6px 10px;border-radius:6px;display:none;line-height:1.5}
+.stego-status.info{background:#e3f2fd;color:#1565c0;display:block}
+.stego-status.ok{background:#e8f5e9;color:#2e7d32;display:block}
+.stego-status.err{background:#ffebee;color:#c62828;display:block}
+.stego-cap{font-family:system-ui,sans-serif;font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5}
+.stego-progress{width:100%;height:6px;background:#e0cfa8;border-radius:3px;margin-top:8px;overflow:hidden;display:none}
+.stego-progress-bar{height:100%;background:linear-gradient(90deg,#2e7d32,#66bb6a);border-radius:3px;transition:width .3s ease;width:0%}
+
+/* Stego result viewer */
+#stegoResultOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:300;padding:20px;overflow-y:auto}
+#stegoResultOverlay.open{display:block}
+#stegoResultPanel{background:#fff;border-radius:var(--r-lg);max-width:900px;margin:0 auto;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.5);border:1px solid #dde2ee;overflow:hidden}
+.result-header{background:linear-gradient(135deg,#1a1f2e,#2a3050);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.result-header h3{font-size:.9rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.result-tabs{display:flex;gap:2px}
+.rtab{padding:5px 14px;border-radius:6px;font-family:system-ui,sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;border:none;transition:background .15s;letter-spacing:.05em}
+.rtab.active{background:var(--gold);color:#fff}
+.rtab:not(.active){background:rgba(255,255,255,.12);color:rgba(255,255,255,.7)}
+.rtab:not(.active):hover{background:rgba(255,255,255,.22)}
+.result-pane{display:none}.result-pane.active{display:block}
+/* Rendered pane */
+#resultIframe{width:100%;height:70vh;border:none;display:block}
+/* Text pane */
+#stegoResultText{width:100%;height:70vh;border:none;font-family:system-ui,sans-serif;font-size:.85rem;color:var(--text);background:#fafbff;padding:16px;resize:none;outline:none;line-height:1.6;display:block}
+.result-footer{padding:12px 16px;background:#f8f8f4;border-top:1px solid #eaeaf0;display:flex;justify-content:space-between;align-items:center}
+.result-meta{font-family:system-ui,sans-serif;font-size:.72rem;color:var(--muted)}
+.result-actions{display:flex;gap:8px}
+</style>
+</head>
+<body>
+
+<div id="hdr">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="../../../index.html" style="color:rgba(201,169,110,.5);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(201,169,110,.2);border-radius:6px;padding:4px 10px;transition:color .2s,border-color .2s" title="Back to site">← Site</a>
+    <h1>🃏 DeckShuffle <em>/ PDF Randomizer</em></h1>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button id="printBtn" title="Print / Save as PDF — open current cards in a print window" aria-label="Print cards" style="background:none;border:1px solid rgba(201,169,110,.3);border-radius:8px;width:36px;height:36px;font-size:1.05rem;cursor:pointer;color:var(--gold);display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s">🖨️</button>
+    <button id="settingsBtn" title="Settings" aria-label="Open settings">⚙️</button>
+  </div>
+</div>
+
+<div id="table"><div id="groups-root"></div></div>
+
+<!-- Fullscreen -->
+<div id="fsOverlay" role="dialog" aria-label="Fullscreen card">
+  <button id="fsClose" aria-label="Close fullscreen">✕</button>
+  <img id="fsImg" src="" alt="">
+  <div id="fsHint">Click anywhere · Esc to close</div>
+</div>
+
+<!-- Rich-text result viewer -->
+<div id="stegoResultOverlay">
+  <div id="stegoResultPanel">
+    <div class="result-header">
+      <h3>🔓 Retrieved Text</h3>
+      <div class="result-tabs">
+        <button class="rtab active" data-pane="rendered">Rendered</button>
+        <button class="rtab" data-pane="plain">Plain Text</button>
+      </div>
+    </div>
+    <!-- Rendered pane: iframe shows reconstructed HTML layout -->
+    <div class="result-pane active" id="pane-rendered">
+      <iframe id="resultIframe" title="Reconstructed document" sandbox="allow-same-origin"></iframe>
+    </div>
+    <!-- Plain text pane -->
+    <div class="result-pane" id="pane-plain">
+      <textarea id="stegoResultText" readonly spellcheck="false"></textarea>
+    </div>
+    <div class="result-footer">
+      <span class="result-meta" id="resultMeta"></span>
+      <div class="result-actions">
+        <button class="btn btn-ghost" id="stegoResultSaveHtml">Save as HTML</button>
+        <button class="btn btn-ghost" id="stegoResultCopy">Copy Text</button>
+        <button class="btn btn-primary" id="stegoResultClose">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Settings -->
+<div id="settingsOverlay" role="dialog" aria-modal="true" aria-label="Settings">
+  <div id="sPanel">
+    <div class="sp-head">
+      <h2>⚙ Settings</h2>
+      <button id="closeSettingsBtn">✕</button>
+    </div>
+
+    <div class="info-banner">
+      💡 PDFs stay in your browser only (IndexedDB). Nothing is uploaded anywhere.
+      PDF rendering is bundled with this site, so no third-party service receives the cards.
+    </div>
+
+    <div class="remember-row chk-row">
+      <input type="checkbox" id="optRemember">
+      <label for="optRemember" style="font-weight:700;color:var(--text)">
+        Remember settings &amp; files between sessions
+        <span style="display:block;font-weight:400;font-size:.8em;color:var(--muted);margin-top:2px">When unchecked, no data is saved — everything clears on next visit.</span>
+      </label>
+    </div>
+
+    <div class="ng-row">
+      <span style="font-family:system-ui,sans-serif;font-size:.88rem;font-weight:700;color:var(--text2)">Groups</span>
+      <button id="addGroupBtn">+ Add Group</button>
+    </div>
+    <div id="groupsForm"></div>
+
+    <div class="sp-section">
+      <div class="sp-section-title">Display Options</div>
+      <div class="chk-row"><input type="checkbox" id="optBorder" checked><label for="optBorder">Card border</label></div>
+      <div class="chk-row"><input type="checkbox" id="optRounded"><label for="optRounded">Rounded corners</label></div>
+      <div class="chk-row"><input type="checkbox" id="optShadow"><label for="optShadow">Drop shadow</label></div>
+      <div class="two-col" style="margin-top:10px">
+        <div class="field">
+          <label>Vertical Overlap % <span class="hint">0=stacked, 50=half-hidden</span></label>
+          <input type="number" id="optVOverlap" min="0" max="99" value="0">
+        </div>
+        <div class="field">
+          <label>Horizontal Fan px <span class="hint">stagger per card</span></label>
+          <input type="number" id="optHFan" min="0" max="300" value="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Advanced / Steganography ── -->
+    <details class="advanced-section">
+      <summary>Advanced</summary>
+      <div class="stego-box">
+
+        <div style="font-family:system-ui,sans-serif;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8a6a00;margin-bottom:10px">
+          🔐 Save PDF Text inside an Image
+        </div>
+
+        <div class="stego-warn">
+          <strong>No warranties of any kind.</strong> Consider making a backup.
+          AES-256-GCM. Wrong passphrase = no data.
+          <em style="display:block;margin-top:4px;font-weight:400">Works best on digitally-typeset PDFs. Scanned/image-only PDFs have no text layer.</em>
+        </div>
+
+        <div class="field">
+          <label>Carrier image <span class="hint">— must be PNG; JPEG recompression destroys the data</span></label>
+          <div class="chk-row" style="margin-bottom:6px">
+            <input type="checkbox" id="stegoUsePdfImage">
+            <label for="stegoUsePdfImage" style="font-family:system-ui,sans-serif;font-size:.82rem;color:var(--text)">
+              Use largest page image from the PDF as carrier
+              <span style="color:var(--muted);font-size:.9em">(errors if not large enough)</span>
+            </label>
+          </div>
+          <div id="stegoManualCarrierRow">
+            <input type="file" accept="image/*" id="stegoCarrierFile">
+          </div>
+          <div class="stego-cap" id="stegoCapacity"></div>
+        </div>
+
+        <div class="field">
+          <label>Source PDF group <span class="hint">— all pages in the group's PDF will be extracted</span></label>
+          <select id="stegoGroupSel">
+            <option value="">— select a group —</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Passphrase <span class="hint">— AES-256; required for both Save and Retrieve</span></label>
+          <input type="text" id="stegoPhrase" placeholder="Passphrase" autocomplete="off" spellcheck="false">
+        </div>
+
+        <div class="chk-row" style="margin-bottom:4px">
+          <input type="checkbox" id="stegoAutoSave">
+          <label for="stegoAutoSave" style="font-family:system-ui,sans-serif;font-size:.82rem;color:var(--text)">
+            Make PDF copy of retrieved
+            <span style="color:var(--muted);font-size:.9em">(saves as "[name] — Retrieved.html"; if unchecked, text is only displayed, not saved)</span>
+          </label>
+        </div>
+
+        <div class="stego-progress" id="stegoProgressWrap">
+          <div class="stego-progress-bar" id="stegoProgressBar"></div>
+        </div>
+
+        <div class="stego-row">
+          <button class="btn-stego-embed" id="stegoEmbedBtn">💾 Save Text → Download PNG</button>
+          <button class="btn-stego-extract" id="stegoExtractBtn">🔍 Retrieve from Image</button>
+        </div>
+
+        <div class="stego-status" id="stegoStatus"></div>
+      </div>
+    </details>
+
+    <div class="sp-foot">
+      <button class="btn btn-ghost" id="cancelSettingsBtn">Cancel</button>
+      <button class="btn btn-primary" id="saveSettingsBtn">Save &amp; Play</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ─── PDF.js ─── */
+if (typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'vendor/pdfjs/pdf.worker.min.js';
+}
+
+/* ─── Keys ─── */
+const K_SETTINGS = 'ds_settings_v4', K_STATE = 'ds_state_v4', K_REMEMBER = 'ds_remember_v4';
+const DB_NAME = 'DeckShuffleDB4', DB_STORE = 'pdfs';
+const STEGO_MAGIC = 0xD5E60F1A;
+
+/* ─── Defaults ─── */
+let _nextGid = 1;
+function mkGroup(){ return {id:_nextGid++,pdfName:null,pagesInput:'',pages:[],numToDisplay:3,randomize:true}; }
+function mkGlobal(){ return {showBorder:true,rounded:false,shadow:false,vOverlap:0,hFan:0}; }
+function mkSettings(){ return {groups:[mkGroup()],global:mkGlobal()}; }
+
+/* ─── IndexedDB ─── */
+let _db=null;
+async function dbInit(){if(_db)return;_db=await new Promise((res,rej)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=e=>e.target.result.createObjectStore(DB_STORE);req.onsuccess=e=>res(e.target.result);req.onerror=()=>rej(req.error);});}
+function dbTx(m){return _db.transaction(DB_STORE,m).objectStore(DB_STORE);}
+function dbGet(k){return new Promise((res,rej)=>{const r=dbTx('readonly').get(k);r.onsuccess=e=>res(e.target.result??null);r.onerror=()=>rej(r.error);});}
+function dbSet(k,v){return new Promise((res,rej)=>{const r=dbTx('readwrite').put(v,k);r.onsuccess=res;r.onerror=()=>rej(r.error);});}
+function dbClear(){return new Promise((res,rej)=>{const r=dbTx('readwrite').clear();r.onsuccess=res;r.onerror=()=>rej(r.error);});}
+
+/* ─── localStorage ─── */
+const ls={get:k=>{try{return JSON.parse(localStorage.getItem(k));}catch{return null;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}},del:k=>{try{localStorage.removeItem(k);}catch{}},};
+
+/* ─── PRNG / Permutations ─── */
+function rng32(seed){let s=seed>>>0;return()=>{s=(s+0x6D2B79F5)>>>0;let t=Math.imul(s^(s>>>15),1|s);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;};}
+function mkPerm(len,seed){const rng=rng32(seed),a=Array.from({length:len},(_,i)=>i);for(let i=len-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function identPerm(n){return Array.from({length:n},(_,i)=>i);}
+function rndSeed(){return(Math.random()*0xFFFFFFFF)>>>0;}
+
+/* ─── Page parser ─── */
+function parsePages(raw){const out=[];for(const tok of String(raw).split(',')){const s=tok.trim();if(!s)continue;const parts=s.split(':').map(Number);if(parts.some(isNaN))continue;if(parts.length===1){const n=Math.round(parts[0]);if(n>=1)out.push(n);}else if(parts.length===2){const[a,b]=parts,step=a<=b?1:-1;for(let v=a;step>0?v<=b:v>=b;v+=step){const n=Math.round(v);if(n>=1)out.push(n);}}else if(parts.length===3){const[a,step,b]=parts;if(!step)continue;for(let v=a;step>0?v<=b:v>=b;v+=step){const n=Math.round(v);if(n>=1)out.push(n);}}}return out;}
+
+/* ─── App state ─── */
+let appSettings=null, gStates={}, pdfDocs={}, pdfBuffers={}, pageCache={}, remember=true;
+
+/* ─── Group state ─── */
+function initGState(group,saved){const{id,pages,numToDisplay,randomize}=group;if(!pages||!pages.length){delete gStates[id];return;}const n=Math.min(numToDisplay,pages.length);if(n<1){delete gStates[id];return;}if(saved&&typeof saved.seed==='number'&&Array.isArray(saved.displayed)&&saved.displayed.length===n&&saved.displayed.every(i=>i>=0&&i<pages.length)){const perm=randomize?mkPerm(pages.length,saved.seed):identPerm(pages.length);gStates[id]={seed:saved.seed,perm,permIdx:typeof saved.permIdx==='number'?Math.min(saved.permIdx,perm.length):n,displayed:[...saved.displayed]};return;}const seed=randomize?rndSeed():0;const perm=randomize?mkPerm(pages.length,seed):identPerm(pages.length);gStates[id]={seed,perm,permIdx:n,displayed:perm.slice(0,n)};}
+function persistState(){if(!remember)return;const snap={};for(const[id,s]of Object.entries(gStates))snap[id]={seed:s.seed,permIdx:s.permIdx,displayed:[...s.displayed]};ls.set(K_STATE,snap);ls.set(K_SETTINGS,appSettings);}
+
+/* ─── Replace ─── */
+async function replaceCard(gid,pos){const s=gStates[gid],grp=appSettings.groups.find(g=>g.id===gid);if(!s||!grp)return;if(s.permIdx>=s.perm.length){const seed=grp.randomize?rndSeed():0;s.seed=seed;s.perm=grp.randomize?mkPerm(grp.pages.length,seed):identPerm(grp.pages.length);s.permIdx=0;}s.displayed[pos]=s.perm[s.permIdx++];persistState();await renderCardAt(gid,pos);}
+
+/* ─── PDF load/render ─── */
+async function loadPdf(gid){if(pdfDocs[gid])return pdfDocs[gid];let buf=pdfBuffers[gid]??null;if(!buf&&remember){try{buf=await dbGet(`pdf_${gid}`);}catch{}}if(!buf)return null;try{pdfDocs[gid]=await pdfjsLib.getDocument({data:buf.slice(0)}).promise;return pdfDocs[gid];}catch(e){console.error('PDF load',gid,e);return null;}}
+async function getPageDataUrl(gid,pageNum){const key=`${gid}_${pageNum}`;if(pageCache[key])return pageCache[key];const doc=pdfDocs[gid];if(!doc||pageNum<1||pageNum>doc.numPages)return null;try{const page=await doc.getPage(pageNum);const vp=page.getViewport({scale:1.8});const canvas=document.createElement('canvas');canvas.width=vp.width;canvas.height=vp.height;await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;pageCache[key]=canvas.toDataURL('image/jpeg',0.93);return pageCache[key];}catch(e){console.error('Render',gid,pageNum,e);return null;}}
+function prerenderGroup(gid){const grp=appSettings.groups.find(g=>g.id===gid);if(!grp||!pdfDocs[gid])return;grp.pages.forEach(p=>getPageDataUrl(gid,p));}
+
+/* ─── Fullscreen ─── */
+const fsOverlay=document.getElementById('fsOverlay'),fsImg=document.getElementById('fsImg');
+function showFullscreen(url){fsImg.src=url;fsOverlay.classList.add('open');}
+function hideFullscreen(){fsOverlay.classList.remove('open');fsImg.src='';}
+fsOverlay.addEventListener('click',hideFullscreen);
+document.getElementById('fsClose').addEventListener('click',e=>{e.stopPropagation();hideFullscreen();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){hideFullscreen();hideResultModal();}});
+
+/* ─── Card DOM ─── */
+async function renderCardAt(gid,pos){const grp=appSettings.groups.find(g=>g.id===gid),s=gStates[gid];if(!grp||!s)return;const el=document.getElementById(`card-${gid}-${pos}`);if(!el)return;const pageNum=grp.pages[s.displayed[pos]];el.querySelectorAll('.card-shimmer,.card-error,img').forEach(n=>n.remove());delete el.dataset.dataurl;const shimmer=document.createElement('div');shimmer.className='card-shimmer';el.prepend(shimmer);const dataUrl=await getPageDataUrl(gid,pageNum);shimmer.remove();if(dataUrl){const img=document.createElement('img');img.src=dataUrl;img.alt=`Page ${pageNum}`;img.className='card-anim';img.draggable=false;el.prepend(img);el.dataset.dataurl=dataUrl;img.onload=()=>updateOverlapPositions(gid);}else{const ph=document.createElement('div');ph.className='card-error';ph.innerHTML=`<span style="font-size:2rem">⚠️</span>Page ${pageNum} not found<br><small style="color:#bbb">Check page range in settings</small>`;el.prepend(ph);}}
+
+function updateOverlapPositions(gid){const g=appSettings.global,s=gStates[gid],wrap=document.getElementById(`cwrap-${gid}`);if(!wrap||!s)return;const vOv=Math.max(0,Math.min(99,g.vOverlap||0))/100,hFan=Math.max(0,g.hFan||0);if(vOv===0&&hFan===0)return;const cards=s.displayed.map((_,i)=>document.getElementById(`card-${gid}-${i}`)).filter(Boolean);if(!cards.length)return;const cardH=cards[0].offsetHeight||0;if(!cardH)return;const step=Math.round(cardH*(1-vOv)),total=(cards.length-1)*step+cardH;wrap.style.height=`${total}px`;cards.forEach((card,i)=>{card.style.position='absolute';card.style.top=`${i*step}px`;card.style.left=`${i*hFan}px`;card.style.width=`calc(100% - ${(cards.length-1)*hFan}px)`;card.style.zIndex=i+1;const r=card.querySelector('.replace-btn');if(r){if(i<cards.length-1){r.style.top=`${Math.max(step-36,8)}px`;r.style.bottom='auto';}else{r.style.top='auto';r.style.bottom='10px';}}});}
+
+/* ─── Render all ─── */
+async function renderAll(){const root=document.getElementById('groups-root');root.innerHTML='';const g=appSettings.global,useOverlap=g.vOverlap>0||g.hFan>0;const active=appSettings.groups.filter(gr=>gr.pages.length>0&&gStates[gr.id]);if(!active.length){const div=document.createElement('div');div.className='empty-state';div.innerHTML=`<div class="ikon">🃏</div><h2>No decks configured</h2><p>Open Settings, add a group, pick a PDF, and specify which pages to use.</p>`;const btn=document.createElement('button');btn.className='btn-gold';btn.textContent='Open Settings';btn.addEventListener('click',openSettings);div.appendChild(btn);root.appendChild(div);return;}for(const grp of active){const s=gStates[grp.id];const wrap=document.createElement('div');wrap.className='grp-wrap';const lbl=document.createElement('div');lbl.className='grp-label';lbl.textContent=`Group ${grp.id}${grp.pdfName?' · '+grp.pdfName:''}`;wrap.appendChild(lbl);const cwrap=document.createElement('div');cwrap.id=`cwrap-${grp.id}`;cwrap.className='cards-wrap'+(useOverlap?' overlap-mode':'');wrap.appendChild(cwrap);root.appendChild(wrap);for(let i=0;i<s.displayed.length;i++){const card=document.createElement('div');card.id=`card-${grp.id}-${i}`;card.className='card'+(g.showBorder?' c-border':'')+(g.rounded?' c-rounded':'')+(g.shadow?' c-shadow':'');const shimmer=document.createElement('div');shimmer.className='card-shimmer';card.appendChild(shimmer);const btn=document.createElement('button');btn.className='replace-btn';btn.textContent='Replace';btn.dataset.gid=grp.id;btn.dataset.pos=i;btn.addEventListener('click',ev=>{ev.stopPropagation();replaceCard(Number(ev.currentTarget.dataset.gid),Number(ev.currentTarget.dataset.pos));});card.appendChild(btn);card.addEventListener('click',()=>{if(card.dataset.dataurl)showFullscreen(card.dataset.dataurl);});cwrap.appendChild(card);}}await Promise.all(active.map(async grp=>{await loadPdf(grp.id);const s=gStates[grp.id];if(!s)return;await Promise.all(s.displayed.map((_,i)=>renderCardAt(grp.id,i)));setTimeout(()=>prerenderGroup(grp.id),1000);}));}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ████████  STEGANOGRAPHY ENGINE  ████████
+   ───────────────────────────────────────────────────────────────────
+   FORMAT stored in PNG pixels (LSB of R, G, B — 3 bits/pixel, α untouched):
+     [4 B] magic 0xD5E60F1A
+     [4 B] payload byte length (big-endian uint32)
+     [16 B] PBKDF2 salt
+     [12 B] AES-GCM IV
+     [N B] AES-256-GCM ciphertext of deflate-compressed JSON
+
+   JSON structure: { version:2, pages: [{ w, h, bg, items:[{t,x,y,fs,fw,fi,fn,c}] }] }
+     t  = text string
+     x,y = position in pts (PDF coordinate space, origin bottom-left)
+     fs = font size (pts)
+     fw = font-weight ('bold' | 'normal')
+     fi = font-style  ('italic' | 'normal')
+     fn = cleaned font family name
+     c  = sampled text color as CSS rgb(r,g,b)
+     bg = page background color (sampled from corners)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Crypto helpers ── */
+async function cryptoDeriveKey(phrase, salt){
+  const enc = new TextEncoder();
+  const km = await crypto.subtle.importKey('raw', enc.encode(phrase), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt, iterations:200000, hash:'SHA-256'},
+    km, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']
+  );
+}
+async function aesEncrypt(bytes, phrase){
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv   = crypto.getRandomValues(new Uint8Array(12));
+  const key  = await cryptoDeriveKey(phrase, salt);
+  const ct   = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, bytes);
+  const out  = new Uint8Array(16 + 12 + ct.byteLength);
+  out.set(salt, 0); out.set(iv, 16); out.set(new Uint8Array(ct), 28);
+  return out;
+}
+async function aesDecrypt(bytes, phrase){
+  const key = await cryptoDeriveKey(phrase, bytes.slice(0,16));
+  return new Uint8Array(
+    await crypto.subtle.decrypt({name:'AES-GCM', iv:bytes.slice(16,28)}, key, bytes.slice(28))
+  );
+}
+async function compress(u8){
+  if(typeof CompressionStream==='undefined') return u8;
+  return new Uint8Array(await new Response(
+    new Blob([u8]).stream().pipeThrough(new CompressionStream('deflate-raw'))
+  ).arrayBuffer());
+}
+async function decompress(u8){
+  if(typeof DecompressionStream==='undefined') return u8;
+  return new Uint8Array(await new Response(
+    new Blob([u8]).stream().pipeThrough(new DecompressionStream('deflate-raw'))
+  ).arrayBuffer());
+}
+
+/* ── LSB (1 bit per R/G/B channel) ── */
+function lsbCapBytes(id){ return Math.floor(Math.floor(id.data.length/4)*3/8); }
+
+function lsbEmbed(id, payload){
+  const need = payload.length*8, avail = Math.floor(id.data.length/4)*3;
+  if(need > avail) throw new Error(
+    `Image too small: need ${Math.ceil(need/8/1024)} KB, capacity ${Math.floor(avail/8/1024)} KB. ` +
+    `Try a larger image.`
+  );
+  let bi=0, bp=7;
+  for(let i=0; i<id.data.length && bi<payload.length; i++){
+    if(i%4===3) continue;
+    id.data[i] = (id.data[i]&0xFE) | ((payload[bi]>>bp)&1);
+    if(--bp<0){bp=7;bi++;}
+  }
+}
+function lsbExtract(id, byteCount){
+  const out=new Uint8Array(byteCount);
+  let bi=0, bp=7;
+  for(let i=0; i<id.data.length && bi<byteCount; i++){
+    if(i%4===3) continue;
+    out[bi] |= (id.data[i]&1)<<bp;
+    if(--bp<0){bp=7;bi++;}
+  }
+  return out;
+}
+
+/* ── Bundle: header + encrypted payload ── */
+function buildBundle(enc){
+  const b=new ArrayBuffer(8+enc.length);
+  const v=new DataView(b);
+  v.setUint32(0,STEGO_MAGIC,false);
+  v.setUint32(4,enc.length,false);
+  new Uint8Array(b,8).set(enc);
+  return new Uint8Array(b);
+}
+function peekBundle(raw){
+  if(raw.length<8) return null;
+  const v=new DataView(raw.buffer,raw.byteOffset,8);
+  if(v.getUint32(0,false)!==STEGO_MAGIC) return null;
+  const len=v.getUint32(4,false);
+  if(len<=0||len>raw.length-8) return null;
+  return len;
+}
+
+/* ── Load image file → {canvas, ctx, imageData} ── */
+function loadImgFile(file){
+  return new Promise((res,rej)=>{
+    const img=new Image(), url=URL.createObjectURL(file);
+    img.onload=()=>{
+      const c=document.createElement('canvas');
+      c.width=img.naturalWidth; c.height=img.naturalHeight;
+      const ctx=c.getContext('2d',{willReadFrequently:true});
+      ctx.drawImage(img,0,0);
+      URL.revokeObjectURL(url);
+      res({canvas:c, ctx, imageData:ctx.getImageData(0,0,c.width,c.height)});
+    };
+    img.onerror=rej; img.src=url;
+  });
+}
+
+/* ── Color sampling ──────────────────────────────────────────────────────
+   For each text item, render the full page at 1× and sample a horizontal
+   strip across the cap-height of the text. We take the darkest pixel in
+   that strip — that's the text ink color. Works even for colored headings.
+   The background is sampled from page corners before any text is drawn
+   (we can't un-draw text, but corners are usually blank margin).
+─────────────────────────────────────────────────────────────────────── */
+function sampleDarkestInStrip(ctx, x, y, w, sampleH){
+  const sx=Math.max(0,Math.round(x));
+  const sy=Math.max(0,Math.min(ctx.canvas.height-1,Math.round(y)));
+  const sw=Math.min(Math.max(1,Math.round(w*0.4)),30,ctx.canvas.width-sx);
+  if(sw<=0||sy>=ctx.canvas.height) return null;
+  const px=ctx.getImageData(sx,sy,sw,1).data;
+  let minB=255,r=0,g=0,b=0;
+  for(let i=0;i<px.length;i+=4){
+    const bri=(px[i]+px[i+1]+px[i+2])/3;
+    if(bri<minB){minB=bri;r=px[i];g=px[i+1];b=px[i+2];}
+  }
+  // If the darkest pixel is still near-white, text is likely not visible at this spot
+  // (e.g. a space or punctuation). Return null to use default color.
+  return minB < 230 ? `rgb(${r},${g},${b})` : null;
+}
+
+function samplePageBg(ctx){
+  const w=ctx.canvas.width, h=ctx.canvas.height;
+  const corners=[[2,2],[w-4,2],[2,h-4],[w-4,h-4]];
+  let rSum=0,gSum=0,bSum=0;
+  for(const[cx,cy]of corners){
+    const p=ctx.getImageData(cx,cy,1,1).data;
+    rSum+=p[0];gSum+=p[1];bSum+=p[2];
+  }
+  const n=corners.length;
+  return `rgb(${Math.round(rSum/n)},${Math.round(gSum/n)},${Math.round(bSum/n)})`;
+}
+
+/* ── Font name cleanup + web-font mapping ────────────────────────────────
+   PDFs store font names like "ABCXYZ+TimesBoldItalic" or "Helvetica-Bold".
+   We strip the subset prefix, detect bold/italic from the name, then map
+   to the nearest broadly available web font family.
+─────────────────────────────────────────────────────────────────────── */
+function parseFontName(raw){
+  const name=(raw||'').replace(/^[A-Z]{6}\+/,'');  // strip ABCXYZ+ prefix
+  const lo=name.toLowerCase();
+  const bold   = /bold/i.test(name);
+  const italic = /italic|oblique|slanted/i.test(name);
+
+  let family='Georgia, serif'; // default serif — common for scriptures
+  if(/arial|helvetica|freesans|sans/i.test(name))      family='Arial, Helvetica, sans-serif';
+  else if(/courier|mono|typewriter/i.test(name))        family='"Courier New", Courier, monospace';
+  else if(/palatino|palladio|book\s*antiqua/i.test(name)) family='"Palatino Linotype", Palatino, serif';
+  else if(/garamond|ebgaramond/i.test(name))            family='Garamond, "EB Garamond", serif';
+  else if(/verdana/i.test(name))                        family='Verdana, Geneva, sans-serif';
+  else if(/tahoma/i.test(name))                         family='Tahoma, Verdana, sans-serif';
+  else if(/calibri/i.test(name))                        family='Calibri, "Trebuchet MS", sans-serif';
+  else if(/times|roman|naskh|amiri|scheherazade/i.test(name)) family='Georgia, "Times New Roman", serif';
+
+  return {family, bold, italic, raw:name};
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   RICH TEXT EXTRACTION
+   Renders each page at 1× scale to sample colors, then pulls text items
+   from getTextContent() and combines the two.
+══════════════════════════════════════════════════════════════════════ */
+async function extractRichText(doc, onProgress){
+  const richData = {version:2, pages:[]};
+  let totalChars = 0;
+
+  for(let p=1; p<=doc.numPages; p++){
+    if(onProgress) onProgress(p, doc.numPages);
+    const page = await doc.getPage(p);
+    const vp   = page.getViewport({scale:1.0}); // 1× for color sampling
+
+    // Render to offscreen canvas
+    const canvas = document.createElement('canvas');
+    canvas.width  = Math.round(vp.width);
+    canvas.height = Math.round(vp.height);
+    const ctx = canvas.getContext('2d', {willReadFrequently:true});
+    await page.render({canvasContext:ctx, viewport:vp}).promise;
+
+    const bg = samplePageBg(ctx);
+
+    // Pull text content
+    const content = await page.getTextContent({normalizeWhitespace:false});
+
+    const items = [];
+    // Track "default color" for this page: most common non-white sampled color
+    // (used for items where sampling returns null)
+    let defaultColor = 'rgb(0,0,0)';
+
+    for(const item of content.items){
+      if(!item.str) continue;
+      // item.transform = [a,b,c,d,tx,ty] — tx,ty are PDF coords (origin bottom-left)
+      const tx = item.transform;
+      const x  = tx[4];
+      const y  = tx[5]; // PDF y: 0 = bottom of page
+      // Font size = scale of the transform matrix
+      const fs = Math.round(Math.sqrt(tx[0]*tx[0] + tx[1]*tx[1]) * 10) / 10 || 10;
+
+      // Convert PDF y (bottom-up) → canvas y (top-down) and shift up to cap-height
+      const canvasY = vp.height - y - fs * 0.75; // 0.75 ≈ cap height ratio
+      const w = item.width || fs * item.str.length * 0.6;
+
+      const sampled = sampleDarkestInStrip(ctx, x, canvasY, w, fs);
+      const color = sampled ?? defaultColor;
+
+      const font = parseFontName(item.fontName || '');
+
+      // Skip pure-whitespace items (they just add noise)
+      if(item.str.trim() || items.length > 0){
+        items.push({
+          t:  item.str,
+          x:  Math.round(x   * 100) / 100,
+          y:  Math.round(y   * 100) / 100,
+          fs: fs,
+          fw: font.bold   ? 'bold'   : 'normal',
+          fi: font.italic ? 'italic' : 'normal',
+          fn: font.family,
+          c:  color,
+          w:  Math.round(w),
+        });
+        totalChars += item.str.length;
+      }
+    }
+
+    richData.pages.push({
+      w:  Math.round(vp.width),
+      h:  Math.round(vp.height),
+      bg: bg,
+      items,
+    });
+  }
+
+  richData.totalChars = totalChars;
+  return richData;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   HTML RECONSTRUCTION
+   Builds a self-contained HTML document from the rich-text JSON.
+   Each page is a position:relative div; each text item is
+   position:absolute, placed using the PDF coordinate transform.
+══════════════════════════════════════════════════════════════════════ */
+function buildReconstructedHtml(richData){
+  const escH = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  let body = '';
+  for(let pi=0; pi<richData.pages.length; pi++){
+    const pg = richData.pages[pi];
+    body += `\n<div class="page" style="width:${pg.w}px;height:${pg.h}px;background:${pg.bg}">`;
+    body += `<div class="pnum">Page ${pi+1}</div>`;
+
+    for(const it of pg.items){
+      // PDF y-origin is bottom-left; CSS top is from top-left.
+      // top = pageHeight - y - fontSize  (puts baseline at y)
+      const cssTop  = Math.round(pg.h - it.y - it.fs);
+      const cssLeft = Math.round(it.x);
+      body += `<span style="`
+        + `left:${cssLeft}px;`
+        + `top:${cssTop}px;`
+        + `font-size:${it.fs}px;`
+        + `font-family:${it.fn};`
+        + `font-weight:${it.fw};`
+        + `font-style:${it.fi};`
+        + `color:${it.c};`
+        + `">${escH(it.t)}</span>`;
+    }
+    body += `\n</div>`;
+  }
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reconstructed Document — DeckShuffle</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#888;padding:20px;font-family:Georgia,serif}
+  .page{
+    position:relative;
+    margin:0 auto 28px;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.4);
+  }
+  .page span{
+    position:absolute;
+    white-space:pre;
+    line-height:1;
+    transform-origin:left bottom;
+  }
+  .pnum{
+    position:absolute;
+    bottom:-22px;left:50%;transform:translateX(-50%);
+    font-family:system-ui,sans-serif;font-size:11px;color:rgba(255,255,255,.7);
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+${body}
+</body>
+</html>`;
+}
+
+/* ── Build plain text from rich data (for the Plain Text tab) ── */
+function buildPlainText(richData){
+  return richData.pages.map((pg,i)=>{
+    const lines = [`=== Page ${i+1} ===`];
+    // Group items by approximate y (within 2pts = same line)
+    const byLine = [];
+    for(const it of pg.items){
+      const existing = byLine.find(l=>Math.abs(l.y-it.y)<2);
+      if(existing) existing.items.push(it);
+      else byLine.push({y:it.y, items:[it]});
+    }
+    byLine.sort((a,b)=>b.y-a.y); // PDF y: higher = closer to top of page
+    for(const line of byLine){
+      line.items.sort((a,b)=>a.x-b.x);
+      lines.push(line.items.map(it=>it.t).join(''));
+    }
+    return lines.join('\n');
+  }).join('\n\n');
+}
+
+/* ── Progress helpers ── */
+function stegoStatus(msg, type='info'){
+  const el=document.getElementById('stegoStatus');
+  el.textContent=msg; el.className=`stego-status ${type}`;
+}
+function setProgress(pct){
+  const wrap=document.getElementById('stegoProgressWrap');
+  const bar=document.getElementById('stegoProgressBar');
+  if(pct==null){wrap.style.display='none';}
+  else{wrap.style.display='block';bar.style.width=`${pct}%`;}
+}
+
+/* ── Carrier file / "use PDF page" toggle ── */
+let _stegoCarrierFile=null;
+
+document.getElementById('stegoUsePdfImage').addEventListener('change', e=>{
+  document.getElementById('stegoManualCarrierRow').style.display = e.target.checked ? 'none' : '';
+  document.getElementById('stegoCapacity').textContent = e.target.checked
+    ? 'Largest rendered PDF page will be used as carrier when you click Save.' : '';
+  if(e.target.checked) _stegoCarrierFile=null;
+});
+
+document.getElementById('stegoCarrierFile').addEventListener('change',async e=>{
+  const f=e.target.files[0]; if(!f){_stegoCarrierFile=null;return;}
+  _stegoCarrierFile=f;
+  document.getElementById('stegoCapacity').textContent='Reading image…';
+  try{
+    const {imageData,canvas}=await loadImgFile(f);
+    const cap=lsbCapBytes(imageData);
+    const isJpeg=f.type==='image/jpeg'||f.name.toLowerCase().endsWith('.jpg')||f.name.toLowerCase().endsWith('.jpeg');
+    document.getElementById('stegoCapacity').innerHTML=
+      `${canvas.width}×${canvas.height}px — LSB capacity ≈ <strong>${Math.round(cap/1024)} KB</strong> raw `
+      +(cap>0?`(text compresses ~5–10×, fitting ~${Math.round(cap*7/1024)} KB of text)`:'')
+      +(isJpeg?'<br><span style="color:#c55">⚠️ JPEG detected — must be saved as PNG to preserve the data. The download will be a PNG regardless.</span>':'');
+  }catch{document.getElementById('stegoCapacity').textContent='Could not read image.';}
+});
+
+/* ── Find largest rendered page from a PDF doc ── */
+async function findLargestPdfPage(doc){
+  let best=null, bestPixels=0;
+  for(let p=1; p<=doc.numPages; p++){
+    const page=await doc.getPage(p);
+    const vp=page.getViewport({scale:2.0}); // 2× for a generous carrier size
+    const pixels=Math.round(vp.width)*Math.round(vp.height);
+    if(pixels>bestPixels){ bestPixels=pixels; best={page,vp,pageNum:p}; }
+  }
+  if(!best) throw new Error('PDF has no pages.');
+  const canvas=document.createElement('canvas');
+  canvas.width=Math.round(best.vp.width); canvas.height=Math.round(best.vp.height);
+  const ctx=canvas.getContext('2d',{willReadFrequently:true});
+  await best.page.render({canvasContext:ctx, viewport:best.vp}).promise;
+  const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+  return {canvas, ctx, imageData, pageNum:best.pageNum, pixels:bestPixels};
+}
+
+/* ═══════════════════════════════════════════
+   SAVE (EMBED) button
+═══════════════════════════════════════════ */
+document.getElementById('stegoEmbedBtn').addEventListener('click', async ()=>{
+  const phrase=document.getElementById('stegoPhrase').value.trim();
+  const gidStr=document.getElementById('stegoGroupSel').value;
+  const usePdfPage=document.getElementById('stegoUsePdfImage').checked;
+  if(!usePdfPage && !_stegoCarrierFile){stegoStatus('Choose a carrier image, or check "Use largest page image from the PDF".','err');return;}
+  if(!phrase){stegoStatus('Enter a passphrase.','err');return;}
+  if(!gidStr){stegoStatus('Select a source PDF group.','err');return;}
+  const gid=Number(gidStr);
+
+  try{
+    stegoStatus('Loading PDF…','info'); setProgress(5);
+    await loadPdf(gid);
+    const doc=pdfDocs[gid];
+    if(!doc){stegoStatus('PDF not loaded. Save settings with this group\'s PDF selected first.','err');setProgress(null);return;}
+
+    stegoStatus(`Extracting text + colors from ${doc.numPages} page(s)…`,'info'); setProgress(10);
+    await new Promise(r=>setTimeout(r,30));
+
+    const richData = await extractRichText(doc, (p,total)=>{
+      setProgress(10 + Math.round(p/total*50));
+      stegoStatus(`Extracting page ${p}/${total}…`,'info');
+    });
+
+    if(!richData.totalChars){
+      stegoStatus('No text found in this PDF. It may be image-only (scanned). A text layer is required.','err');
+      setProgress(null); return;
+    }
+
+    stegoStatus(`Extracted ${richData.totalChars.toLocaleString()} characters. Compressing…`,'info');
+    setProgress(65); await new Promise(r=>setTimeout(r,30));
+
+    const json=JSON.stringify(richData);
+    const jsonBytes=new TextEncoder().encode(json);
+    const compressed=await compress(jsonBytes);
+
+    stegoStatus(`Compressed: ${Math.round(compressed.length/1024)} KB. Encrypting…`,'info');
+    setProgress(72); await new Promise(r=>setTimeout(r,30));
+
+    const encrypted=await aesEncrypt(compressed, phrase);
+    const bundle=buildBundle(encrypted);
+
+    stegoStatus(`Payload: ${Math.round(bundle.length/1024)} KB. Preparing carrier image…`,'info');
+    setProgress(78); await new Promise(r=>setTimeout(r,30));
+
+    let carrierResult, carrierBaseName;
+    if(usePdfPage){
+      stegoStatus('Rendering largest PDF page as carrier…','info');
+      carrierResult = await findLargestPdfPage(doc);
+      const cap=lsbCapBytes(carrierResult.imageData);
+      if(bundle.length > cap){
+        throw new Error(
+          `Largest PDF page (${Math.round(carrierResult.pixels/1e6,1)} MP, capacity ${Math.round(cap/1024)} KB) ` +
+          `is too small for the payload (${Math.round(bundle.length/1024)} KB). ` +
+          `Use a higher-resolution carrier image instead.`
+        );
+      }
+      const grp=appSettings.groups.find(g=>g.id===gid);
+      carrierBaseName=(grp?.pdfName||'document').replace(/\.[^.]+$/,'');
+      stegoStatus(`Using page ${carrierResult.pageNum} (${carrierResult.canvas.width}×${carrierResult.canvas.height}px, capacity ${Math.round(cap/1024)} KB). Embedding…`,'info');
+    } else {
+      carrierResult = await loadImgFile(_stegoCarrierFile);
+      const cap=lsbCapBytes(carrierResult.imageData);
+      if(bundle.length > cap){
+        throw new Error(
+          `Image capacity (${Math.round(cap/1024)} KB) is smaller than payload (${Math.round(bundle.length/1024)} KB). ` +
+          `Use a larger image.`
+        );
+      }
+      carrierBaseName=_stegoCarrierFile.name.replace(/\.[^.]+$/,'')||'carrier';
+      stegoStatus(`Embedding into image (capacity ${Math.round(cap/1024)} KB)…`,'info');
+    }
+
+    setProgress(82); await new Promise(r=>setTimeout(r,30));
+    lsbEmbed(carrierResult.imageData, bundle);
+    carrierResult.ctx.putImageData(carrierResult.imageData, 0, 0);
+    setProgress(95);
+
+    carrierResult.canvas.toBlob(blob=>{
+      const link=document.createElement('a');
+      link.download=carrierBaseName+'_encoded.png';
+      link.href=URL.createObjectURL(blob);
+      link.click();
+      setTimeout(()=>URL.revokeObjectURL(link.href),5000);
+      setProgress(null);
+      stegoStatus(
+        `✅ Done! ${richData.totalChars.toLocaleString()} characters from ${doc.numPages} page(s) saved. `
+        +`PNG downloaded. Do not convert to JPEG.`,
+        'ok'
+      );
+    },'image/png');
+
+  }catch(e){
+    console.error(e); setProgress(null);
+    stegoStatus(`Error: ${e.message}`,'err');
+  }
+});
+
+/* ═══════════════════════════════════════════
+   RETRIEVE button
+═══════════════════════════════════════════ */
+document.getElementById('stegoExtractBtn').addEventListener('click', async ()=>{
+  const phrase=document.getElementById('stegoPhrase').value.trim();
+  if(!_stegoCarrierFile){stegoStatus('Choose the encoded PNG image.','err');return;}
+  if(!phrase){stegoStatus('Enter the passphrase.','err');return;}
+
+  try{
+    stegoStatus('Reading image pixels…','info'); setProgress(10);
+    await new Promise(r=>setTimeout(r,30));
+
+    const {imageData}=await loadImgFile(_stegoCarrierFile);
+
+    // Read 8-byte header to get payload length
+    const header=lsbExtract(imageData,8);
+    const payLen=peekBundle(header);
+    if(payLen===null){
+      stegoStatus('No saved data found in this image. Make sure this is the encoded PNG — not a JPEG copy or re-exported image.','err');
+      setProgress(null); return;
+    }
+
+    stegoStatus(`Found data (${Math.round(payLen/1024)} KB). Extracting…`,'info');
+    setProgress(30); await new Promise(r=>setTimeout(r,30));
+
+    const fullRaw=lsbExtract(imageData, 8+payLen);
+    const encBytes=fullRaw.slice(8);
+    setProgress(50);
+
+    stegoStatus('Decrypting…','info'); await new Promise(r=>setTimeout(r,30));
+    let decrypted;
+    try{
+      decrypted=await aesDecrypt(encBytes,phrase);
+    }catch{
+      stegoStatus('Decryption failed — incorrect passphrase, or data is corrupted.','err');
+      setProgress(null); return;
+    }
+    setProgress(75);
+
+    stegoStatus('Decompressing…','info'); await new Promise(r=>setTimeout(r,30));
+    const jsonBytes=await decompress(decrypted);
+    const richData=JSON.parse(new TextDecoder().decode(jsonBytes));
+    setProgress(90);
+
+    const totalChars = richData.totalChars
+      || richData.pages.reduce((s,p)=>s+p.items.reduce((a,it)=>a+it.t.length,0),0);
+    const totalItems = richData.pages.reduce((s,p)=>s+p.items.length,0);
+
+    // Auto-save if checkbox is checked
+    const autoSave=document.getElementById('stegoAutoSave').checked;
+    if(autoSave){
+      const baseName=(_stegoCarrierFile.name.replace(/_encoded\.png$/i,'').replace(/\.[^.]+$/,'')||'document');
+      const html=buildReconstructedHtml(richData);
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));
+      a.download=baseName+' — Retrieved.html';
+      a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+    }
+
+    stegoStatus(
+      `✅ Retrieved ${totalChars.toLocaleString()} characters, ${richData.pages.length} page(s), ${totalItems.toLocaleString()} text items.`
+      +(autoSave?' File saved.':''),
+      'ok'
+    );
+    setProgress(null);
+    showResultModal(richData, autoSave);
+
+  }catch(e){
+    console.error(e); setProgress(null);
+    stegoStatus(`Error: ${e.message}`,'err');
+  }
+});
+
+/* ── Result modal ── */
+let _currentRichData = null;
+
+function showResultModal(richData, makeCopy=false){
+  _currentRichData = richData;
+  const totalChars = richData.totalChars
+    || richData.pages.reduce((s,p)=>s+p.items.reduce((a,it)=>a+it.t.length,0),0);
+  document.getElementById('resultMeta').textContent =
+    `${richData.pages.length} page${richData.pages.length!==1?'s':''} · ${totalChars.toLocaleString()} characters`
+    +(makeCopy ? '' : ' · display only');
+
+  // Show or hide Save as HTML button based on makeCopy
+  document.getElementById('stegoResultSaveHtml').style.display = makeCopy ? '' : 'none';
+
+  document.getElementById('stegoResultText').value = buildPlainText(richData);
+
+  // Inject HTML into iframe
+  const html = buildReconstructedHtml(richData);
+  const iframe = document.getElementById('resultIframe');
+  const blob = new Blob([html],{type:'text/html'});
+  iframe.src = URL.createObjectURL(blob);
+
+  document.getElementById('stegoResultOverlay').classList.add('open');
+  // Default to Rendered tab
+  switchResultTab('rendered');
+}
+
+function hideResultModal(){
+  document.getElementById('stegoResultOverlay').classList.remove('open');
+  // Release blob URL
+  const iframe=document.getElementById('resultIframe');
+  if(iframe.src.startsWith('blob:')) URL.revokeObjectURL(iframe.src);
+  iframe.src='';
+}
+
+function switchResultTab(which){
+  document.querySelectorAll('.rtab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.pane===which);
+  });
+  document.querySelectorAll('.result-pane').forEach(p=>{
+    p.classList.toggle('active', p.id===`pane-${which}`);
+  });
+}
+
+document.querySelectorAll('.rtab').forEach(t=>t.addEventListener('click',()=>switchResultTab(t.dataset.pane)));
+document.getElementById('stegoResultClose').addEventListener('click',hideResultModal);
+document.getElementById('stegoResultOverlay').addEventListener('click',e=>{
+  if(e.target===document.getElementById('stegoResultOverlay')) hideResultModal();
+});
+document.getElementById('stegoResultCopy').addEventListener('click',()=>{
+  if(!_currentRichData) return;
+  navigator.clipboard.writeText(buildPlainText(_currentRichData)).then(()=>{
+    const btn=document.getElementById('stegoResultCopy');
+    btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy Text',2000);
+  });
+});
+document.getElementById('stegoResultSaveHtml').addEventListener('click',()=>{
+  if(!_currentRichData) return;
+  const html=buildReconstructedHtml(_currentRichData);
+  const baseName=_stegoCarrierFile
+    ? (_stegoCarrierFile.name.replace(/_encoded\.png$/i,'').replace(/\.[^.]+$/,'')||'document')
+    : 'document';
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));
+  a.download=baseName+' — Retrieved.html';
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+});
+
+
+/* ═══════════════════════════════════════════
+   Settings form
+═══════════════════════════════════════════ */
+let _tmp=null, _files={};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function openSettings(){
+  _tmp=JSON.parse(JSON.stringify(appSettings??mkSettings())); _files={};
+  document.getElementById('optRemember').checked  = remember;
+  document.getElementById('optBorder').checked    = _tmp.global.showBorder;
+  document.getElementById('optRounded').checked   = _tmp.global.rounded;
+  document.getElementById('optShadow').checked    = _tmp.global.shadow;
+  document.getElementById('optVOverlap').value    = _tmp.global.vOverlap;
+  document.getElementById('optHFan').value         = _tmp.global.hFan;
+  renderGroupForms();
+  // Populate stego group dropdown
+  const sel=document.getElementById('stegoGroupSel');
+  const prev=sel.value;
+  sel.innerHTML='<option value="">— select a group —</option>';
+  for(const grp of appSettings.groups){
+    if(grp.pdfName){
+      const o=document.createElement('option');
+      o.value=grp.id; o.textContent=`Group ${grp.id} — ${grp.pdfName}`;
+      if(String(grp.id)===prev) o.selected=true;
+      sel.appendChild(o);
+    }
+  }
+  document.getElementById('settingsOverlay').classList.add('open');
+}
+function closeSettings(){document.getElementById('settingsOverlay').classList.remove('open');}
+
+function renderGroupForms(){
+  const cont=document.getElementById('groupsForm'); cont.innerHTML='';
+  for(const grp of _tmp.groups) cont.appendChild(mkGroupForm(grp));
+}
+
+function mkGroupForm(grp){
+  const card=document.createElement('div'); card.className='gscard'; card.dataset.gid=grp.id;
+  const prev=grp.pagesInput?parsePages(grp.pagesInput):[];
+  const prevTxt=prev.length?`→ ${prev.length} page${prev.length!==1?'s':''}: `+prev.slice(0,24).join(', ')+(prev.length>24?' …':''):(grp.pagesInput.trim()?'No valid pages parsed':'');
+  card.innerHTML=`
+    <div class="gscard-head"><span class="gscard-title">Group ${esc(String(grp.id))}</span><button class="gscard-del">Remove</button></div>
+    <div class="field"><label>PDF file${grp.pdfName?` <span class="hint">(current: ${esc(grp.pdfName)})</span>`:''}</label><input type="file" accept=".pdf" class="gf-pdf"></div>
+    <div class="field">
+      <label>Pages <span class="hint">e.g.&nbsp;1:5, 7, 9:2:15&nbsp; or&nbsp; 2,5,9</span></label>
+      <input type="text" class="gf-pages" value="${esc(grp.pagesInput)}" placeholder="1:10, 15, 20:2:30">
+      <div class="page-preview ${prev.length?'ok':(grp.pagesInput.trim()?'bad':'')}">${prevTxt}</div>
+    </div>
+    <div class="two-col">
+      <div class="field"><label>Cards to display</label><input type="number" class="gf-num" min="1" value="${grp.numToDisplay}"></div>
+      <div class="field" style="display:flex;align-items:flex-end;padding-bottom:4px">
+        <div class="chk-row" style="margin-bottom:0">
+          <input type="checkbox" id="gf_rnd_${grp.id}" class="gf-rnd" ${grp.randomize?'checked':''}><label for="gf_rnd_${grp.id}">Randomize</label>
+        </div>
+      </div>
+    </div>`;
+  card.querySelector('.gscard-del').addEventListener('click',()=>{_tmp.groups=_tmp.groups.filter(g=>g.id!==grp.id);card.remove();});
+  card.querySelector('.gf-pdf').addEventListener('change',e=>{const f=e.target.files[0];if(f)_files[grp.id]=f;});
+  card.querySelector('.gf-pages').addEventListener('input',e=>{
+    const pages=parsePages(e.target.value),div=card.querySelector('.page-preview');
+    if(pages.length){div.className='page-preview ok';div.textContent=`→ ${pages.length} page${pages.length!==1?'s':''}: `+pages.slice(0,24).join(', ')+(pages.length>24?' …':'');}
+    else{div.className='page-preview'+(e.target.value.trim()?' bad':'');div.textContent=e.target.value.trim()?'No valid pages parsed':'';}
+  });
+  return card;
+}
+
+document.getElementById('addGroupBtn').addEventListener('click',()=>{const grp=mkGroup();_tmp.groups.push(grp);document.getElementById('groupsForm').appendChild(mkGroupForm(grp));});
+
+document.getElementById('saveSettingsBtn').addEventListener('click',async()=>{
+  const newRemember=document.getElementById('optRemember').checked;
+  _tmp.global={showBorder:document.getElementById('optBorder').checked,rounded:document.getElementById('optRounded').checked,shadow:document.getElementById('optShadow').checked,vOverlap:Math.max(0,Math.min(99,parseInt(document.getElementById('optVOverlap').value)||0)),hFan:Math.max(0,Math.min(300,parseInt(document.getElementById('optHFan').value)||0))};
+  for(const grp of _tmp.groups){
+    const card=document.querySelector(`.gscard[data-gid="${grp.id}"]`); if(!card)continue;
+    grp.pagesInput=card.querySelector('.gf-pages').value;
+    grp.pages=parsePages(grp.pagesInput);
+    grp.numToDisplay=Math.max(1,parseInt(card.querySelector('.gf-num').value)||1);
+    grp.randomize=card.querySelector('.gf-rnd').checked;
+    if(_files[grp.id]){const file=_files[grp.id],buf=await file.arrayBuffer();grp.pdfName=file.name;pdfBuffers[grp.id]=buf;delete pdfDocs[grp.id];Object.keys(pageCache).forEach(k=>{if(k.startsWith(`${grp.id}_`))delete pageCache[k];});if(newRemember)await dbSet(`pdf_${grp.id}`,buf);}
+  }
+  remember=newRemember;ls.set(K_REMEMBER,remember);
+  if(remember){ls.set(K_SETTINGS,_tmp);}else{ls.del(K_SETTINGS);ls.del(K_STATE);await dbClear();}
+  appSettings=_tmp;gStates={};for(const grp of appSettings.groups)initGState(grp,null);persistState();
+  closeSettings();await renderAll();
+});
+
+document.getElementById('cancelSettingsBtn').addEventListener('click',closeSettings);
+document.getElementById('closeSettingsBtn').addEventListener('click',closeSettings);
+document.getElementById('settingsBtn').addEventListener('click',openSettings);
+document.getElementById('settingsOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('settingsOverlay'))closeSettings();});
+
+/* ─── Boot ─── */
+async function init(){
+  await dbInit();
+  const savedRemember=ls.get(K_REMEMBER); remember=savedRemember!==false;
+  if(remember){
+    const saved=ls.get(K_SETTINGS);
+    if(saved?.groups?.length){
+      _nextGid=Math.max(...saved.groups.map(g=>Number(g.id)),0)+1;
+      appSettings=saved;
+      for(const g of appSettings.groups)if(!Array.isArray(g.pages))g.pages=parsePages(g.pagesInput||'');
+      const savedStates=ls.get(K_STATE)??{};
+      gStates={};for(const grp of appSettings.groups)initGState(grp,savedStates[grp.id]??null);
+      await renderAll();return;
+    }
+  }
+  appSettings=mkSettings();await renderAll();openSettings();
+}
+init();
+
+/* ═══════════════════════════════════════
+   PRINT / SAVE AS PDF
+   Opens all current card images in a
+   print-optimised window. Use browser
+   Print → Save as PDF on any device.
+═══════════════════════════════════════ */
+document.getElementById('printBtn').addEventListener('click', () => {
+  const cards = [...document.querySelectorAll('#groups-root .card img')]
+    .map(img => img.src)
+    .filter(Boolean);
+
+  if (!cards.length) {
+    alert('No cards are loaded yet.\n\nOpen Settings, load a PDF, choose a page range, and hit Save & Play first.');
+    return;
+  }
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spiritual Warfare Cards — Print</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#fff}
+  .card-page{
+    width:100vw;height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:8mm;
+    page-break-after:always;
+    break-after:page;
+  }
+  .card-page img{
+    max-width:100%;max-height:100%;
+    object-fit:contain;
+    display:block;
+  }
+  @media print{
+    @page{margin:0}
+    .card-page{width:100%;height:100vh;padding:6mm}
+  }
+  .print-hint{
+    position:fixed;bottom:0;left:0;right:0;
+    background:#1a1f2e;color:#c9a96e;
+    text-align:center;padding:10px;
+    font-family:system-ui,sans-serif;font-size:.82rem;
+    z-index:999
+  }
+  @media print{.print-hint{display:none}}
+</style>
+</head>
+<body>
+${cards.map(src => `<div class="card-page"><img src="${src}" alt="Card"></div>`).join('\n')}
+<div class="print-hint">Use your browser's Print (Ctrl+P / Cmd+P) and choose <strong>Save as PDF</strong> — works on any device. Close this window when done.</div>
+</body>
+</html>`;
+
+  const w = window.open('', '_blank');
+  if (!w) { alert('Pop-up blocked. Please allow pop-ups for this page.'); return; }
+  w.document.write(html);
+  w.document.close();
+  /* slight delay so images finish loading before print dialog */
+  w.addEventListener('load', () => setTimeout(() => w.print(), 400), { once: true });
+});
+</script>
+</body>
+</html>

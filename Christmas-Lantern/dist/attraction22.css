@@ -1,0 +1,9 @@
+/* Painted attraction and supplied books · Daniel using ChatGPT November 14, 2026 */
+.short-book22 .book-age22{font:12px/1.5 system-ui,sans-serif;color:#72725f}.short-book22 .book-subtitle22{font:italic 21px/1.5 Georgia,serif}.book-choice22{display:block;width:100%;text-align:left;margin:12px 0;white-space:normal;line-height:1.55}.book-coda22{border-top:1px solid #b9a67866;margin-top:24px;padding-top:15px}.book-coda22 p{font-size:14px!important;line-height:1.7!important}.book-contents22 nav{display:grid;gap:7px;margin:12px 0}.book-contents22 button{min-height:40px;text-align:left;padding:9px;border:1px solid #c4b58d;border-radius:5px;background:#f3ead4;color:#2b4b38}.book-contents22 [aria-current]{background:#d9e2c9}.short-book22 .book-reading li{margin:8px 0;line-height:1.8}.rail-controls22{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.rail-controls22 button[aria-pressed=true]{background:#dfc37b;color:#213b2c}.rail-status22{font-size:12px!important;flex-basis:100%;max-width:none!important}.rail-status22:empty{display:none}.rail-controls22 button:focus-visible{outline:3px solid #f1d486;outline-offset:2px}.ornament-pick21 img{display:block;width:25px;height:25px;object-fit:contain;margin:auto}
+@media(max-width:600px){.rail-controls22{gap:5px}.rail-controls22 button{min-height:40px;font-size:12px}.room-play21:has(.rail-controls22){align-items:flex-end}.book-choice22{padding:12px!important}.short-book22 .book-reading{font-size:21px;line-height:1.85}}
+
+.rail-selected22{outline:2px solid #f3d486;outline-offset:1px}.playing-room21:has(.rail-controls22) .scene-bottom{display:none}
+
+.p10-parts img{display:block;width:130px;height:75px;object-fit:contain;margin:auto}
+
+.playing-room21 #toast{display:none}
