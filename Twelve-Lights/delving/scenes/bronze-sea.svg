@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-label="Solomon's bronze basin with one measuring line of thirty cubits drawn around the inside of its wall">
+<rect width="900" height="560" fill="#14211f"/>
+<g transform="translate(450,330)">
+<path d="M-330,-60 Q-300,140 -230,190 L230,190 Q300,140 330,-60 Z" fill="#8a5d27"/>
+<ellipse cx="0" cy="-60" rx="350" ry="74" fill="#b98340"/>
+<ellipse cx="0" cy="-60" rx="318" ry="60" fill="#244c55"/>
+<ellipse cx="0" cy="-60" rx="318" ry="60" fill="none" stroke="#f3d88e" stroke-width="4" stroke-dasharray="14 9"/>
+<path d="M-350,-60 Q-372,-74 -380,-88 M350,-60 Q372,-74 380,-88" stroke="#d6a25c" stroke-width="8" fill="none"/>
+</g>
+<text x="450" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#f3d88e">a line of 30 cubits, run around the inside</text>
+<text x="450" y="532" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#cfd8d2" opacity=".75">Wall about a handbreadth thick; brim flared like a lily (1 Kings 7:23–26)</text>
+<text x="880" y="552" text-anchor="end" font-family="Georgia,serif" font-size="13" fill="#ffffff" opacity=".35">STAND-IN DIAGRAM</text>
+</svg>

@@ -1,0 +1,80 @@
+.culture-invite{display:inline-flex;flex-wrap:wrap;gap:.35em .8em;align-items:center;margin:.45em 0 .85em}
+.culture-invite small{font-weight:400}
+.culture-page{max-width:52rem;margin:auto;color:#302c23}
+.culture-page header{display:flex;align-items:center;gap:1.2em;border-bottom:1px solid #ab9675;padding:.6em 0}
+.culture-page header img{width:clamp(65px,16vw,136px);height:clamp(72px,16vw,116px);object-fit:contain;background:radial-gradient(ellipse,#b5a78966,transparent 68%)}
+.culture-page header p{margin:.45em 0}
+#culture-work{background:linear-gradient(115deg,#fbf4dc,#eee0c3);color:#332b22;border:1px solid #baa581;border-radius:6px;padding:clamp(.8rem,3vw,1.7rem);margin:.8rem 0;box-shadow:inset 0 0 22px #a57e3821}
+.culture-guide:empty{display:none}
+.culture-guide{margin-top:0;font-style:italic}
+.culture-tile,.timber-patch{font:inherit;color:#2d291e;min-height:48px;border-radius:5px;border:1px solid #897353;background:#fff9e9;padding:.5em .7em;cursor:pointer}
+.culture-page button:focus-visible{outline:3px solid #225f75;outline-offset:2px}
+.culture-page button:hover{box-shadow:inset 0 0 0 2px #887044}
+.culture-bins,.culture-choices,.culture-trail{display:grid;gap:.45em}
+.culture-bins{grid-template-columns:repeat(auto-fit,minmax(min(100%,7.2em),1fr))}
+.culture-slip,.culture-dial>div{padding:1em;text-align:center;background:#fffbeb;border-block:1px solid #af9472}
+.culture-slip{transform:rotate(-.7deg);margin:1em auto;max-width:26em;box-shadow:0 3px 5px #61472720}
+.culture-slip strong,.culture-slip span,.culture-dial strong,.culture-dial small{display:block}
+.culture-slip strong,.culture-dial strong{font:600 1.3em Georgia,serif;margin-bottom:.35em}
+.culture-dial{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.45em;margin:.8em 0}
+.culture-trail{grid-template-columns:repeat(var(--columns),minmax(0,1fr))}
+.culture-trail.delta{padding:.55em;background:linear-gradient(160deg,#96bac1 36%,#b6bc89 36.5%,#d4bb8e 78%);border-radius:6px}
+.culture-trail.inscribed{direction:ltr;padding:.65em;background:#5c5043}
+.inscribed button{font-family:BDPhoenician,Georgia,serif;padding:.5em .1em}
+.culture-tile.marked,.culture-tile.roofed{background:#405d49;color:white}
+.culture-bins.mosaic button{background:repeating-linear-gradient(90deg,transparent 0 9px,#9d8c7328 10px),repeating-linear-gradient(0deg,#f8ecd1 0 9px,#cfbea0 10px)}
+.culture-bins.inlay button{font:600 1.15em Georgia,serif;background:#e1d2bb}
+.culture-pools{display:grid;grid-template:"north north north" auto "west upper east" 1fr "west middle east" auto "west lower east" 1fr "south south south" auto / minmax(0,1fr) minmax(0,2fr) minmax(0,1fr);gap:3px;padding:5px;background:#a9926e}
+.culture-pools .pos-0{grid-area:north}.culture-pools .pos-1{grid-area:west}.culture-pools .pos-2{grid-area:east}.culture-pools .pos-3{grid-area:south}.culture-pools .pos-4{grid-area:middle}.culture-pools .pos-5{grid-area:upper}.culture-pools .pos-6{grid-area:lower}
+.culture-pools .water{background:#7eacb2;color:#142f37}.culture-pools button{overflow-wrap:anywhere}
+.culture-hull{display:grid;gap:.4em;background:#5e4839;padding:.7em 1.2em;border-radius:15% / 45%;margin:.8em 0}
+.plank,.timber-patch i{background:repeating-linear-gradient(var(--wood,0deg),#c5a16a 0 4px,#876337 5px,#a58051 6px 10px)}
+.plank{display:grid;justify-content:center;padding:4px;border-radius:16%}
+.plank-0{--wood:-60deg}.plank-2{--wood:-120deg}
+.timber-patch{position:relative;overflow:hidden;background:#967045;min-width:7em}
+.timber-patch i{position:absolute;inset:0;--wood:calc(0deg - var(--grain))}
+.timber-patch span{position:relative;background:#fff4ddeb;border-radius:3px;padding:0 .3em}
+.culture-feedback{min-height:1.5em;color:#354c38;margin-bottom:0}
+.culture-note{font:600 1.3em Georgia,serif}
+@media(max-width:520px){.culture-dial{grid-template-columns:1fr 1fr}.culture-dial>div{grid-column:span 2;grid-row:1}.culture-trail.inscribed{gap:2px;padding:.25em}.culture-trail.delta button{padding:.2em;font-size:.92em}.culture-page header{gap:.65em}.culture-bins{grid-template-columns:1fr}.culture-pools{font-size:.92em}}
+
+.culture-clocks{display:flex;flex-wrap:wrap;gap:.65em;margin:.7em 0}
+.culture-clocks>div{flex:1 1 11em;padding:.8em;text-align:center;border:2px solid #98815e;border-radius:1.4em;background:#f8efd6}
+.culture-clocks strong,.culture-filed{display:block}.culture-bins>div>button{width:100%}
+.culture-filed{padding:.3em;color:#42523e}.culture-links{display:flex;justify-content:space-between;align-items:baseline;gap:1em;flex-wrap:wrap}
+.culture-links details{max-width:34em}
+
+.culture-finished{border:0;min-inline-size:0;padding:0;margin:0 0 .65em}.culture-finished button{opacity:1;cursor:default}
+.culture-pools{max-width:38em;margin-inline:auto;padding:.55em;gap:2px;background:linear-gradient(135deg,#c9bda8,#817360);box-shadow:0 3px 7px #47372155;grid-template-columns:minmax(4em,1fr) minmax(0,4fr) minmax(4em,1fr)}
+.culture-pools .bank{border-radius:2px;border:1px solid #918775;font:600 .93em Georgia,serif;color:#33291c;text-shadow:0 0 4px #ffffeb;background:repeating-linear-gradient(90deg,#a1978442 0 1px,transparent 2px 32px),linear-gradient(#e4d6b8,#c5b696);box-shadow:inset 0 1px #fff8}
+.culture-pools .water{min-height:4.4em;color:#e8f8ef;text-shadow:0 1px 3px #163d43;background:repeating-radial-gradient(ellipse at 35% -160%,transparent 0 15px,#e9ffff27 16px,transparent 18px 29px),linear-gradient(155deg,#558e90,#286067 60%,#578b8c);box-shadow:inset 0 4px 8px #193d4099}
+.culture-pools .roofed{color:#fff8e9;text-shadow:0 1px 3px #482e1d;background:repeating-linear-gradient(90deg,transparent 0 8px,#693a2e8f 9px,#f4b98b80 10px),linear-gradient(#bc8564,#95664d 52%,#754a39 55%,#bb8863);box-shadow:1px 3px 4px #543c2b77}
+.culture-pools .pos-1.roofed,.culture-pools .pos-2.roofed{background:repeating-linear-gradient(0deg,transparent 0 8px,#693a2e8f 9px,#f4b98b80 10px),linear-gradient(90deg,#bb8767,#7c513a,#bc8f71)}
+.culture-trail.inscribed .culture-tile{background:linear-gradient(115deg,#e7d8ba,#c5b398);color:#2f281d;font-size:1.12em}
+.culture-trail.inscribed .marked{background:#465e4c;color:#fff7d8}
+.culture-bins.mosaic>div{border:3px double #875c44;padding:.35em;background:repeating-conic-gradient(#e9d5aa 0 25%,#d7bf91 0 50%) 0 0 / 9px 9px}
+.culture-filed{background:#faf1dcdf;border-bottom:1px solid #b8ab89}
+@media(max-width:450px){.culture-trail.inscribed .culture-tile{font-size:1em}.culture-pools .bank{padding:.3em}}
+
+/* A board laid out at the camp table. The painting stays visible beside it. */
+.immersive-museum #panel.camp-workshop-panel:modal{
+ --workshop-gutter:clamp(.65rem,3vw,4rem);
+ --workshop-width:min(58vw,62rem);
+ position:fixed;inset:auto var(--workshop-gutter) max(.6rem,env(safe-area-inset-bottom)) auto;
+ width:var(--workshop-width);max-width:calc(100vw - 2 * var(--workshop-gutter));max-height:78svh;
+ margin:0;background-color:#ead8b2;border:1px solid #ad9163;overscroll-behavior:contain;
+ box-shadow:0 .45rem 2rem #271e145b
+}
+.immersive-museum #panel.camp-workshop-panel[data-workshop-side="left"]:modal{
+ inset-inline:var(--workshop-gutter) auto
+}
+.immersive-museum #panel.camp-workshop-panel::backdrop{background:#211c111c;backdrop-filter:none}
+.camp-workshop-panel .culture-page{font-size:calc(clamp(1rem,1.14vw,1.5rem) * var(--reading-scale,1))}
+.camp-workshop-panel #culture-work{padding:clamp(.65rem,1.6vw,1.5rem)}
+.camp-workshop-panel .culture-trail{gap:.25em}
+.camp-workshop-panel .culture-trail .culture-tile{padding-inline:.15em;overflow-wrap:anywhere}
+@media(orientation:portrait){
+ .immersive-museum #panel.camp-workshop-panel:modal{--workshop-gutter:.5rem;--workshop-width:calc(100% - 1rem);max-height:69svh}
+ .camp-workshop-panel .culture-dial{grid-template-columns:1fr 1fr}
+ .camp-workshop-panel .culture-dial>div{grid-column:1/-1;grid-row:1}
+}

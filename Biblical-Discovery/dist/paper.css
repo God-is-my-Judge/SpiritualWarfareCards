@@ -1,0 +1,147 @@
+/* Stock for text-bearing documents. Depth and wear are separate from the repeating grain. */
+:root {
+ --museum-stock: url("assets/paper-museum.webp");
+ --field-stock: url("assets/paper-field.webp");
+ --field-stain: url("assets/paper-watermark.webp");
+ --stock-size: 512px 512px;
+}
+
+#panel { --page-stock: var(--museum-stock); --page-colour: #f5eddb; }
+#panel[data-paper="field"] { --page-stock: var(--field-stock); --page-colour: #eee0bf; }
+
+@media screen {
+ .immersive-museum #panel[data-paper]:where(:not([data-paper="letter"], .acc-immersive, .map-exhibit, .model-continuous, .field-flyer-continuous, .pack-panel, :has(.food-seat-scene))) {
+  background-color: var(--page-colour);
+  background-image: linear-gradient(108deg, #fffaf12c 18%, transparent 57%, #7d643115), var(--page-stock);
+  background-repeat: no-repeat, repeat;
+  background-size: 100% 100%, var(--stock-size);
+  border-radius: 3px;
+  box-shadow: 0 2px 0 #d3c29e, 0 4px 0 #a99472, 0 17px 55px #201b1570;
+ }
+ .immersive-museum #panel[data-paper]:where(:not([data-paper="letter"], .acc-immersive, .map-exhibit, .model-continuous, .field-flyer-continuous, .pack-panel, :has(.food-seat-scene))) > .dialog-top {
+  background-color: var(--page-colour);
+  background-image: linear-gradient(90deg, #aa8b5412, #aa8b5421), var(--page-stock);
+  background-size: 100% 100%, var(--stock-size);
+ }
+ #panel[data-paper] :is(.notebook-leaf, .claim-paper, .tray, .note-block) {
+  background-color: var(--page-colour);
+  background-image: linear-gradient(107deg, #c3a66f11, #fffdfa05 67%, #a8864a18), var(--page-stock);
+  background-size: 100% 100%, var(--stock-size);
+ }
+ #panel[data-paper] .notebook-leaf {
+  box-shadow: inset 13px 0 15px -16px #6d512b80, 0 2px 0 #d2c4a5, 2px 7px 12px #34281728;
+ }
+ #panel[data-kind="water-dossier"] .resume-list {
+  background-color: #eddfbb;
+  background-image: var(--field-stain), var(--field-stock);
+  background-position: right center, 0 0;
+  background-size: 140px auto, var(--stock-size);
+  background-repeat: no-repeat, repeat;
+ }
+ body.immersive-museum #flight-notebook:not([hidden]),
+ body.full-window.immersive-museum #flight-notebook:not([hidden]) {
+  background-color: #eddfbb;
+  background-image: var(--field-stain), var(--field-stock);
+  background-position: right top, 0 0;
+  background-size: 118px auto, var(--stock-size);
+  background-repeat: no-repeat, repeat;
+ }
+
+ /* Each rule belongs to a line box, so wrapping, typing and larger text stay on the same grid. */
+ #panel[data-paper] :is(.notebook-leaf blockquote, #own-label, #field-observation, #tour-answer) {
+  --rule-top: 0px;
+  --rule-height: 1.8em;
+  font-family: var(--serif);
+  font-size: calc(1rem * var(--reading-scale, 1));
+  line-height: 1.8;
+  background-image: linear-gradient(transparent calc(100% - 1px), #727f6352 0), var(--page-stock);
+  background-size: 100% var(--rule-height), var(--stock-size);
+  background-position: 0 calc(var(--rule-top) - .25em), 0 0;
+  background-repeat: repeat-y, repeat;
+ }
+ @supports (height: 1lh) {
+  #panel[data-paper] :is(.notebook-leaf blockquote, #own-label, #field-observation, #tour-answer) { --rule-height: 1lh; }
+ }
+ #panel[data-paper] .notebook-leaf blockquote { padding-inline: .45em; }
+ #panel[data-paper] :is(#own-label, #field-observation, #tour-answer) {
+  --rule-top: .72em;
+  width: 100%;
+  padding: var(--rule-top) .82em;
+  color: #273c34;
+  background-color: var(--page-colour);
+  background-attachment: local;
+  border: 1px solid #9b8d6d;
+  border-radius: 2px;
+  box-shadow: inset 1px 2px 6px #37270f1d;
+ }
+
+ /* The returned letter is the only sheet in the dialog. */
+ .immersive-museum #panel[data-paper="letter"] {
+  width: min(42rem, 97vw);
+  max-height: 94svh;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+ }
+ #panel[data-paper="letter"] > .dialog-top {
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  pointer-events: none;
+ }
+ #panel[data-paper="letter"] #panel-label { display: none; }
+ #panel[data-paper="letter"] #close-panel {
+  width: 44px;
+  height: 44px;
+  margin: 13px 14px 0 0;
+  border-radius: 50%;
+  color: #4a4233;
+  background: #f5eddb;
+  pointer-events: auto;
+ }
+ #panel[data-paper="letter"] #close-panel:hover { background-color: #e7d7b8; }
+ #panel[data-paper="letter"] #panel-body {
+  padding: 8px 8px 15px;
+  filter: drop-shadow(0 6px 12px #160f0b60);
+ }
+ #panel[data-paper="letter"] .field-letter {
+  background-image: linear-gradient(178deg, transparent 66%, #78613a15 66.3% 66.55%, #fffdfa45 66.7% 67%, transparent 67.3%),
+                    linear-gradient(95deg, #7b5d2c21, #fff9e82d 13%, transparent 62%, #8065341a), var(--museum-stock);
+  background-size: 100% 100%, 100% 100%, var(--stock-size);
+  background-repeat: no-repeat, no-repeat, repeat;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 19px), calc(100% - 19px) 100%, 0 100%);
+ }
+ .field-letter::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 19px;
+  height: 19px;
+  background: linear-gradient(135deg, #f8eed8, #c9b68d 49%, transparent 51%);
+  filter: drop-shadow(-1px -1px 1px #77613b70);
+  content: '';
+  pointer-events: none;
+ }
+ @media (max-width: 520px) {
+  .field-letter-record li { grid-template-columns: minmax(0,1fr) auto minmax(3.5rem, auto); gap: .45rem; }
+  #panel[data-paper="letter"] .field-letter .actions { margin-bottom: .5rem; }
+  #panel[data-paper="letter"] .field-letter .actions button { white-space: normal; }
+ }
+
+ .high-contrast #panel[data-paper]:where(:not(.acc-immersive, .map-exhibit, .model-continuous, .field-flyer-continuous, .pack-panel, :has(.food-seat-scene))):not([data-paper="letter"]),
+ .high-contrast #panel[data-paper]:where(:not(.acc-immersive, .map-exhibit, .model-continuous, .field-flyer-continuous, .pack-panel, :has(.food-seat-scene))) > .dialog-top,
+ .high-contrast #panel[data-paper] :is(.notebook-leaf, .claim-paper, .tray, .note-block, .resume-list, .field-letter),
+ body.immersive-museum.high-contrast #flight-notebook:not([hidden]) {
+  background-image: none;
+  background-color: #fff8e9;
+ }
+ .high-contrast #panel[data-paper="letter"] > .dialog-top { background: none; }
+ .high-contrast #panel[data-paper] :is(.notebook-leaf blockquote, #own-label, #field-observation, #tour-answer) {
+  --page-stock: none;
+  background-color: #fff8e9;
+ }
+}

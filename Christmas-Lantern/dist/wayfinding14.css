@@ -1,0 +1,33 @@
+/* Wayfinding in the existing valley · Daniel using ChatGPT · November 13, 2026 */
+/* The visible sign is painted on Canvas. This is only its native accessible hit area. */
+.scene-sign23{position:absolute;z-index:11;display:block;margin:0;padding:0;min-width:44px;min-height:44px;background:transparent!important;border:0!important;border-radius:3px;box-shadow:none!important;backdrop-filter:none;transform:none;cursor:pointer;color:transparent;touch-action:manipulation}
+.scene-sign23[hidden],.keeper-welcome14[hidden]{display:none}.scene-sign23>span{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}.scene-sign23:focus-visible{outline:2px solid #e7cf94;outline-offset:2px}
+.keeper-welcome14{position:absolute;z-index:14;left:18px;top:60px;width:min(350px,85%);padding:15px 17px;background:#f8edcfee;color:#294331;border:1px solid #b39a64;border-radius:8px;box-shadow:0 7px 24px #18261d35;font:14px/1.5 Georgia,serif;backdrop-filter:blur(5px)}.keeper-welcome14>strong{font:600 11px/1.4 'DM Sans',sans-serif;letter-spacing:.03em}.keeper-welcome14 p{margin:7px 0 12px}.keeper-welcome14>div{display:flex;gap:8px;flex-wrap:wrap}.keeper-welcome14 button{font:12px 'DM Sans',sans-serif;color:#284733;background:#eee4c8;border:1px solid #a9966b;border-radius:5px;min-height:36px;padding:7px 10px}
+body.immersive .keeper-welcome14{top:72px}
+.pocket-map14{font:15px/1.55 'DM Sans',sans-serif;color:#2d4937}.pocket-map14 .map-kicker14{font-size:10px;color:#80683e;letter-spacing:.08em}.pocket-map14 h3{font:21px/1.3 Georgia,serif;margin:23px 0 12px}.pocket-map14 .pocket-drawing14{position:relative;aspect-ratio:600/540;overflow:hidden;margin:20px 0;border:5px double #bfa675;border-radius:4px;background:radial-gradient(ellipse at 50% 40%,#f9edcc,#e9d8ae);box-shadow:inset 0 0 25px #ad8c5030}
+.map-paths14{position:absolute;inset:0;width:100%;height:100%}.map-paths14 path{fill:none;stroke:#a38c58;stroke-width:4;stroke-dasharray:4 8;stroke-linecap:round}.map-place14{position:absolute;transform:translate(-50%,-40%);width:29%;text-align:center;line-height:1.2;color:#3a5039}.map-place14 svg{display:block;width:52px;height:48px;margin:0 auto 3px;filter:drop-shadow(0 2px 1px #7a63352b)}.map-place14 strong{display:inline-block;background:#f1e3bded;padding:3px 5px;border-radius:4px;font:14px/1.25 Georgia,serif;max-width:100%}.map-place14.is-here strong{background:#31553e;color:#fff1cb}.map-place14 small{display:block;width:max-content;max-width:100%;margin:2px auto;padding:2px 5px;background:#f5e6bced;color:#3b583c;font-size:10px;font-weight:600}.pocket-map14 .map-location14{font-size:14px;border-left:3px solid #a0854d;padding:8px 12px;background:#ece7d3}.map-exits14{display:grid;grid-template-columns:1fr 1fr;gap:8px}.map-exits14 button{min-height:44px;text-align:left;padding:10px 12px;font:14px/1.4 Georgia,serif;color:#314f39;background:#efe8d2;border:1px solid #b6ac88;border-radius:5px}.map-exits14 button span{font-size:20px;margin-right:6px}.pocket-map14 p,.pocket-map14 strong{user-select:text;-webkit-user-select:text}.pack-map-icon14 svg{width:42px;height:44px;display:block}
+@media(max-width:600px){.keeper-welcome14{left:10px;top:45px;padding:12px 13px;font-size:13px}.map-place14 svg{width:40px;height:37px}.map-place14 strong{font-size:12px;padding:2px 3px}.map-place14 small{font-size:9px}.map-exits14{grid-template-columns:1fr}.pocket-map14 .pocket-drawing14{border-width:4px}.pocket-map14 h3{font-size:19px}}
+@media print{.scene-sign23,.keeper-welcome14{display:none}}
+
+#map-copy-status14:empty{display:none}
+/* On a small embedded game, the controls have their own rail below the painting. */
+@media(max-width:600px){
+ body:not(.immersive) .game-shell .viewport{box-sizing:content-box;padding-bottom:160px}
+ body:not(.immersive) .game-shell .scene-bottom{bottom:12px}
+ body:not(.immersive) .game-shell .p10-parcel-hud{bottom:174px}
+ body:not(.immersive) .game-shell .touch-stick{bottom:70px}
+}
+
+/* Leave the lowest strip for in-world down exits; actions remain together above it. */
+@media(min-width:601px){
+ body.front-exit25 .scene-bottom{bottom:71px}
+ body.front-exit25 #world-play21{bottom:121px}
+ body.front-exit25 #touch-stick{bottom:130px}
+}
+body.immersive.front-exit25 .scene-bottom{bottom:max(68px,calc(env(safe-area-inset-bottom) + 54px))}
+body.immersive.front-exit25 #world-play21{bottom:121px}
+body.immersive.front-exit25 #touch-stick{bottom:144px}
+
+@media(min-width:601px){body.front-exit25 .p10-parcel-hud{bottom:176px}}
+body.immersive.front-exit25 .p10-parcel-hud{top:auto;bottom:176px}
+@media(max-width:600px){body:not(.immersive).front-exit25 .p10-parcel-hud{top:42px;bottom:auto}}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#193b37">
+  <meta name="description" content="Unearthed! — Biblical Discoveries. Walk into the past. Explore twelve archaeological sites, investigate biblical history, and fill a museum of your own. A free illustrated adventure for curious minds.">
+  <title>Unearthed! — Biblical Discoveries</title>
+  <link rel="icon" href="assets/compass.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="patient.css">
+  <link rel="stylesheet" href="museum.css">
+  <link rel="stylesheet" href="fieldwork.css">
+  <link rel="stylesheet" href="library.css">
+  <link rel="stylesheet" href="adventure.css">
+  <link rel="stylesheet" href="immersion.css">
+  <link rel="stylesheet" href="kitchen.css">
+  <link rel="stylesheet" href="map-view.css">
+  <link rel="stylesheet" href="field-v12.css">
+  <link rel="stylesheet" href="pad-play.css">
+  <link rel="stylesheet" href="first-expedition.css">
+  <link rel="stylesheet" href="investigation.css">
+  <link rel="stylesheet" href="culture.css">
+  <link rel="stylesheet" href="paper.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Unearthed! — Biblical Discoveries home"><img src="assets/compass.svg" alt="" width="43" height="43"><span><b>UNEARTHED!</b><small>BIBLICAL DISCOVERIES</small></span></a>
+    <nav aria-label="Your expedition">
+      <button data-action="museum" class="nav-button active"><span class="nav-icon">⌂</span> Museum</button>
+      <button data-action="atlas" class="nav-button"><span class="nav-icon">⌖</span> Atlas</button>
+      <button data-action="journal" class="nav-button"><span class="nav-icon">▤</span> Field journal <span id="journal-count" class="count">0</span></button>
+      <button data-action="library" class="nav-button"><span class="nav-icon">▥</span> Library</button>
+    </nav>
+    <button data-action="settings" class="icon-button settings-button" aria-label="Expedition settings" title="Settings">⚙</button>
+  </header>
+  <main>
+    <div class="chapter-heading"><div><p class="eyebrow" id="place-label">SOUTH BAY, CALIFORNIA</p><h1 id="scene-title">The Discovery Museum</h1></div><p class="chapter-note" id="scene-note">A little curiosity can take you a long way.</p></div>
+    <section class="game-frame" aria-label="Exploration game">
+      <div class="scene-toolbar"><div class="hall-switch" aria-label="Museum halls"><button data-action="hall-ot" class="selected" aria-pressed="true">I <span>Old Testament</span></button><button data-action="hall-nt" aria-pressed="false">II <span>New Testament</span></button></div><div class="scene-tools"><button data-action="cabin" title="Visit the expedition aircraft">✈ <span>The aircraft</span></button><button data-action="sound" aria-pressed="false" id="sound-button">♫ <span>Sound off</span></button><button data-action="fullscreen" aria-label="Toggle fullscreen" title="Fullscreen (F)">⛶</button></div></div>
+      <div id="viewport" class="viewport">
+        <canvas id="world" width="1536" height="1024" tabindex="0" aria-label="Walk through your museum. Use arrow keys or WASD, or click the floor. Press E near a display. Open the backpack for the Scene Guide and all destinations."></canvas>
+        <div class="location-plaque"><span class="small-star">✦</span><div><span class="eyebrow" id="room-label">WEST HALL · THE OLD TESTAMENT</span><p id="room-caption">Kings, kingdoms &amp; the written word</p><button type="button" id="scroll-look-up" data-action="scroll-look-up" hidden>Look up ↑</button></div></div>
+        <div id="hotspots" class="hotspots" aria-label="Places to investigate"></div>
+        <div class="collection-stamp" id="collection-stamp"><b id="collection-count">00</b><span>OF 12<br>DISCOVERIES</span></div>
+        <button id="flight-skip" hidden>Skip flight →</button>
+        <div id="load-indicator" role="status">Opening the museum…</div>
+        <div class="scene-vignette" aria-hidden="true"></div>
+      </div>
+      <section id="flight-notebook" aria-label="Thoughts for the journey" hidden></section>
+      <div class="interaction-bar"><div><span class="status-dot"></span><span id="nearby" role="status">Your first discovery is waiting. Choose a display or open the atlas.</span></div><button data-action="interact" id="interact-button">Investigate <kbd>E</kbd></button></div>
+    </section>
+    <div class="under-scene"><p><kbd>W A S D</kbd> / <kbd>↑ ↓ ← →</kbd> walk <i>·</i> Click to explore <i>·</i> <kbd>E</kbd> investigate <i>·</i> <kbd>M</kbd> atlas</p><button data-action="guide">Scene guide <span>↗</span></button><button data-action="about">Our approach to evidence <span>↗</span></button></div>
+    <div class="controller-bar"><span id="controller-status">Controller: click the game, then press a button.</span><button data-action="controller-help">Controller controls</button></div>
+    <div class="touch-controls" aria-label="Touch movement"><button data-move="left" aria-label="Walk left">←</button><div><button data-move="up" aria-label="Walk up">↑</button><button data-move="down" aria-label="Walk down">↓</button></div><button data-move="right" aria-label="Walk right">→</button></div>
+  </main>
+  <footer><span>MADE FOR THE CURIOUS.</span><p>An archaeology adventure for the Loft, families &amp; friends everywhere.</p><button data-action="gospel">Tell me about the Christian hope</button></footer>
+  <dialog id="panel" aria-labelledby="panel-title"><div class="dialog-top"><span class="eyebrow" id="panel-label">FIELD NOTES</span><button id="close-panel" class="icon-button" aria-label="Close dialog">×</button></div><div id="panel-body"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js" defer></script>
+  <script src="books.js" defer></script>
+  <script src="accounts-data.js" defer></script>
+  <script src="accounts.js" defer></script>
+  <script src="stick.js" defer></script>
+  <script src="links.js" defer></script>
+  <script src="desk.js" defer></script>
+  <script src="library.js?v=quote-credits" defer></script>
+  <script src="walking-data.js" defer></script>
+  <script src="people-data.js" defer></script>
+  <script src="artifact-metrics.js" defer></script>
+  <script src="art.js" defer></script>
+  <script src="view.js" defer></script>
+  <script src="coasts.js" defer></script>
+  <script src="atlas.js" defer></script>
+  <script src="locomotion.js" defer></script>
+  <script src="museum.js" defer></script>
+  <script src="scroll-room.js" defer></script>
+  <script src="study-data.js" defer></script>
+  <script src="evidence.js" defer></script>
+  <script src="scripture.js" defer></script>
+  <script src="patient-study.js" defer></script>
+  <script src="reflective-flight.js" defer></script>
+  <script src="learning.js" defer></script>
+  <script src="models.js" defer></script>
+  <script src="people.js" defer></script>
+  <script src="journey.js?v=quote-credits" defer></script>
+  <script src="real-photos.js" defer></script>
+  <script src="dig-square.js" defer></script>
+  <script src="fieldwork.js" defer></script>
+  <script src="controller.js" defer></script>
+  <script src="field-games.js" defer></script>
+  <script src="adventure.js" defer></script>
+  <script src="court-art.js" defer></script>
+  <script src="resilience.js" defer></script>
+  <script src="immersion.js" defer></script>
+  <script src="food-data.js" defer></script>
+  <script src="food-art.js" defer></script>
+  <script src="kitchen.js" defer></script>
+  <script src="map-view.js" defer></script>
+  <script src="map-markers.js" defer></script>
+  <script src="signage.js" defer></script>
+  <script src="scroll-fragments.js" defer></script>
+  <script src="field-camps.js" defer></script>
+  <script src="field-trench.js" defer></script>
+  <script src="pad-play.js" defer></script>
+  <script src="first-expedition.js" defer></script>
+  <script src="investigation-data.js" defer></script>
+  <script src="investigation.js?v=quote-credits" defer></script>
+  <script src="culture-data.js" defer></script>
+  <script src="culture.js" defer></script>
+  <script src="workshop-games.js" defer></script>
+  <script src="hope.js" defer></script>
+  <script src="accounts-study.js" defer></script>
+  <script src="bible.js?v=quote-credits" defer></script>
+  <script src="display-view.js" defer></script>
+  <script src="game.js?v=quote-credits" defer></script>
+</body>
+</html>
